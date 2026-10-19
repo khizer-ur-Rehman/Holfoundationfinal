@@ -356,7 +356,7 @@ export function HomePage() {
               </span>
               <span className="home-story-copy">
                 <strong className="home-story-title">School Preparatory Program</strong>
-                <span className="home-story-description">Helping children return to learning.</span>
+                <span className="home-story-description">Bringing out-of-school children back to learning, with children transitioning into formal schools within two years.</span>
                 <span className="home-story-action" aria-hidden="true">&#8599;</span>
               </span>
             </Link>
@@ -366,7 +366,7 @@ export function HomePage() {
               </span>
               <span className="home-story-copy">
                 <strong className="home-story-title">Lyari Entrepreneur Academy</strong>
-                <span className="home-story-description">Practical skills for brighter futures.</span>
+                <span className="home-story-description">Lyari’s first entrepreneur academy, offering free IT and sports program to empower youth with skills and opportunities.</span>
                 <span className="home-story-action" aria-hidden="true">&#8599;</span>
               </span>
             </Link>
@@ -376,7 +376,7 @@ export function HomePage() {
               </span>
               <span className="home-story-copy">
                 <strong className="home-story-title">HOL Preschool</strong>
-                <span className="home-story-description">A confident start for young learners.</span>
+                <span className="home-story-description">Replicating the Mother and Child model inspired by Sabina Khatri, nurturing children and empowering mothers through education.</span>
                 <span className="home-story-action" aria-hidden="true">&#8599;</span>
               </span>
             </Link>
@@ -386,7 +386,7 @@ export function HomePage() {
               </span>
               <span className="home-story-copy">
                 <strong className="home-story-title">HOL KB Campus</strong>
-                <span className="home-story-description">More pathways into public education.</span>
+                <span className="home-story-description">Transforming a neglected government school into a safe, happy learning space, providing free education to 700 children in Lyari.</span>
                 <span className="home-story-action" aria-hidden="true">&#8599;</span>
               </span>
             </Link>
