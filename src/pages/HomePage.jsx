@@ -350,46 +350,46 @@ export function HomePage() {
             </div>
           </header>
           <div className="home-stories-grid">
-            <Link className="home-story-card" to="/programs/school-preparatory-program">
+            <article className="home-story-card">
               <span className="home-story-media">
                 <img loading="lazy" decoding="async" src="/assets/images/programs/home-school-preparatory.webp" alt="Children and community members gathered outside for a school preparatory program visit" />
               </span>
               <span className="home-story-copy">
-                <strong className="home-story-title">School Preparatory Program</strong>
+                <Link className="home-story-title" to="/programs/school-preparatory-program">School Preparatory Program</Link>
                 <span className="home-story-description">Bringing out-of-school children back to learning, with children transitioning into formal schools within two years.</span>
-                <span className="home-story-action" aria-hidden="true">&#8599;</span>
+                
               </span>
-            </Link>
-            <Link className="home-story-card" to="/programs/lyari-entrepreneur-academy">
+            </article>
+            <article className="home-story-card">
               <span className="home-story-media">
                 <img loading="lazy" decoding="async" src="/assets/images/programs/home-lyari-entrepreneur-academy.webp" alt="Lyari Entrepreneur Academy students taking part in a team-building activity" />
               </span>
               <span className="home-story-copy">
-                <strong className="home-story-title">Lyari Entrepreneur Academy</strong>
+                <Link className="home-story-title" to="/programs/lyari-entrepreneur-academy">Lyari Entrepreneur Academy</Link>
                 <span className="home-story-description">Lyari’s first entrepreneur academy, offering free IT and sports program to empower youth with skills and opportunities.</span>
-                <span className="home-story-action" aria-hidden="true">&#8599;</span>
+                
               </span>
-            </Link>
-            <Link className="home-story-card" to="/programs/hol-preschool">
+            </article>
+            <article className="home-story-card">
               <span className="home-story-media">
                 <img loading="lazy" decoding="async" src="/assets/images/programs/home-hol-preschool.webp" alt="A young child with family and an educator during a HOL preschool activity" />
               </span>
               <span className="home-story-copy">
-                <strong className="home-story-title">HOL Preschool</strong>
+                <Link className="home-story-title" to="/programs/hol-preschool">HOL Preschool</Link>
                 <span className="home-story-description">Replicating the Mother and Child model inspired by Sabina Khatri, nurturing children and empowering mothers through education.</span>
-                <span className="home-story-action" aria-hidden="true">&#8599;</span>
+                
               </span>
-            </Link>
-            <Link className="home-story-card" to="/programs/hol-kb-campus">
+            </article>
+            <article className="home-story-card">
               <span className="home-story-media">
                 <img loading="lazy" decoding="async" src="/assets/images/programs/home-hol-kb-campus.webp" alt="Students gathered outside HOL KB Campus: GBSS Kara Bhai Karim Jee" />
               </span>
               <span className="home-story-copy">
-                <strong className="home-story-title">HOL KB Campus</strong>
+                <Link className="home-story-title" to="/programs/hol-kb-campus">HOL KB Campus</Link>
                 <span className="home-story-description">Transforming a neglected government school into a safe, happy learning space, providing free education to 700 children in Lyari.</span>
-                <span className="home-story-action" aria-hidden="true">&#8599;</span>
+                
               </span>
-            </Link>
+            </article>
           </div>
         </div>
       </section>
