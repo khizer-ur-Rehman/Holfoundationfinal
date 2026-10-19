@@ -1,0 +1,2365 @@
+/* ==========================================================================
+   GBSS Kara Bhai Karim Jee - Program Detail Stylesheet
+   HOL Foundation Theme: Plus Jakarta Sans, Brand Blue (#173667), Green (#5EB93C), Yellow (#FAB831)
+   100% Responsive, Zero Horizontal Scroll, Fluid Scaled Infographics
+   ========================================================================== */
+
+:root {
+  --kb-page-bg: #F8FAF5;
+  --kb-navy: #173667;
+  --kb-navy-deep: #102340;
+  --kb-green: #5EB93C;
+  --kb-green-dark: #388E3C;
+  --kb-gold: #FAB831;
+  --kb-pink: #D91B5C;
+  --kb-gray-text: #535353;
+  --kb-charcoal: #2B3338;
+  --kb-blue-accent: #1E88E5;
+  --font-base: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-caveat: 'Caveat', cursive;
+  --font-urdu: 'Noto Nastaliq Urdu', 'Noto Sans Arabic', serif;
+}
+
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.kb-detail-page {
+  background-color: var(--kb-page-bg);
+  color: var(--kb-gray-text);
+  font-family: var(--font-base);
+  line-height: 1.7;
+  overflow-x: clip;
+  overflow-y: visible;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.kb-detail-page *,
+.kb-detail-page *::before,
+.kb-detail-page *::after {
+  box-sizing: border-box;
+}
+
+.kb-detail-page img {
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   Section Headings & Common Accents
+   ========================================================================== */
+.kb-section-title {
+  font-family: var(--font-base);
+  font-size: clamp(26px, 3.2vw, 42px);
+  font-weight: 800;
+  color: var(--kb-navy);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  margin: 0 0 16px;
+  word-break: break-word;
+}
+
+.kb-section-subtitle {
+  font-size: clamp(15px, 1.2vw, 17px);
+  color: var(--kb-gray-text);
+  line-height: 1.7;
+  max-width: 680px;
+  margin: 0 0 32px;
+}
+
+.highlight-green {
+  color: var(--kb-green) !important;
+}
+
+/* ==========================================================================
+   Section 2: School Impact Statistics (Editorial Story & Infographic)
+   ========================================================================== */
+.kb-impact-section {
+  background-color: #ffffff;
+  padding: clamp(48px, 6vw, 96px) 0;
+  border-bottom: 1px solid #E6ECE0;
+  overflow: hidden;
+}
+
+.kb-impact-container {
+  width: min(1320px, calc(100% - 32px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(36px, 4.5vw, 68px);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .kb-impact-container {
+    grid-template-columns: 44% 56%;
+  }
+}
+
+.kb-editorial-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 560px;
+}
+
+.kb-editorial-lead {
+  font-family: var(--font-base);
+  font-size: clamp(16px, 1.25vw, 18.5px);
+  line-height: 1.75;
+  color: #374151;
+  margin: 0 0 24px;
+}
+
+.kb-editorial-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+/* Interlocking Infographic Canvas - Fluid Scaler */
+.kb-infographic-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 12px 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.kb-circles-scaler {
+  position: relative;
+  width: 480px;
+  height: 430px;
+  max-width: 100%;
+  flex-shrink: 0;
+  display: block;
+  box-sizing: border-box;
+  margin: 0 auto;
+  transition: width 0.2s ease, height 0.2s ease;
+}
+
+.kb-circles-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 480px;
+  height: 430px;
+  transform-origin: top left;
+  user-select: none;
+}
+
+/* Pure CSS Media Query Fallbacks for Canvas Dimensions */
+@media (max-width: 520px) {
+  .kb-circles-scaler {
+    width: 384px;
+    height: 344px;
+  }
+  .kb-circles-canvas {
+    transform: scale(0.8);
+    transform-origin: top left;
+  }
+}
+
+@media (max-width: 420px) {
+  .kb-circles-scaler {
+    width: 326px;
+    height: 292px;
+  }
+  .kb-circles-canvas {
+    transform: scale(0.68);
+    transform-origin: top left;
+  }
+}
+
+@media (max-width: 360px) {
+  .kb-circles-scaler {
+    width: 278px;
+    height: 249px;
+  }
+  .kb-circles-canvas {
+    transform: scale(0.58);
+    transform-origin: top left;
+  }
+}
+
+@media (max-width: 320px) {
+  .kb-circles-scaler {
+    width: 240px;
+    height: 215px;
+  }
+  .kb-circles-canvas {
+    transform: scale(0.5);
+    transform-origin: top left;
+  }
+}
+
+.kb-circle-badge {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 12px 28px rgba(23, 54, 103, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+  font-family: var(--font-base);
+}
+
+.kb-circle-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 16px 36px rgba(23, 54, 103, 0.18);
+}
+
+/* 1. Main Central Circle (590 Students) */
+.kb-badge-total-students {
+  width: 195px;
+  height: 195px;
+  background-color: var(--kb-pink);
+  top: 110px;
+  left: 70px;
+  z-index: 20;
+}
+
+.kb-badge-total-students .stat-num {
+  font-family: var(--font-base);
+  font-weight: 900;
+  font-size: 52px;
+  line-height: 1;
+  color: var(--kb-gold);
+  letter-spacing: -0.03em;
+}
+
+.kb-badge-total-students .stat-label {
+  font-family: var(--font-base);
+  font-weight: 750;
+  font-size: 20px;
+  color: #ffffff;
+  margin-top: 3px;
+}
+
+/* 2. Top-Left Circle (Boys 363) */
+.kb-badge-boys {
+  width: 104px;
+  height: 104px;
+  background-color: var(--kb-green);
+  top: 35px;
+  left: 45px;
+  z-index: 30;
+}
+
+.kb-badge-boys .stat-num {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.kb-badge-boys .stat-label {
+  font-weight: 700;
+  font-size: 13.5px;
+  color: #ffffff;
+  margin-top: 2px;
+}
+
+/* 3. Bottom-Left Circle (Girls 227) */
+.kb-badge-girls {
+  width: 104px;
+  height: 104px;
+  background-color: var(--kb-green);
+  top: 275px;
+  left: 45px;
+  z-index: 30;
+}
+
+.kb-badge-girls .stat-num {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.kb-badge-girls .stat-label {
+  font-weight: 700;
+  font-size: 13.5px;
+  color: #ffffff;
+  margin-top: 2px;
+}
+
+/* 4. Top-Right Circle (Formal Education 407) */
+.kb-badge-formal {
+  width: 172px;
+  height: 172px;
+  background-color: var(--kb-navy);
+  top: 35px;
+  left: 215px;
+  z-index: 10;
+  padding: 10px;
+}
+
+.kb-badge-formal .stat-num {
+  font-weight: 900;
+  font-size: 33px;
+  line-height: 1;
+  color: var(--kb-gold);
+}
+
+.kb-badge-formal .stat-sub {
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--kb-gold);
+  margin-bottom: 2px;
+}
+
+.kb-badge-formal .stat-label {
+  font-weight: 600;
+  font-size: 13.5px;
+  color: #ffffff;
+  line-height: 1.25;
+}
+
+/* 5. Bottom-Center Circle (Non-Formal Education 183) */
+.kb-badge-nonformal {
+  width: 156px;
+  height: 156px;
+  background-color: var(--kb-navy-deep);
+  top: 235px;
+  left: 170px;
+  z-index: 10;
+  padding: 10px;
+}
+
+.kb-badge-nonformal .stat-num {
+  font-weight: 900;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--kb-gold);
+}
+
+.kb-badge-nonformal .stat-sub {
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--kb-gold);
+  margin-bottom: 2px;
+}
+
+.kb-badge-nonformal .stat-label {
+  font-weight: 600;
+  font-size: 12px;
+  color: #ffffff;
+  line-height: 1.25;
+}
+
+/* 6. Right-Side Circle (Classrooms 13) */
+.kb-badge-classrooms {
+  width: 136px;
+  height: 136px;
+  background-color: var(--kb-gold);
+  top: 165px;
+  left: 335px;
+  z-index: 30;
+}
+
+.kb-badge-classrooms .stat-num {
+  font-weight: 900;
+  font-size: 42px;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.kb-badge-classrooms .stat-label {
+  font-weight: 750;
+  font-size: 15px;
+  color: var(--kb-navy);
+  line-height: 1.15;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Section 3: Strengthening School Through Quality Team & Families Data
+   ========================================================================== */
+.kb-team-families-section {
+  background-color: var(--kb-page-bg);
+  padding: clamp(52px, 6.5vw, 100px) 0;
+  border-bottom: 1px solid #E6ECE0;
+  overflow: hidden;
+}
+
+.kb-team-families-grid {
+  width: min(1320px, calc(100% - 32px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(40px, 5.5vw, 76px);
+}
+
+@media (min-width: 1024px) {
+  .kb-team-families-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.kb-col-heading {
+  font-family: var(--font-base);
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 800;
+  text-align: center;
+  margin: 0 0 clamp(24px, 3.2vw, 40px);
+  color: var(--kb-navy);
+  letter-spacing: -0.035em;
+  line-height: 1.25;
+}
+
+/* Quality Team Stacks */
+.kb-team-stacks {
+  display: flex;
+  justify-content: center;
+  gap: clamp(14px, 3.5vw, 28px);
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.kb-vertical-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+  max-width: calc(50% - 10px);
+  box-sizing: border-box;
+}
+
+.kb-stack-badge {
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 8px 22px rgba(23, 54, 103, 0.1);
+  position: relative;
+  font-family: var(--font-base);
+  transition: transform 0.2s ease;
+  user-select: none;
+}
+
+.kb-stack-badge:hover {
+  transform: translateY(-2px);
+}
+
+/* Stack A */
+.kb-stack-a-top {
+  width: 128px;
+  height: 128px;
+  background-color: var(--kb-pink);
+  color: #ffffff;
+  font-weight: 750;
+  font-size: 13.5px;
+  line-height: 1.25;
+  padding: 12px;
+  z-index: 3;
+}
+
+.kb-stack-a-mid {
+  width: 116px;
+  height: 116px;
+  background-color: var(--kb-gold);
+  color: var(--kb-navy);
+  margin-top: -18px;
+  z-index: 2;
+}
+
+.kb-stack-a-mid .num {
+  font-weight: 850;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.kb-stack-a-mid .lbl {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--kb-navy);
+  margin-top: 2px;
+}
+
+.kb-stack-a-bot {
+  width: 106px;
+  height: 106px;
+  background-color: var(--kb-navy);
+  color: #ffffff;
+  margin-top: -16px;
+  z-index: 1;
+}
+
+.kb-stack-a-bot .num {
+  font-weight: 850;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.kb-stack-a-bot .lbl {
+  font-size: 10.5px;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-top: 2px;
+  padding: 0 6px;
+}
+
+/* Stack B */
+.kb-stack-b-top {
+  width: 128px;
+  height: 128px;
+  background-color: var(--kb-pink);
+  color: #ffffff;
+  font-weight: 750;
+  font-size: 13.5px;
+  line-height: 1.25;
+  padding: 12px;
+  z-index: 3;
+}
+
+.kb-stack-b-mid {
+  width: 116px;
+  height: 116px;
+  background-color: var(--kb-gold);
+  color: var(--kb-navy);
+  margin-top: -18px;
+  z-index: 2;
+}
+
+.kb-stack-b-mid .num {
+  font-weight: 850;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.kb-stack-b-mid .lbl {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--kb-navy);
+  margin-top: 2px;
+}
+
+.kb-stack-b-bot {
+  width: 106px;
+  height: 106px;
+  background-color: var(--kb-navy-deep);
+  color: #ffffff;
+  margin-top: -16px;
+  z-index: 1;
+}
+
+.kb-stack-b-bot .num {
+  font-weight: 850;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.kb-stack-b-bot .lbl {
+  font-size: 10.5px;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-top: 2px;
+  padding: 0 6px;
+}
+
+@media (max-width: 400px) {
+  .kb-team-stacks {
+    gap: 8px;
+  }
+  .kb-vertical-stack {
+    width: 126px;
+    max-width: calc(50% - 4px);
+  }
+  .kb-stack-a-top, .kb-stack-b-top {
+    width: 112px;
+    height: 112px;
+    font-size: 11.5px;
+    padding: 6px;
+  }
+  .kb-stack-a-mid, .kb-stack-b-mid {
+    width: 100px;
+    height: 100px;
+    margin-top: -14px;
+  }
+  .kb-stack-a-mid .num, .kb-stack-b-mid .num {
+    font-size: 26px;
+  }
+  .kb-stack-a-bot, .kb-stack-b-bot {
+    width: 90px;
+    height: 90px;
+    margin-top: -12px;
+  }
+  .kb-stack-a-bot .num, .kb-stack-b-bot .num {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 320px) {
+  .kb-team-stacks {
+    gap: 6px;
+  }
+  .kb-vertical-stack {
+    width: 110px;
+    max-width: calc(50% - 3px);
+  }
+  .kb-stack-a-top, .kb-stack-b-top {
+    width: 98px;
+    height: 98px;
+    font-size: 10px;
+  }
+  .kb-stack-a-mid, .kb-stack-b-mid {
+    width: 88px;
+    height: 88px;
+    margin-top: -10px;
+  }
+  .kb-stack-a-mid .num, .kb-stack-b-mid .num {
+    font-size: 22px;
+  }
+  .kb-stack-a-bot, .kb-stack-b-bot {
+    width: 80px;
+    height: 80px;
+    margin-top: -10px;
+  }
+  .kb-stack-a-bot .num, .kb-stack-b-bot .num {
+    font-size: 20px;
+  }
+}
+
+/* Families Constellation Canvas - Fluid Scaler */
+.kb-families-canvas-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 12px 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.kb-families-scaler {
+  position: relative;
+  width: 440px;
+  height: 380px;
+  max-width: 100%;
+  flex-shrink: 0;
+  display: block;
+  box-sizing: border-box;
+  margin: 0 auto;
+  transition: width 0.2s ease, height 0.2s ease;
+}
+
+.kb-families-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 440px;
+  height: 380px;
+  transform-origin: top left;
+  user-select: none;
+}
+
+/* Pure CSS Media Query Fallbacks for Families Canvas */
+@media (max-width: 520px) {
+  .kb-families-scaler {
+    width: 374px;
+    height: 323px;
+  }
+  .kb-families-canvas {
+    transform: scale(0.85);
+    transform-origin: top left;
+  }
+}
+
+@media (max-width: 420px) {
+  .kb-families-scaler {
+    width: 316px;
+    height: 273px;
+  }
+  .kb-families-canvas {
+    transform: scale(0.72);
+    transform-origin: top left;
+  }
+}
+
+@media (max-width: 360px) {
+  .kb-families-scaler {
+    width: 268px;
+    height: 231px;
+  }
+  .kb-families-canvas {
+    transform: scale(0.61);
+    transform-origin: top left;
+  }
+}
+
+@media (max-width: 320px) {
+  .kb-families-scaler {
+    width: 232px;
+    height: 200px;
+  }
+  .kb-families-canvas {
+    transform: scale(0.528);
+    transform-origin: top left;
+  }
+}
+
+.kb-family-circle {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(23, 54, 103, 0.12);
+  transition: transform 0.25s ease;
+  font-family: var(--font-base);
+}
+
+.kb-family-circle:hover {
+  transform: scale(1.05);
+}
+
+/* 1. Main Primary (Total Families 464) */
+.kb-fam-total {
+  width: 160px;
+  height: 160px;
+  background-color: var(--kb-pink);
+  color: #ffffff;
+  left: 30px;
+  top: 110px;
+  z-index: 30;
+}
+
+.kb-fam-total .num {
+  font-weight: 900;
+  font-size: 38px;
+  line-height: 1;
+}
+
+.kb-fam-total .lbl {
+  font-weight: 750;
+  font-size: 15px;
+  margin-top: 2px;
+}
+
+.kb-fam-total .sub {
+  font-weight: 800;
+  font-size: 13.5px;
+}
+
+/* 2. Top-Right (Zakat Eligible 419) */
+.kb-fam-zakat {
+  width: 130px;
+  height: 130px;
+  background-color: var(--kb-navy);
+  color: #ffffff;
+  left: 155px;
+  top: 25px;
+  z-index: 20;
+  padding: 8px;
+}
+
+.kb-fam-zakat .num {
+  font-weight: 900;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.kb-fam-zakat .lbl {
+  font-size: 11.5px;
+  color: #ffffff;
+  margin-top: 2px;
+}
+
+.kb-fam-zakat .sub {
+  font-size: 11.5px;
+  color: #ffffff;
+}
+
+/* 3. Far-Right (Syed 21) */
+.kb-fam-syed {
+  width: 100px;
+  height: 100px;
+  background-color: var(--kb-blue-accent);
+  color: #ffffff;
+  left: 275px;
+  top: 95px;
+  z-index: 20;
+}
+
+.kb-fam-syed .num {
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.kb-fam-syed .lbl {
+  font-size: 11px;
+}
+
+.kb-fam-syed .sub {
+  font-weight: 600;
+  font-size: 11px;
+}
+
+/* 4. Middle-Right (Non-Zakat 10) */
+.kb-fam-nonzakat {
+  width: 106px;
+  height: 106px;
+  background-color: var(--kb-gold);
+  color: var(--kb-navy);
+  left: 215px;
+  top: 185px;
+  z-index: 20;
+}
+
+.kb-fam-nonzakat .num {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.kb-fam-nonzakat .lbl {
+  font-size: 11px;
+}
+
+.kb-fam-nonzakat .sub {
+  font-size: 10px;
+}
+
+/* 5. Bottom (Non Muslim 14) */
+.kb-fam-nonmuslim {
+  width: 106px;
+  height: 106px;
+  background-color: var(--kb-navy-deep);
+  color: #ffffff;
+  left: 115px;
+  top: 245px;
+  z-index: 10;
+}
+
+.kb-fam-nonmuslim .num {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.kb-fam-nonmuslim .lbl {
+  font-size: 11px;
+  color: #ffffff;
+}
+
+.kb-fam-nonmuslim .sub {
+  font-size: 10px;
+  color: #ffffff;
+}
+
+/* Tabular numbers for all animated counters to eliminate jitter and overflow */
+.stat-num, 
+.num, 
+.kb-pct-value {
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* ==========================================================================
+   Section 4: Grade 10 Sindh Board Results (Interactive & Animated Chart)
+   ========================================================================== */
+.kb-matric-chart-section {
+  background-color: #ffffff;
+  padding: clamp(48px, 6vw, 92px) 0 clamp(44px, 5vw, 76px);
+  border-bottom: 1px solid #E6ECE0;
+  overflow: hidden;
+}
+
+.kb-matric-container {
+  width: min(1320px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.kb-chart-interactive {
+  background: linear-gradient(180deg, #ffffff 0%, #FAFAF8 100%);
+  border-radius: clamp(16px, 2.5vw, 24px);
+  border: 1.5px solid #E4EBDD;
+  padding: clamp(20px, 3.5vw, 44px);
+  box-shadow: 0 16px 40px rgba(23, 54, 103, 0.08);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Top bar: title on left, legend on right */
+.kb-chart-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(24px, 3.5vw, 44px);
+}
+
+.kb-chart-title-group {
+  max-width: 720px;
+}
+
+.kb-chart-pill {
+  display: inline-block;
+  background: #eef8eb;
+  color: #009E49;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.kb-chart-main-title {
+  font-family: var(--font-base);
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 850;
+  color: var(--kb-navy);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  margin: 0 0 8px;
+  word-break: break-word;
+}
+
+.kb-chart-desc {
+  font-size: clamp(13.5px, 1.15vw, 15px);
+  color: #555C66;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Legend */
+.kb-chart-legend {
+  background: #ffffff;
+  border: 1px solid #e2e8dd;
+  border-radius: 14px;
+  padding: 10px 18px;
+  box-shadow: 0 4px 14px rgba(23, 54, 103, 0.05);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.kb-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 650;
+  color: #374151;
+}
+
+.kb-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.kb-legend-dot.dot-red { background-color: #ef4444; }
+.kb-legend-dot.dot-amber { background-color: var(--kb-gold); }
+.kb-legend-dot.dot-green { background-color: var(--kb-green); }
+
+/* Chart Plot Area */
+.kb-chart-plot-wrap {
+  position: relative;
+  width: 100%;
+}
+
+/* Background Guidelines */
+.kb-chart-grid-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 120px;
+  padding-top: 80px;
+  z-index: 1;
+}
+
+.kb-grid-line {
+  position: relative;
+  width: 100%;
+  border-top: 1px dashed #E5E7EB;
+}
+
+.kb-grid-line-label {
+  position: absolute;
+  left: 0;
+  top: -18px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #9CA3AF;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Columns Grid */
+.kb-chart-columns-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2.5vw, 36px);
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .kb-chart-grid-lines {
+    display: none; /* Hide background grid lines on mobile/tablet to avoid overlapping stacked cards */
+  }
+  .kb-chart-columns-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .kb-column-card {
+    padding: 20px 16px 18px;
+  }
+  .kb-bar-track {
+    height: 160px;
+  }
+}
+
+/* Column Card */
+.kb-column-card {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1.5px solid #F3F4F6;
+  box-shadow: 0 8px 24px rgba(23, 54, 103, 0.05);
+  padding: 22px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.kb-column-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(23, 54, 103, 0.09);
+}
+
+.kb-card-2023 {
+  border-color: #FEE2E2;
+}
+
+.kb-card-2024 {
+  border-color: #FEF3C7;
+}
+
+.kb-card-2025 {
+  border-color: #86EFAC;
+  border-width: 2px;
+  box-shadow: 0 10px 28px rgba(94, 185, 60, 0.12);
+}
+
+/* Card Top: Distinct vertical space for badge and percentage to avoid any overlap */
+.kb-col-top {
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.kb-record-badge {
+  background: #009E49;
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+  display: inline-block;
+  line-height: 1.2;
+  box-shadow: 0 3px 10px rgba(0, 158, 73, 0.28);
+}
+
+.kb-pct-value {
+  font-family: var(--font-base);
+  font-weight: 900;
+  font-size: clamp(28px, 3.4vw, 38px);
+  line-height: 1;
+  margin: 0;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.kb-pct-red { color: #ef4444; }
+.kb-pct-amber { color: #d97706; }
+.kb-pct-green { color: #009E49; }
+
+/* Bar Track */
+.kb-bar-track {
+  width: 100%;
+  max-width: 84px;
+  height: clamp(180px, 18vw, 240px);
+  background: rgba(243, 244, 246, 0.6);
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 4px;
+  margin-bottom: 16px;
+}
+
+.kb-bar-fill {
+  width: 100%;
+  border-radius: 10px;
+  height: 0%;
+  transition: height 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: height;
+}
+
+.bar-fill-2023 {
+  background: linear-gradient(180deg, #ef4444 0%, #991b1b 100%);
+}
+
+.bar-fill-2024 {
+  background: linear-gradient(180deg, #FAB831 0%, #d97706 100%);
+}
+
+.bar-fill-2025 {
+  background: linear-gradient(180deg, #5EB93B 0%, #009E49 100%);
+  box-shadow: 0 4px 14px rgba(94, 185, 60, 0.3);
+}
+
+/* Card Bottom Metadata */
+.kb-col-meta {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kb-col-year {
+  font-family: var(--font-base);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--kb-navy);
+  margin-bottom: 4px;
+}
+
+.kb-col-era {
+  font-size: 13px;
+  font-weight: 650;
+  color: #555C66;
+  margin-bottom: 3px;
+}
+
+.kb-col-era.era-green {
+  color: #009E49;
+  font-weight: 750;
+}
+
+.kb-col-sub {
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.kb-sub-red { color: #ef4444; }
+.kb-sub-amber { color: #d97706; }
+.kb-sub-green { color: #5EB93B; }
+
+/* Bottom Verified Proof Bar */
+.kb-verified-bar {
+  background: var(--kb-navy);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-top: clamp(24px, 3.5vw, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .kb-verified-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .kb-verified-org {
+    margin-left: 0 !important;
+  }
+}
+
+.kb-verified-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.kb-verified-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--kb-gold);
+  color: var(--kb-navy);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.kb-verified-title {
+  font-weight: 750;
+  font-size: 13.5px;
+  color: #ffffff;
+}
+
+.kb-verified-desc {
+  font-size: 12.5px;
+  color: #D1D5DB;
+  word-break: break-word;
+}
+
+.kb-verified-org {
+  font-weight: 850;
+  font-size: 13px;
+  color: var(--kb-gold);
+  letter-spacing: 0.05em;
+  margin-left: auto;
+}
+
+/* ==========================================================================
+   Section 5: Founder Quote Banner (Pre-Footer Accent Banner)
+   ========================================================================= */
+.kb-founder-quote-banner {
+  background: radial-gradient(circle at 50% 30%, #68cf42 0%, #5EB93C 70%, #4ea030 100%);
+  padding: clamp(48px, 5.5vw, 76px) 20px clamp(44px, 5vw, 68px);
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.kb-quote-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kb-urdu-quote {
+  font-family: var(--font-urdu);
+  font-size: clamp(22px, 2.8vw, 32px);
+  line-height: 1.85;
+  color: #ffffff;
+  direction: rtl;
+  margin: 0 0 20px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.kb-founder-signature {
+  font-family: var(--font-caveat);
+  font-size: clamp(40px, 4.8vw, 56px);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  margin: 0 0 14px;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+}
+
+.kb-founder-subtitles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.kb-founder-role {
+  font-family: var(--font-base);
+  font-size: 11.5px;
+  font-weight: 750;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.kb-founder-org {
+  font-family: var(--font-base);
+  font-size: 12.5px;
+  font-weight: 850;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Comprehensive Responsiveness & Zero-Horizontal-Scroll Overrides
+   ========================================================================== */
+.kb-detail-page {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.kb-impact-container,
+.kb-team-families-grid,
+.kb-matric-container,
+.unified-hero-container {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure no elements exceed container boundaries */
+.kb-editorial-copy,
+.kb-team-col,
+.kb-families-col,
+.kb-chart-interactive,
+.kb-verified-bar {
+  max-width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  .kb-impact-section {
+    padding: 36px 0;
+  }
+  .kb-team-families-section {
+    padding: 38px 0;
+  }
+  .kb-matric-chart-section {
+    padding: 36px 0 32px;
+  }
+  .kb-founder-quote-banner {
+    padding: 36px 14px 32px;
+  }
+  .kb-chart-interactive {
+    padding: 16px 12px;
+    border-radius: 16px;
+  }
+  .kb-chart-top-bar {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .kb-chart-legend {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 8px 12px;
+    padding: 8px 12px;
+  }
+  .kb-verified-bar {
+    padding: 12px 14px;
+    margin-top: 20px;
+  }
+}
+
+/* ==========================================================================
+   NEW SECTIONS: GBSS KARA BHAI KARIM JEE EXPANSION
+   ========================================================================== */
+
+/* --- Common Section Wrappers --- */
+.kb-expanded-section {
+  padding: clamp(52px, 6vw, 92px) 0;
+  position: relative;
+  border-bottom: 1px solid #E6ECE0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.kb-expanded-section.bg-white {
+  background-color: #ffffff;
+}
+
+.kb-expanded-section.bg-subtle {
+  background-color: #F8FAF5;
+}
+
+.kb-container {
+  width: min(1320px, calc(100% - 32px));
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.kb-section-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(94, 185, 60, 0.12);
+  color: #2e7d32;
+  border: 1px solid rgba(94, 185, 60, 0.3);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.kb-section-badge-pill.gold {
+  background-color: rgba(250, 184, 49, 0.16);
+  color: #9c6c06;
+  border-color: rgba(250, 184, 49, 0.4);
+}
+
+.kb-section-badge-pill.navy {
+  background-color: rgba(23, 54, 103, 0.08);
+  color: var(--kb-navy);
+  border-color: rgba(23, 54, 103, 0.2);
+}
+
+/* --- Section 1: Football Ground & Sports Grid --- */
+.kb-feature-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(36px, 5vw, 64px);
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .kb-feature-split {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+  .kb-feature-split.reverse {
+    grid-template-columns: 0.95fr 1.05fr;
+  }
+}
+
+.kb-feature-content {
+  box-sizing: border-box;
+}
+
+.kb-feature-title {
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 800;
+  color: var(--kb-navy);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+}
+
+.kb-feature-title span {
+  color: var(--kb-green);
+}
+
+.kb-feature-text {
+  font-size: clamp(16px, 1.2vw, 17px);
+  line-height: 1.75;
+  color: #444c52;
+  margin-bottom: 18px;
+}
+
+.kb-sports-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0 28px;
+}
+
+.kb-sport-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #d9e4d0;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--kb-navy);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.kb-sport-pill .icon {
+  font-size: 16px;
+}
+
+.kb-achievement-callout {
+  display: flex;
+  gap: 16px;
+  background: linear-gradient(135deg, rgba(250, 184, 49, 0.12) 0%, rgba(94, 185, 60, 0.08) 100%);
+  border: 1px solid rgba(250, 184, 49, 0.4);
+  border-left: 5px solid var(--kb-gold);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-top: 24px;
+}
+
+.kb-achievement-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.kb-achievement-info h4 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--kb-navy);
+}
+
+.kb-achievement-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #555e65;
+  line-height: 1.55;
+}
+
+.kb-feature-media {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px -12px rgba(23, 54, 103, 0.16);
+  border: 4px solid #ffffff;
+  background-color: #e5ece0;
+}
+
+.kb-feature-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.kb-feature-media:hover img {
+  transform: scale(1.02);
+}
+
+.kb-media-badge-overlay {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background: rgba(16, 35, 64, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kb-media-badge-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.kb-media-badge-tag {
+  background-color: var(--kb-gold);
+  color: #102340;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+/* --- Section 2: Kiran Satellite Preschool --- */
+.kb-preschool-meta-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 22px 0 26px;
+}
+
+.kb-meta-chip {
+  background-color: #ffffff;
+  border: 1px solid #dce8d3;
+  padding: 8px 14px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #333d45;
+}
+
+.kb-meta-chip strong {
+  color: var(--kb-green);
+  font-weight: 800;
+}
+
+.kb-preschool-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.kb-highlight-box {
+  background: #ffffff;
+  border: 1px solid #e1ebdb;
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.kb-highlight-box .title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--kb-navy);
+  margin-bottom: 4px;
+}
+
+.kb-highlight-box p {
+  font-size: 13px;
+  color: #636e72;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* --- Section 3: Strengthening Our Team Banner & Roles Matrix --- */
+.kb-team-operations-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto clamp(32px, 4.5vw, 56px);
+}
+
+.kb-team-operations-header .kb-feature-title {
+  margin-bottom: 14px;
+}
+
+.kb-team-operations-lead {
+  font-size: clamp(16px, 1.2vw, 17.5px);
+  color: #4b5563;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.kb-team-photo-showcase {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 24px 56px -16px rgba(23, 54, 103, 0.18);
+  border: 5px solid #ffffff;
+  position: relative;
+  margin-bottom: 40px;
+  background: #eef3eb;
+}
+
+.kb-team-photo-showcase img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.kb-team-roles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.kb-role-card {
+  background: #ffffff;
+  border: 1px solid #e2ebd9;
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(23, 54, 103, 0.04);
+}
+
+.kb-role-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(23, 54, 103, 0.08);
+  border-color: #cbd9c2;
+}
+
+.kb-role-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: rgba(94, 185, 60, 0.12);
+  color: var(--kb-green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.kb-role-card:nth-child(even) .kb-role-icon-box {
+  background-color: rgba(23, 54, 103, 0.09);
+  color: var(--kb-navy);
+}
+
+.kb-role-card:nth-child(3n) .kb-role-icon-box {
+  background-color: rgba(250, 184, 49, 0.16);
+  color: #9c6c06;
+}
+
+.kb-role-content h4 {
+  margin: 0 0 3px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--kb-navy);
+}
+
+.kb-role-content p {
+  margin: 0;
+  font-size: 13px;
+  color: #636e72;
+  line-height: 1.45;
+}
+
+/* --- Section 4: Campus Facilities & Infrastructure --- */
+.kb-facilities-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto clamp(32px, 4vw, 54px);
+}
+
+.kb-facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 680px) {
+  .kb-facilities-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kb-facility-card {
+  background: #ffffff;
+  border: 1px solid #e1ebd9;
+  border-radius: 20px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(23, 54, 103, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.kb-facility-card:hover {
+  transform: translateY(-4px);
+  border-color: #cbdcc3;
+  box-shadow: 0 14px 32px rgba(23, 54, 103, 0.08);
+}
+
+.kb-facility-card.featured-wide {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #ffffff 0%, #f7faf4 100%);
+  border-color: #d7e4cf;
+}
+
+.kb-facility-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.kb-facility-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(94, 185, 60, 0.15) 0%, rgba(23, 54, 103, 0.08) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--kb-navy);
+}
+
+.kb-facility-partner-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(23, 54, 103, 0.07);
+  color: var(--kb-navy);
+  border: 1px solid rgba(23, 54, 103, 0.14);
+}
+
+.kb-facility-partner-tag.green {
+  background: rgba(94, 185, 60, 0.12);
+  color: #2e7d32;
+  border-color: rgba(94, 185, 60, 0.25);
+}
+
+.kb-facility-partner-tag.gold {
+  background: rgba(250, 184, 49, 0.15);
+  color: #8c5e00;
+  border-color: rgba(250, 184, 49, 0.35);
+}
+
+.kb-facility-title {
+  font-size: clamp(18px, 1.4vw, 21px);
+  font-weight: 800;
+  color: var(--kb-navy);
+  margin: 0 0 12px;
+  line-height: 1.3;
+}
+
+.kb-facility-desc {
+  font-size: 15px;
+  color: #4b5563;
+  line-height: 1.7;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.kb-facility-media-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin: 32px 0 0;
+}
+
+@media (min-width: 900px) {
+  .kb-facility-media-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.kb-facility-media-item {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 4px solid #ffffff;
+  box-shadow: 0 12px 28px rgba(23, 54, 103, 0.1);
+  position: relative;
+  background-color: #e5ece0;
+}
+
+.kb-facility-media-item img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.kb-facility-media-item:hover img {
+  transform: scale(1.03);
+}
+
+.kb-facility-media-caption {
+  padding: 12px 18px;
+  background: #ffffff;
+  border-top: 1px solid #e7eee2;
+}
+
+.kb-facility-media-caption h4 {
+  margin: 0 0 4px;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--kb-navy);
+}
+
+.kb-facility-media-caption p {
+  margin: 0;
+  font-size: 12.5px;
+  color: #636e72;
+}
+
+/* --- Section 5: Additional Initiatives Grid --- */
+.kb-initiatives-intro {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto clamp(32px, 4vw, 54px);
+}
+
+.kb-initiatives-split-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(32px, 4vw, 54px);
+}
+
+@media (min-width: 992px) {
+  .kb-initiatives-split-layout {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: flex-start;
+  }
+}
+
+.kb-initiatives-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.kb-initiative-card {
+  background: #ffffff;
+  border: 1px solid #e1ebd9;
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: 0 4px 16px rgba(23, 54, 103, 0.04);
+  transition: all 0.25s ease;
+}
+
+.kb-initiative-card:hover {
+  transform: translateX(4px);
+  border-color: #cbd9c2;
+  box-shadow: 0 8px 24px rgba(23, 54, 103, 0.08);
+}
+
+.kb-initiative-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.kb-initiative-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(94, 185, 60, 0.12);
+  color: #2e7d32;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.kb-initiative-card:nth-child(2) .kb-initiative-icon {
+  background: rgba(217, 27, 92, 0.1);
+  color: var(--kb-pink);
+}
+
+.kb-initiative-card:nth-child(3) .kb-initiative-icon {
+  background: rgba(250, 184, 49, 0.16);
+  color: #9c6c06;
+}
+
+.kb-initiative-card:nth-child(4) .kb-initiative-icon {
+  background: rgba(23, 54, 103, 0.1);
+  color: var(--kb-navy);
+}
+
+.kb-initiative-card:nth-child(5) .kb-initiative-icon {
+  background: rgba(94, 185, 60, 0.14);
+  color: #2e7d32;
+}
+
+.kb-initiative-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--kb-navy);
+}
+
+.kb-initiative-desc {
+  margin: 0;
+  font-size: 14.5px;
+  color: #4b5563;
+  line-height: 1.68;
+}
+
+.kb-initiatives-side-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.kb-side-media-card {
+  background: #ffffff;
+  border: 1px solid #e1ebd9;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 14px 36px rgba(23, 54, 103, 0.08);
+}
+
+.kb-side-media-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.kb-side-media-body {
+  padding: 18px 22px;
+}
+
+.kb-side-media-body h4 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--kb-navy);
+}
+
+.kb-side-media-body p {
+  margin: 0;
+  font-size: 13.5px;
+  color: #555e65;
+  line-height: 1.6;
+}
+
+/* Responsiveness overrides to ensure ZERO overflow */
+@media (max-width: 768px) {
+  .kb-facility-card {
+    padding: 20px;
+  }
+}
+
+/* ==========================================================================
+   BUTTONS: PERFECT MATCH WITH THEME'S 'DONATE NOW' BUTTON STYLE
+   Fully Rounded (999px), 14px Font Size, 750 Weight, 48px Height, Theme Colors
+   ========================================================================== */
+.kb-detail-page .button,
+.kb-detail-page .button.gold,
+.kb-detail-page .button.outline,
+.kb-detail-page .unified-hero-actions .button,
+.kb-detail-page .unified-hero-actions .button.gold,
+.kb-detail-page .unified-hero-actions .unified-hero-link,
+.kb-detail-page .kb-editorial-actions .button,
+.kb-detail-page .kb-editorial-actions .button.gold,
+.kb-detail-page .kb-editorial-actions .unified-hero-link,
+.kb-detail-page .kb-action-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  font-size: 14px !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.25 !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+  box-sizing: border-box !important;
+  min-height: 48px !important;
+  padding: 0 26px !important;
+  gap: 8px !important;
+}
+
+/* Primary Gold Action Buttons */
+.kb-detail-page .button.gold,
+.kb-detail-page .unified-hero-actions .button.gold,
+.kb-detail-page .kb-editorial-actions .button.gold {
+  background: #FAB831 !important;
+  border: 1px solid #FAB831 !important;
+  color: #173667 !important;
+  box-shadow: 0 6px 20px rgba(250, 184, 49, 0.35) !important;
+}
+
+.kb-detail-page .button.gold:hover,
+.kb-detail-page .unified-hero-actions .button.gold:hover,
+.kb-detail-page .kb-editorial-actions .button.gold:hover {
+  background: #fbc756 !important;
+  border-color: #fbc756 !important;
+  color: #173667 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 24px rgba(250, 184, 49, 0.45) !important;
+}
+
+/* Secondary Action Buttons (Outline Pill) */
+.kb-detail-page .unified-hero-actions .unified-hero-link,
+.kb-detail-page .kb-editorial-actions .unified-hero-link {
+  background: transparent !important;
+  border: 1.5px solid #173667 !important;
+  color: #173667 !important;
+  box-shadow: none !important;
+}
+
+.kb-detail-page .unified-hero-actions .unified-hero-link:hover,
+.kb-detail-page .kb-editorial-actions .unified-hero-link:hover {
+  background: #173667 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(23, 54, 103, 0.2) !important;
+}
+
+/* ==========================================================================
+   BADGE REMOVAL & CLEAN LAYOUT REFINEMENTS
+   Zero pill badges, clean typography, high readability, clutter-free
+   ========================================================================== */
+.kb-section-badge-pill,
+.kb-media-badge-overlay,
+.kb-media-badge-tag,
+.kb-sport-pill,
+.kb-facility-partner-tag,
+.kb-chart-pill,
+.kb-record-badge {
+  display: none !important;
+}
+
+/* Clean sports indicator text */
+.kb-sports-clean-specs {
+  font-size: 15px;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 18px 0 20px;
+  padding: 10px 16px;
+  background: #ffffff;
+  border: 1px solid #e1ebd9;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.kb-sports-clean-specs strong {
+  color: var(--kb-navy);
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   EXPANSIVE LARGE MEDIA SHOWCASES (FOOTBALL GROUND & KIRAN PRESCHOOL)
+   Prominent, High-Resolution, Immersive Picture Frames
+   ========================================================================== */
+.kb-large-showcase-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.5vw, 36px);
+  margin-bottom: 24px;
+}
+
+.kb-large-showcase-frame {
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 22px 54px -14px rgba(23, 54, 103, 0.16);
+  border: 4px solid #ffffff;
+  background-color: #e5ece0;
+  margin: 0;
+  position: relative;
+}
+
+.kb-large-showcase-frame img {
+  width: 100%;
+  height: clamp(340px, 45vw, 540px);
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kb-large-showcase-frame:hover img {
+  transform: scale(1.02);
+}
+
+.kb-showcase-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(24px, 3vw, 44px);
+}
+
+@media (min-width: 992px) {
+  .kb-showcase-content-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: start;
+  }
+}
+
+/* ==========================================================================
+   IMPROVED EPI ROOM SECTION
+   High-Fidelity Clinic Visual, Comprehensive Healthcare Outreach
+   ========================================================================== */
+.kb-epi-section {
+  padding: clamp(52px, 6vw, 92px) 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f8f2 100%);
+  border-bottom: 1px solid #E6ECE0;
+}
+
+.kb-epi-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(36px, 5vw, 64px);
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .kb-epi-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.kb-epi-media-frame {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 22px 54px -14px rgba(23, 54, 103, 0.16);
+  border: 4px solid #ffffff;
+  background-color: #e2ede5;
+  margin: 0;
+}
+
+.kb-epi-media-frame img {
+  width: 100%;
+  height: clamp(320px, 38vw, 460px);
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.kb-epi-media-frame:hover img {
+  transform: scale(1.02);
+}
+
+.kb-epi-services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.kb-epi-service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid #e1ebdb;
+  border-radius: 14px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 12px rgba(23, 54, 103, 0.03);
+}
+
+.kb-epi-service-item .icon {
+  font-size: 24px;
+  line-height: 1;
+  color: var(--kb-green-dark);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.kb-epi-service-item strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--kb-navy);
+  margin-bottom: 4px;
+}
+
+.kb-epi-service-item p {
+  margin: 0;
+  font-size: 13.5px;
+  color: #555e65;
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   Kara Bhai Detail Page Hero Actions: Mobile Single-Row Layout
+   ========================================================================== */
+@media (max-width: 768px) {
+  .kb-detail-page .unified-hero-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    gap: 8px !important;
+    margin-top: 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  .kb-detail-page .unified-hero-actions .button,
+  .kb-detail-page .unified-hero-actions .button.gold,
+  .kb-detail-page .unified-hero-actions .unified-hero-link {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    width: 50% !important;
+    min-height: 44px !important;
+    max-height: 48px !important;
+    padding: 0 8px !important;
+    font-size: clamp(10px, 2.65vw, 12.5px) !important;
+    font-weight: 750 !important;
+    letter-spacing: -0.01em !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    gap: 5px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .kb-detail-page .unified-hero-actions span {
+    font-size: 13px !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .kb-detail-page .unified-hero-actions {
+    gap: 6px !important;
+  }
+
+  .kb-detail-page .unified-hero-actions .button,
+  .kb-detail-page .unified-hero-actions .button.gold,
+  .kb-detail-page .unified-hero-actions .unified-hero-link {
+    min-height: 42px !important;
+    padding: 0 5px !important;
+    font-size: clamp(9.5px, 2.5vw, 11px) !important;
+    gap: 4px !important;
+  }
+
+  .kb-detail-page .unified-hero-actions span {
+    font-size: 11.5px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .kb-detail-page .unified-hero-actions {
+    gap: 4px !important;
+  }
+
+  .kb-detail-page .unified-hero-actions .button,
+  .kb-detail-page .unified-hero-actions .button.gold,
+  .kb-detail-page .unified-hero-actions .unified-hero-link {
+    min-height: 38px !important;
+    padding: 0 4px !important;
+    font-size: 9px !important;
+    gap: 3px !important;
+  }
+
+  .kb-detail-page .unified-hero-actions span {
+    font-size: 10px !important;
+  }
+}
+
+
+

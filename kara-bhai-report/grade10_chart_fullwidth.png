@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 680" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8f9f6"/>
+    </linearGradient>
+    <linearGradient id="bar2023" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+    <linearGradient id="bar2024" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FAB831"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="bar2025" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5EB93B"/>
+      <stop offset="100%" stop-color="#009E49"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#173667" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1440" height="680" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle grid lines -->
+  <line x1="80" y1="480" x2="1360" y2="480" stroke="#e5e7eb" stroke-width="1.5"/>
+  <line x1="80" y1="380" x2="1360" y2="380" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="80" y1="280" x2="1360" y2="280" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="80" y1="180" x2="1360" y2="180" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Left Y-Axis Labels -->
+  <text x="70" y="485" font-family="'Poppins', sans-serif" font-size="13" font-weight="600" fill="#9ca3af" text-anchor="end">0%</text>
+  <text x="70" y="385" font-family="'Poppins', sans-serif" font-size="13" font-weight="600" fill="#9ca3af" text-anchor="end">35%</text>
+  <text x="70" y="285" font-family="'Poppins', sans-serif" font-size="13" font-weight="600" fill="#9ca3af" text-anchor="end">70%</text>
+  <text x="70" y="185" font-family="'Poppins', sans-serif" font-size="13" font-weight="600" fill="#9ca3af" text-anchor="end">100%</text>
+
+  <!-- Section Top Banner Header -->
+  <g transform="translate(80, 50)">
+    <rect x="0" y="0" width="180" height="26" rx="13" fill="#eef8eb"/>
+    <text x="90" y="17" font-family="'Poppins', sans-serif" font-size="11" font-weight="700" fill="#009E49" text-anchor="middle" letter-spacing="1.5">SINDH BOARD RESULTS</text>
+    
+    <text x="0" y="56" font-family="'Poppins', sans-serif" font-size="30" font-weight="800" fill="#173667" letter-spacing="-0.5">
+      Grade 10 Matriculation Transformation (2023 — 2025)
+    </text>
+    <text x="0" y="84" font-family="'Inter', sans-serif" font-size="15" font-weight="500" fill="#555C66">
+      Comparative pass rate and academic turnaround at GBSS Kara Bhai Karim Jee under HOL Foundation management
+    </text>
+  </g>
+
+  <!-- Legend & Badges Right Header -->
+  <g transform="translate(1030, 55)">
+    <rect x="0" y="0" width="330" height="74" rx="14" fill="#ffffff" stroke="#e2e8dd" stroke-width="1.5" filter="url(#shadow)"/>
+    <circle cx="28" cy="26" r="6" fill="#ef4444"/>
+    <text x="42" y="30" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#374151">Pre-Adoption (2023)</text>
+    <circle cx="178" cy="26" r="6" fill="#FAB831"/>
+    <text x="192" y="30" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#374151">Year 1 (2024)</text>
+    <circle cx="28" cy="52" r="6" fill="#5EB93B"/>
+    <text x="42" y="56" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#009E49">Year 2 Turnaround (2025)</text>
+  </g>
+
+  <!-- Bar 1: 2023 (Pre-Adoption) -->
+  <g transform="translate(240, 180)">
+    <!-- Column Card Background -->
+    <rect x="-40" y="0" width="260" height="370" rx="20" fill="#ffffff" stroke="#f3f4f6" stroke-width="1.5" filter="url(#shadow)"/>
+    
+    <!-- Visual Bar -->
+    <rect x="50" y="276" width="80" height="24" rx="8" fill="url(#bar2023)"/>
+    
+    <!-- Percentage -->
+    <text x="90" y="260" font-family="'Poppins', sans-serif" font-size="28" font-weight="900" fill="#ef4444" text-anchor="middle">0%</text>
+    
+    <!-- Year -->
+    <text x="90" y="325" font-family="'Poppins', sans-serif" font-size="18" font-weight="800" fill="#173667" text-anchor="middle">2023</text>
+    <text x="90" y="344" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#9ca3af" text-anchor="middle">Pre-Adoption Era</text>
+    <text x="90" y="360" font-family="'Inter', sans-serif" font-size="11" font-weight="500" fill="#ef4444" text-anchor="middle">School Abandoned</text>
+  </g>
+
+  <!-- Bar 2: 2024 (Year 1) -->
+  <g transform="translate(630, 180)">
+    <!-- Column Card Background -->
+    <rect x="-40" y="0" width="260" height="370" rx="20" fill="#ffffff" stroke="#fef3c7" stroke-width="1.5" filter="url(#shadow)"/>
+    
+    <!-- Visual Bar (84% height) -->
+    <rect x="50" y="48" width="80" height="252" rx="10" fill="url(#bar2024)"/>
+    
+    <!-- Percentage -->
+    <text x="90" y="36" font-family="'Poppins', sans-serif" font-size="32" font-weight="900" fill="#d97706" text-anchor="middle">84%</text>
+    
+    <!-- Year -->
+    <text x="90" y="325" font-family="'Poppins', sans-serif" font-size="18" font-weight="800" fill="#173667" text-anchor="middle">2024</text>
+    <text x="90" y="344" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#555C66" text-anchor="middle">Year 1 Remedial</text>
+    <text x="90" y="360" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#d97706" text-anchor="middle">52 of 62 Passed</text>
+  </g>
+
+  <!-- Bar 3: 2025 (Year 2 Excellence) -->
+  <g transform="translate(1020, 180)">
+    <!-- Column Card Background with Green Glow -->
+    <rect x="-40" y="0" width="260" height="370" rx="20" fill="#ffffff" stroke="#86efac" stroke-width="2" filter="url(#shadow)"/>
+    <rect x="55" y="-12" width="70" height="22" rx="11" fill="#009E49"/>
+    <text x="90" y="3" font-family="'Poppins', sans-serif" font-size="10" font-weight="800" fill="#ffffff" text-anchor="middle">RECORD HIGH</text>
+    
+    <!-- Visual Bar (96.8% height) -->
+    <rect x="50" y="10" width="80" height="290" rx="10" fill="url(#bar2025)"/>
+    
+    <!-- Percentage -->
+    <text x="90" y="-1" font-family="'Poppins', sans-serif" font-size="34" font-weight="900" fill="#009E49" text-anchor="middle">96.8%</text>
+    
+    <!-- Year -->
+    <text x="90" y="325" font-family="'Poppins', sans-serif" font-size="18" font-weight="800" fill="#173667" text-anchor="middle">2025</text>
+    <text x="90" y="344" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#009E49" text-anchor="middle">Academic Turnaround</text>
+    <text x="90" y="360" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#5EB93B" text-anchor="middle">75 of 78 Passed · 46 A Grades</text>
+  </g>
+
+  <!-- Bottom Proof Bar -->
+  <g transform="translate(80, 595)">
+    <rect x="0" y="0" width="1280" height="52" rx="12" fill="#173667"/>
+    <circle cx="36" cy="26" r="14" fill="#FAB831"/>
+    <text x="36" y="31" font-family="'Poppins', sans-serif" font-size="12" font-weight="900" fill="#173667" text-anchor="middle">✓</text>
+    <text x="64" y="31" font-family="'Poppins', sans-serif" font-size="13" font-weight="700" fill="#ffffff">
+      Sindh Education &amp; Literacy Department Verified
+    </text>
+    <text x="390" y="31" font-family="'Inter', sans-serif" font-size="12.5" font-weight="400" fill="#dbe3ec">
+      · Board of Secondary Education Karachi (BSEK) matriculation record for GBSS Kara Bhai Karim Jee (Lyari Campus)
+    </text>
+    <text x="1250" y="31" font-family="'Poppins', sans-serif" font-size="12" font-weight="800" fill="#FAB831" text-anchor="end">
+      HOL FOUNDATION
+    </text>
+  </g>
+</svg>

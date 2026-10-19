@@ -1,0 +1,1657 @@
+.donate-hero{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    color:#fff;
+    padding:77px 0 82px;
+    background:
+        linear-gradient(
+            105deg,
+            rgba(23,54,103,.94),
+            rgba(23,54,103,.74)
+        ),
+        url('../images/stories/community-classroom-learning.jpg') center 46%/cover
+}
+
+.donate-hero:after{
+    content:"";
+    position:absolute;
+    z-index:-1;
+    width:410px;
+    height:410px;
+    right:8%;
+    top:-220px;
+    border:1px solid #ffffff35;
+    border-radius:50%;
+    box-shadow:
+        0 0 0 22px #ffffff0b,
+        0 0 0 48px #ffffff09
+}
+
+.donate-hero-inner{
+    max-width:1220px
+}
+
+.donate-hero .eyebrow{
+    color:#FAB831
+}
+
+.donate-hero h1{
+    font-size:clamp(34px,4.2vw,51px);
+    letter-spacing:-.045em;
+    line-height:1.12;
+    max-width:610px;
+    margin:13px 0
+}
+
+.donate-hero p{
+    max-width:600px;
+    color:#e2e7ee;
+    font-size:14px;
+    line-height:1.8;
+    margin:0 0 23px
+}
+
+.donate-hero .button{
+    min-height:42px
+}
+
+.donate-section{
+    padding:70px 0 78px;
+    background:#f7f8f6
+}
+
+.donate-heading,
+.bank-heading{
+    max-width:680px;
+    margin-bottom:29px
+}
+
+.donate-heading .section-title,
+.bank-heading .section-title{
+    font-size:clamp(28px,3.1vw,39px);
+    margin:8px 0 10px
+}
+
+.donate-heading p,
+.bank-heading p{
+    font-size:13px;
+    line-height:1.75;
+    margin:0;
+    color:#535353
+}
+
+.donate-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1.6fr) minmax(260px,.78fr);
+    gap:20px;
+    align-items:start
+}
+
+.donate-main-card,
+.impact-card,
+.steps-card,
+.bank-card{
+    background:#fff;
+    border:1px solid #d8e0df;
+    box-shadow:0 9px 30px rgba(23,54,103,.06)
+}
+
+.donate-main-card{
+    padding:26px 27px
+}
+
+.donate-step-label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px
+}
+
+.donate-step-label>span,
+.steps-card li>span{
+    width:31px;
+    height:31px;
+    flex:0 0 31px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#eef8eb;
+    color:#5EB93C;
+    font-size:11px;
+    font-weight:800
+}
+
+.donate-step-label strong,
+.steps-card li strong{
+    display:block;
+    font-size:14px;
+    line-height:1.4;
+    color:#173667
+}
+
+.donate-step-label small,
+.steps-card li small{
+    display:block;
+    color:#535353;
+    font-size:11px;
+    line-height:1.5;
+    margin-top:2px
+}
+
+.cause-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px
+}
+
+.cause-option{
+    position:relative;
+    text-align:left;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    min-height:116px;
+    padding:13px 15px;
+    border:1px solid #d8e0df;
+    background:#fff;
+    color:#173667;
+    cursor:pointer;
+    transition:
+        border-color .18s,
+        box-shadow .18s,
+        background .18s
+}
+
+.cause-option:hover{
+    border-color:#5EB93C
+}
+
+.cause-option.is-selected{
+    background:rgba(94,185,60,.08);
+    border-color:#5EB93C;
+    box-shadow:inset 0 0 0 1px #5EB93C
+}
+
+.cause-icon{
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.12em;
+    color:#5EB93C;
+    margin-bottom:7px
+}
+
+.cause-name{
+    font-size:12px;
+    font-weight:800;
+    line-height:1.45
+}
+
+.cause-price{
+    font-size:15px;
+    font-weight:800;
+    color:#173667;
+    margin-top:4px
+}
+
+.cause-price small{
+    font-size:10px;
+    font-weight:600;
+    color:#535353
+}
+
+.cause-alt{
+    font-size:10px;
+    color:#535353;
+    margin-top:1px
+}
+
+.donate-divider{
+    height:1px;
+    background:#d8e0df;
+    margin:22px 0
+}
+
+.amount-controls{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:12px
+}
+
+.currency-amount,
+.frequency-choice{
+    display:grid;
+    gap:7px
+}
+
+.currency-amount>label,
+.frequency-choice>label{
+    font-size:10px;
+    color:#535353;
+    font-weight:700
+}
+
+.amount-input-wrap,
+.frequency-choice select{
+    height:44px;
+    border:1px solid #d8e0df;
+    background:#fff;
+    display:flex;
+    align-items:center
+}
+
+.amount-input-wrap>span{
+    padding-left:13px;
+    color:#535353;
+    font-size:12px;
+    font-weight:700
+}
+
+.amount-input-wrap input,
+.frequency-choice select{
+    min-width:0;
+    width:100%;
+    height:100%;
+    border:0;
+    background:transparent;
+    padding:0 11px;
+    color:#173667;
+    font-size:12px;
+    font-weight:700;
+    outline:none
+}
+
+.frequency-choice select{
+    border:1px solid #d8e0df
+}
+
+.amount-input-wrap:focus-within,
+.frequency-choice select:focus{
+    border-color:#5EB93C;
+    box-shadow:0 0 0 3px rgba(94,185,60,.12)
+}
+
+.donate-selection{
+    margin:11px 0 14px;
+    color:#535353;
+    font-size:10px
+}
+
+.donate-selection strong{
+    color:#173667
+}
+
+.donate-continue{
+    min-height:43px;
+    font-size:11px
+}
+
+.secure-note{
+    display:flex;
+    gap:8px;
+    align-items:flex-start;
+    font-size:10px!important;
+    line-height:1.55!important;
+    margin:12px 0 0;
+    color:#535353!important
+}
+
+.secure-note span{
+    color:#5EB93C;
+    font-size:9px;
+    padding-top:3px
+}
+
+.donate-aside{
+    display:grid;
+    gap:13px
+}
+
+.impact-card{
+    padding:21px
+}
+
+.impact-card .eyebrow,
+.steps-card .eyebrow{
+    font-size:9px
+}
+
+.impact-card-mark{
+    height:108px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        linear-gradient(
+            110deg,
+            rgba(23,54,103,.86),
+            rgba(94,185,60,.45)
+        ),
+        url('../images/programs/students-teamwork.jpg') center/cover;
+    color:#fff;
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:.12em;
+    margin:12px 0 14px
+}
+
+.impact-card h3{
+    font-size:17px;
+    line-height:1.35;
+    color:#173667;
+    margin:0 0 5px
+}
+
+.impact-card p{
+    font-size:11px!important;
+    line-height:1.6!important;
+    margin:0 0 12px;
+    color:#535353
+}
+
+.impact-card-amount{
+    border-top:1px solid #d8e0df;
+    border-bottom:1px solid #d8e0df;
+    padding:11px 0;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center
+}
+
+.impact-card-amount span{
+    font-size:10px;
+    color:#535353
+}
+
+.impact-card-amount strong{
+    grid-column:1;
+    font-size:17px;
+    line-height:1.3;
+    color:#173667
+}
+
+.impact-card-amount small{
+    grid-column:2;
+    grid-row:1/3;
+    font-size:10px;
+    color:#535353
+}
+
+.impact-card .text-link{
+    display:inline-block;
+    margin-top:13px;
+    color:#173667;
+    font-size:10px
+}
+
+.steps-card{
+    padding:19px 20px
+}
+
+.steps-card ol{
+    list-style:none;
+    display:grid;
+    gap:13px;
+    padding:0;
+    margin:15px 0 0
+}
+
+.steps-card li{
+    display:flex;
+    align-items:center;
+    gap:10px
+}
+
+.steps-card li>span{
+    width:26px;
+    height:26px;
+    flex-basis:26px;
+    font-size:10px
+}
+
+.steps-card li strong{
+    font-size:11px
+}
+
+.steps-card li small{
+    font-size:10px
+}
+
+.bank-section{
+    padding:72px 0 77px;
+    background:#fff
+}
+
+.bank-heading{
+    margin-bottom:24px
+}
+
+.bank-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:13px
+}
+
+.bank-card{
+    padding:20px 19px;
+    border-radius:2px
+}
+
+.bank-card-featured{
+    border-top:3px solid #FAB831
+}
+
+.bank-card-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:10px
+}
+
+.account-icon{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:#fff7e5;
+    color:#FAB831;
+    font-size:8px;
+    font-weight:800;
+    letter-spacing:.05em
+}
+
+.account-tag{
+    background:#eef8eb;
+    color:#5EB93C;
+    padding:4px 8px;
+    font-size:9px;
+    font-weight:700
+}
+
+.zakat-tag{
+    background:#fff7e5;
+    color:#a97912
+}
+
+.general-tag{
+    background:#eef1f6;
+    color:#173667
+}
+
+.bank-card h3{
+    font-size:15px;
+    color:#173667;
+    margin:0 0 12px
+}
+
+.bank-card dl{
+    margin:0
+}
+
+.bank-card dl>div{
+    padding:8px 0;
+    border-top:1px solid #edf0ed
+}
+
+.bank-card dt{
+    font-size:9px;
+    color:#535353;
+    line-height:1.4
+}
+
+.bank-card dd{
+    font-size:11px;
+    font-weight:700;
+    line-height:1.55;
+    color:#173667;
+    margin:2px 0 0;
+    overflow-wrap:anywhere
+}
+
+.bank-card dd.account-number{
+    font-variant-numeric:tabular-nums;
+    letter-spacing:.015em
+}
+
+.international-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+    padding:22px 24px;
+    margin-top:15px;
+    background:#f4f7f5;
+    border:1px solid #d8e0df
+}
+
+.international-card .eyebrow{
+    font-size:9px
+}
+
+.international-card h3{
+    font-size:17px;
+    color:#173667;
+    margin:4px 0
+}
+
+.international-card p{
+    font-size:11px!important;
+    margin:0;
+    max-width:600px;
+    color:#535353
+}
+
+.international-card .button{
+    flex:0 0 auto;
+    min-height:40px;
+    font-size:10px
+}
+
+.donate-next{
+    background:#173667;
+    color:#fff;
+    padding:45px 0
+}
+
+.donate-next-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px
+}
+
+.donate-next .eyebrow{
+    color:#FAB831;
+    font-size:9px
+}
+
+.donate-next h2{
+    font-size:25px;
+    line-height:1.3;
+    letter-spacing:-.025em;
+    margin:5px 0
+}
+
+.donate-next p{
+    font-size:11px;
+    color:#dbe3ec;
+    max-width:610px;
+    margin:0
+}
+
+.donate-next .button{
+    flex:0 0 auto;
+    min-height:42px;
+    font-size:10px
+}
+
+@media(max-width:820px){
+    .donate-hero{
+        padding:61px 0 65px
+    }
+
+    .donate-layout{
+        grid-template-columns:minmax(0,1.3fr) minmax(230px,.8fr);
+        gap:13px
+    }
+
+    .donate-main-card{
+        padding:21px 19px
+    }
+
+    .bank-grid{
+        grid-template-columns:1fr 1fr
+    }
+
+    .bank-card:last-child{
+        grid-column:1/-1
+    }
+
+    .donate-section,
+    .bank-section{
+        padding:58px 0
+    }
+}
+
+@media(max-width:600px){
+    .donate-hero{
+        padding:48px 0 50px;
+        background-position:58% center
+    }
+
+    .donate-hero h1{
+        font-size:36px;
+        max-width:430px
+    }
+
+    .donate-hero p{
+        font-size:12px
+    }
+
+    .donate-section,
+    .bank-section{
+        padding:49px 0
+    }
+
+    .donate-heading,
+    .bank-heading{
+        margin-bottom:21px
+    }
+
+    .donate-heading .section-title,
+    .bank-heading .section-title{
+        font-size:29px
+    }
+
+    .donate-layout{
+        grid-template-columns:1fr
+    }
+
+    .donate-main-card{
+        padding:18px 15px
+    }
+
+    .cause-grid{
+        gap:8px
+    }
+
+    .cause-option{
+        padding:11px 11px;
+        min-height:108px
+    }
+
+    .cause-name{
+        font-size:11px
+    }
+
+    .cause-price{
+        font-size:14px
+    }
+
+    .donate-aside{
+        grid-template-columns:1fr 1fr;
+        align-items:stretch
+    }
+
+    .impact-card,
+    .steps-card{
+        padding:15px
+    }
+
+    .impact-card-mark{
+        height:86px
+    }
+
+    .steps-card ol{
+        gap:11px
+    }
+
+    .amount-controls{
+        grid-template-columns:1fr 1fr
+    }
+
+    .bank-grid{
+        grid-template-columns:1fr
+    }
+
+    .bank-card:last-child{
+        grid-column:auto
+    }
+
+    .international-card,
+    .donate-next-inner{
+        align-items:flex-start;
+        flex-direction:column
+    }
+
+    .international-card{
+        padding:18px
+    }
+
+    .donate-next{
+        padding:35px 0
+    }
+
+    .donate-next h2{
+        font-size:23px
+    }
+}
+
+@media(max-width:390px){
+    .donate-aside{
+        grid-template-columns:1fr
+    }
+
+    .amount-controls{
+        grid-template-columns:1fr
+    }
+
+    .cause-option{
+        min-height:103px
+    }
+}
+
+/* HOL Foundation palette and donation story photos */
+
+.donate-hero{
+    color:#fff;
+    background:
+        linear-gradient(
+            105deg,
+            rgba(23,54,103,.94),
+            rgba(23,54,103,.68)
+        ),
+        url('../images/stories/community-classroom-learning.jpg') center 46%/cover
+}
+
+.donate-hero:before{
+    display:none
+}
+
+.donate-hero:after{
+    border-color:#5EB93C55;
+    box-shadow:
+        0 0 0 24px #5EB93C14,
+        0 0 0 53px #5EB93C0d
+}
+
+.donate-hero .eyebrow,
+.donate-hero .hero-art-spark{
+    color:#FAB831
+}
+
+.donate-hero h1{
+    color:#fff
+}
+
+.donate-hero p{
+    color:#fff
+}
+
+.donate-hero .button.gold,
+.donate-continue.button.gold{
+    background:#FAB831;
+    border-color:#FAB831;
+    color:#173667;
+    transition:all .25s ease
+}
+
+.donate-hero .button.gold:hover,
+.donate-continue.button.gold:hover{
+    background:#fbc756;
+    border-color:#fbc756;
+    color:#173667;
+    transform:translateY(-2px);
+    box-shadow:0 8px 22px rgba(250,184,49,.35)
+}
+
+.donate-hero-art{
+    background:#173667;
+    box-shadow:0 22px 45px rgba(23,54,103,.2)
+}
+
+.donate-hero-art:after{
+    background:
+        linear-gradient(
+            0deg,
+            rgba(23,54,103,.72),
+            transparent 67%
+        ),
+        url('../images/journey/HOL-SPP.jpeg') center 43%/cover
+}
+
+.hero-note-card{
+    background:#fff;
+    color:#173667
+}
+
+.hero-note-card i,
+.hero-giving-notes i{
+    color:#D91B5C
+}
+
+.hero-art-label{
+    color:#fff
+}
+
+.hero-impact-row{
+    color:#173667
+}
+
+.hero-impact-row b{
+    color:#173667
+}
+
+.hero-impact-row i{
+    color:#FAB831
+}
+
+.donate-hero-bottom{
+    background:#5EB93C
+}
+
+.donate-stories{
+    padding:64px 0;
+    background:#173667;
+    color:#fff
+}
+
+.donate-stories-heading{
+    max-width:690px;
+    margin:0 0 24px
+}
+
+.donate-stories-heading .eyebrow{
+    color:#FAB831
+}
+
+.donate-stories-heading h2{
+    font-size:clamp(27px,3vw,37px);
+    line-height:1.15;
+    letter-spacing:-.04em;
+    margin:8px 0;
+    color:#fff
+}
+
+.donate-stories-heading p{
+    font-size:13px;
+    line-height:1.7;
+    margin:0;
+    color:#fff
+}
+
+.donate-stories-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px
+}
+
+.donate-story-photo{
+    margin:0;
+    background:#fff;
+    color:#173667;
+    border-bottom:4px solid #5EB93C
+}
+
+.donate-story-photo img{
+    width:100%;
+    height:clamp(220px,30vw,360px);
+    object-fit:cover
+}
+
+.donate-story-photo figcaption{
+    padding:12px 15px;
+    font-size:11px;
+    line-height:1.6;
+    color:#173667
+}
+
+.donate-section{
+    background:#fff
+}
+
+.donate-heading .section-title,
+.bank-heading .section-title{
+    color:#173667
+}
+
+.donate-main-card,
+.impact-card,
+.steps-card {
+    border-color:rgba(94,185,60,.27);
+    box-shadow:0 10px 34px rgba(23,54,103,.06);
+    border-radius:20px !important;
+}
+
+.bank-card {
+    border-color:rgba(94,185,60,.27);
+    box-shadow:0 10px 34px rgba(23,54,103,.06);
+    border-radius:16px !important;
+}
+
+.donate-step-label>span,
+.steps-card li>span{
+    background:#5EB93C;
+    color:#173667
+}
+
+.donate-step-label strong,
+.steps-card li strong{
+    color:#173667
+}
+
+.cause-option{
+    background:#fff;
+    border:1.5px solid rgba(94,185,60,.32);
+    color:#173667;
+    border-radius:16px !important;
+}
+
+.cause-option:hover,
+.cause-option.is-selected{
+    background:rgba(94,185,60,.1);
+    border-color:#5EB93C !important;
+    border-radius:16px !important;
+    box-shadow:inset 0 0 0 1px #5EB93C
+}
+
+.cause-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:3px 8px;
+    border-radius:999px !important;
+    background:rgba(94,185,60,.14);
+    color:#5EB93C;
+    font-size:10px;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.cause-price,
+.donate-selection strong,
+.impact-card h3,
+.impact-card-amount strong,
+.impact-card .text-link,
+.bank-card h3,
+.international-card h3{
+    color:#173667
+}
+
+.amount-input-wrap,
+.frequency-choice select{
+    border-color:rgba(94,185,60,.35);
+    border-radius:12px !important;
+}
+
+.amount-input-wrap:focus-within,
+.frequency-choice select:focus{
+    border-color:#5EB93C;
+    box-shadow:0 0 0 3px rgba(94,185,60,.14)
+}
+
+.secure-note span{
+    color:#5EB93C
+}
+
+.impact-card-mark{
+    background:
+        linear-gradient(
+            110deg,
+            rgba(23,54,103,.8),
+            rgba(94,185,60,.5)
+        ),
+        url('../images/journey/HOL-SPP.jpeg') center/cover;
+    border-radius:14px !important;
+}
+
+.bank-section{
+    background:#fff
+}
+
+.bank-card-featured{
+    border-top-color:#FAB831;
+    background:rgba(250,184,49,.06)
+}
+
+.account-icon{
+    background:#5EB93C;
+    color:#173667
+}
+
+.account-tag{
+    background:rgba(94,185,60,.14);
+    color:#173667
+}
+
+.zakat-tag{
+    background:rgba(250,184,49,.16);
+    color:#8a6714
+}
+
+.general-tag{
+    background:rgba(23,54,103,.08);
+    color:#173667
+}
+
+.international-card{
+    background:rgba(94,185,60,.08);
+    border-color:rgba(94,185,60,.3);
+    border-radius:16px !important
+}
+
+.international-card .button.outline{
+    color:#173667;
+    border-color:#5EB93C
+}
+
+@media(max-width:600px){
+    .donate-stories{
+        padding:48px 0
+    }
+
+    .donate-stories-grid{
+        grid-template-columns:1fr;
+        gap:14px
+    }
+
+    .donate-story-photo img{
+        height:clamp(220px,65vw,340px)
+    }
+}
+
+/* ==========================================================================
+   Brochure Sponsorship Opportunities Section Styles
+   ========================================================================== */
+
+.brochure-sponsorship-section {
+    position: relative;
+    padding: 64px 0 76px;
+    background: #f7f9f6;
+    border-top: 1px solid #e2e8dd;
+    border-bottom: 1px solid #e2e8dd;
+}
+
+.brochure-header-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(23, 54, 103, 0.1);
+}
+
+.brochure-brand-badge {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.brochure-brand-badge img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(23, 54, 103, 0.12));
+}
+
+.brochure-brand-text strong {
+    display: block;
+    font-size: 17px;
+    font-weight: 800;
+    color: #173667;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+}
+
+.brochure-urdu-motto {
+    display: block;
+    font-size: 13.5px;
+    color: #4a5568;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+.brochure-main-title {
+    font-family: var(--font, 'Plus Jakarta Sans', sans-serif);
+    font-size: clamp(34px, 4vw, 50px);
+    font-weight: 900;
+    color: #5EB93C;
+    letter-spacing: -0.03em;
+    margin: 0;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+/* Quote Card with Brand Green Accent */
+.brochure-quote-card {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto 38px;
+    padding: 24px 52px;
+    background: #ffffff;
+    border: 2px solid #5EB93C;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 10px 28px rgba(94, 185, 60, 0.1);
+}
+
+.brochure-quote-text {
+    font-family: var(--font, 'Plus Jakarta Sans', sans-serif);
+    font-size: clamp(16px, 1.85vw, 21px);
+    font-weight: 700;
+    line-height: 1.48;
+    color: #173667;
+    font-style: italic;
+    margin: 0;
+}
+
+.brochure-quote-mark {
+    position: absolute;
+    color: #5EB93C;
+    font-size: 48px;
+    line-height: 1;
+    font-weight: 900;
+    user-select: none;
+}
+
+.brochure-quote-mark.quote-open {
+    top: -12px;
+    left: 16px;
+}
+
+.brochure-quote-mark.quote-close {
+    bottom: -24px;
+    right: 16px;
+}
+
+/* 8 Sponsorship Boxes Grid */
+.brochure-boxes-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
+    max-width: 1140px;
+    margin: 0 auto 40px;
+}
+
+.brochure-card {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    background: linear-gradient(135deg, #576572 0%, #46535f 100%);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
+    text-decoration: none;
+    color: #ffffff;
+    box-shadow: 0 8px 22px rgba(23, 54, 103, 0.11);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    cursor: pointer;
+}
+
+.brochure-card:hover {
+    transform: translateY(-4px);
+    border-color: #5EB93C;
+    box-shadow: 0 14px 30px rgba(94, 185, 60, 0.26);
+    background: linear-gradient(135deg, #204171 0%, #173667 100%);
+}
+
+.brochure-card-7 {
+    grid-column: 2 / span 2;
+}
+
+.brochure-card-8 {
+    grid-column: 4 / span 2;
+}
+
+.brochure-card-info {
+    flex: 1;
+    min-width: 0;
+    padding-right: 14px;
+}
+
+.brochure-card-title {
+    display: block;
+    font-size: clamp(16px, 1.35vw, 19px);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.24;
+    margin-bottom: 6px;
+}
+
+.brochure-card-amount {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #e2e8f0;
+    line-height: 1.38;
+}
+
+.brochure-card-amount.highlight {
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.brochure-card-icon {
+    flex: 0 0 54px;
+    width: 54px;
+    height: 54px;
+    display: grid;
+    place-items: center;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    border-radius: 12px;
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.brochure-card:hover .brochure-card-icon {
+    transform: scale(1.08);
+    background: rgba(94, 185, 60, 0.35);
+    border-color: #5EB93C;
+}
+
+.brochure-card-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* Brochure Bottom Photo & Contact Strip */
+.brochure-bottom-feature {
+    max-width: 1140px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #d8e0df;
+    box-shadow: 0 12px 32px rgba(23, 54, 103, 0.08);
+}
+
+.brochure-photo-frame {
+    margin: 0;
+    width: 100%;
+    height: clamp(230px, 32vw, 440px);
+    overflow: hidden;
+    background: #233d63;
+}
+
+.brochure-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.brochure-bottom-feature:hover .brochure-photo-frame img {
+    transform: scale(1.02);
+}
+
+.brochure-contact-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 16px;
+    padding: 17px 24px;
+    background: #173667;
+    color: #ffffff;
+}
+
+.brochure-contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: color 0.2s ease;
+}
+
+.brochure-contact-item:hover {
+    color: #5EB93C;
+}
+
+.brochure-contact-item svg {
+    width: 19px;
+    height: 19px;
+    color: #5EB93C;
+    flex-shrink: 0;
+}
+
+/* Responsiveness */
+@media(max-width: 960px) {
+    .brochure-boxes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+    .brochure-card {
+        grid-column: span 1;
+    }
+    .brochure-card-7 {
+        grid-column: span 1;
+    }
+    .brochure-card-8 {
+        grid-column: span 1;
+    }
+}
+
+@media(max-width: 650px) {
+    .brochure-sponsorship-section {
+        padding: 44px 0 54px;
+    }
+    .brochure-header-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+    }
+    .brochure-brand-badge {
+        flex-direction: column;
+        text-align: center;
+    }
+    .brochure-quote-card {
+        padding: 18px 24px;
+        border-radius: 16px;
+        margin-bottom: 26px;
+    }
+    .brochure-quote-mark {
+        font-size: 34px;
+    }
+    .brochure-quote-mark.quote-open {
+        left: 10px;
+        top: -8px;
+    }
+    .brochure-quote-mark.quote-close {
+        right: 10px;
+        bottom: -18px;
+    }
+    .brochure-boxes-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+    .brochure-card {
+        padding: 16px 18px;
+    }
+    .brochure-card-icon {
+        width: 48px;
+        height: 48px;
+        flex: 0 0 48px;
+    }
+    .brochure-card-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+    .brochure-contact-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px 20px;
+    }
+}
+
+/* ==========================================================================
+   Donate Now Page: Theme Rounded Button Styles & Choose A Cause Rounded Boxes
+   ========================================================================== */
+
+/* 1. All Buttons on Donate Page Match Theme's Rounded Style with 14px Font Size */
+.donate-page .button,
+.donate-page .button.gold,
+.donate-page .button.outline,
+.donate-page .donate-continue,
+.donate-page .unified-hero-actions .button,
+.donate-page .unified-hero-actions .button.gold,
+.donate-page .unified-hero-actions .unified-hero-link,
+.donate-page .international-card .button,
+.donate-page .international-card .button.outline,
+.donate-page .donate-next .button,
+.donate-page .site-header .header-inner > .button.gold,
+.donate-continue,
+.international-card .button,
+.international-card .button.outline {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  font-size: 14px !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.25 !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+  box-sizing: border-box !important;
+}
+
+/* Primary Gold Action Buttons */
+.donate-page .button.gold,
+.donate-page .unified-hero-actions .button.gold,
+.donate-page .donate-continue,
+.donate-continue {
+  min-height: 48px !important;
+  padding: 0 26px !important;
+  background: #FAB831 !important;
+  border: 1px solid #FAB831 !important;
+  color: #173667 !important;
+  box-shadow: 0 6px 20px rgba(250, 184, 49, 0.35) !important;
+  gap: 8px !important;
+}
+
+.donate-page .button.gold:hover,
+.donate-page .unified-hero-actions .button.gold:hover,
+.donate-page .donate-continue:hover,
+.donate-continue:hover {
+  background: #fbc756 !important;
+  border-color: #fbc756 !important;
+  color: #173667 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 24px rgba(250, 184, 49, 0.45) !important;
+}
+
+/* Secondary Hero Link Pill Button */
+.donate-page .unified-hero-actions .unified-hero-link {
+  min-height: 48px !important;
+  padding: 0 24px !important;
+  background: transparent !important;
+  border: 1.5px solid #173667 !important;
+  color: #173667 !important;
+  gap: 8px !important;
+}
+
+.donate-page .unified-hero-actions .unified-hero-link:hover {
+  background: #173667 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(23, 54, 103, 0.2) !important;
+}
+
+/* International Card Button */
+.donate-page .international-card .button,
+.donate-page .international-card .button.outline,
+.international-card .button,
+.international-card .button.outline {
+  min-height: 46px !important;
+  padding: 0 24px !important;
+  background: transparent !important;
+  border: 1.5px solid #5EB93C !important;
+  color: #173667 !important;
+  gap: 8px !important;
+}
+
+.donate-page .international-card .button:hover,
+.donate-page .international-card .button.outline:hover,
+.international-card .button:hover,
+.international-card .button.outline:hover {
+  background: #5EB93C !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(94, 185, 60, 0.3) !important;
+}
+
+/* Header Donate Button on Donate Page */
+.donate-page .site-header .header-inner > .button.gold {
+  min-height: 48px !important;
+  padding: 0 24px !important;
+  font-size: 14px !important;
+}
+
+/* 2. Rounded Corners for All Boxes in "Choose a Cause" Section */
+#giving-options .donate-main-card {
+  border-radius: 20px !important;
+  overflow: hidden;
+}
+
+/* Boxes inside Choose a Cause grid */
+#giving-options .cause-grid {
+  gap: 12px;
+}
+
+#giving-options .cause-option,
+.cause-grid .cause-option,
+.cause-option {
+  border-radius: 16px !important;
+  border: 1.5px solid rgba(94, 185, 60, 0.32) !important;
+  box-shadow: 0 4px 14px rgba(23, 54, 103, 0.04);
+  transition: all 0.25s ease !important;
+}
+
+#giving-options .cause-option:hover,
+.cause-grid .cause-option:hover,
+.cause-option:hover {
+  border-radius: 16px !important;
+  border-color: #5EB93C !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(94, 185, 60, 0.18) !important;
+}
+
+#giving-options .cause-option.is-selected,
+.cause-grid .cause-option.is-selected,
+.cause-option.is-selected {
+  border-radius: 16px !important;
+  border-color: #5EB93C !important;
+  border-width: 2px !important;
+  box-shadow: inset 0 0 0 1px #5EB93C, 0 8px 20px rgba(94, 185, 60, 0.16) !important;
+}
+
+/* Cause Icon Badge */
+#giving-options .cause-icon,
+.cause-grid .cause-icon,
+.cause-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 3px 9px !important;
+  border-radius: 999px !important;
+  background: rgba(94, 185, 60, 0.14) !important;
+  color: #5EB93C !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  margin-bottom: 8px !important;
+}
+
+/* Companion boxes in Choose a Cause / Donation Layout */
+#giving-options .amount-input-wrap {
+  border-radius: 12px !important;
+}
+
+#giving-options .frequency-choice select {
+  border-radius: 12px !important;
+}
+
+#giving-options .impact-card {
+  border-radius: 20px !important;
+}
+
+#giving-options .impact-card-mark {
+  border-radius: 14px !important;
+}
+
+#giving-options .steps-card {
+  border-radius: 20px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .donate-page .button,
+  .donate-page .button.gold,
+  .donate-page .button.outline,
+  .donate-page .donate-continue,
+  .donate-page .unified-hero-actions .button,
+  .donate-page .unified-hero-actions .unified-hero-link,
+  .donate-page .international-card .button {
+    font-size: 14px !important;
+    min-height: 46px !important;
+    padding: 0 20px !important;
+  }
+
+  #giving-options .cause-option,
+  .cause-grid .cause-option {
+    border-radius: 14px !important;
+  }
+}
+
+/* ==========================================================================
+   Donate Page Hero Actions: Mobile Single-Row Layout
+   ========================================================================== */
+@media (max-width: 768px) {
+  .donate-page .unified-hero-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    gap: 8px !important;
+    margin-top: 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  .donate-page .unified-hero-actions .button,
+  .donate-page .unified-hero-actions .button.gold,
+  .donate-page .unified-hero-actions .unified-hero-link {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    width: 50% !important;
+    min-height: 44px !important;
+    max-height: 48px !important;
+    padding: 0 8px !important;
+    font-size: clamp(10px, 2.65vw, 12.5px) !important;
+    font-weight: 750 !important;
+    letter-spacing: -0.01em !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    gap: 5px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .donate-page .unified-hero-actions span {
+    font-size: 13px !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .donate-page .unified-hero-actions {
+    gap: 6px !important;
+  }
+
+  .donate-page .unified-hero-actions .button,
+  .donate-page .unified-hero-actions .button.gold,
+  .donate-page .unified-hero-actions .unified-hero-link {
+    min-height: 42px !important;
+    padding: 0 5px !important;
+    font-size: clamp(9.5px, 2.5vw, 11px) !important;
+    gap: 4px !important;
+  }
+
+  .donate-page .unified-hero-actions span {
+    font-size: 11.5px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .donate-page .unified-hero-actions {
+    gap: 4px !important;
+  }
+
+  .donate-page .unified-hero-actions .button,
+  .donate-page .unified-hero-actions .button.gold,
+  .donate-page .unified-hero-actions .unified-hero-link {
+    min-height: 38px !important;
+    padding: 0 4px !important;
+    font-size: 9px !important;
+    gap: 3px !important;
+  }
+
+  .donate-page .unified-hero-actions span {
+    font-size: 10px !important;
+  }
+}
