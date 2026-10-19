@@ -309,7 +309,7 @@ export function HomePage() {
                 MEET OUR FOUNDER
               </h2>
               <p className="founder-description font-normal text-base sm:text-lg text-[#333333] leading-relaxed max-w-xl mx-auto text-center">
-                Founded with a vision to transform lives through accessible education and youth empowerment in Lyari, our founders lead with empathy, dedication, and grassroots action. Together, they guide community schools and entrepreneurship pathways that give children, youth, and women the tools to shape their own futures.
+                Born and raised in Lyari, our two founders chose to leave behind the life they knew to dedicate themselves to the community that shaped them. Their journey is rooted in love for their people and a deep belief that every child deserves a chance to dream beyond their circumstances. Through accessible education, youth empowerment, and entrepreneurship, they are working to transform lives, restore hope, and build a future where the children, youth, and women of Lyari can shape their own destinies. For them, this is more than a mission; it is a promise to give back to the place they will always call home.
               </p>
             </div>
 
