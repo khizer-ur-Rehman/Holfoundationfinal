@@ -46,7 +46,7 @@ const teamMembers = [
   {
     name: 'M FAISAL',
     role: 'Co-opted Member',
-    image: '/assets/images/team/M_FAISAL.png',
+    image: '/assets/images/team/m_faisal.png',
     bio: 'M Faisal is a dedicated Co-opted Member of HOL Foundation, bringing extensive advisory, community engagement, and strategic execution skills. He actively contributes to governance initiatives, educational outreach, and youth development programs across underserved communities.',
   },
 ];
