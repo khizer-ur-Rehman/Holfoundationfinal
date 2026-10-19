@@ -317,7 +317,7 @@ export function HomePage() {
               <article className="founder-card group w-full max-w-[320px] mx-auto bg-[#ECEEE8] border border-[#E0E3DB] rounded-2xl p-5 sm:p-6 shadow-sm transition-all duration-300 hover:shadow-md flex flex-col items-center text-center">
                 <figure className="founder-image-wrapper relative overflow-hidden rounded-xl aspect-[3/4] bg-[#dde2d8] mb-4 mx-auto w-full">
                   <img
-                    src="/assets/images/about/Areeba_hunain.webp"
+                    src="/assets/images/about/areeba_hunain.webp"
                     alt="Areeba Hunain, Co-Founder of HOL Foundation"
                     className="founder-photo w-full h-full object-cover object-top mx-auto transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
