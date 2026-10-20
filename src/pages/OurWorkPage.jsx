@@ -102,8 +102,8 @@ export function OurWorkPage() {
                 <div className="showcase-col-image-left">
                   <Link to="/programs/hol-kb-campus" className="showcase-image-frame" aria-label="HOL KB Campus: GBSS Kara Bhai Karim Jee">
                     <img
-                      src="https://cdn.shopify.com/s/files/1/1002/1837/2399/files/kb_campus_2.png?v=1790947587"
-                      alt="HOL KB Campus: GBSS Kara Bhai Karim Jee school facility in Lyari"
+                      src="/assets/images/programs/home-hol-kb-campus.webp"
+                      alt="HOL KB Campus students gathered outside their school in Lyari"
                       loading="lazy"
                       decoding="async"
                     />
@@ -242,8 +242,8 @@ export function OurWorkPage() {
                 <div className="showcase-col-image-left">
                   <Link to="/programs/school-preparatory-program" className="showcase-image-frame" aria-label="School Preparatory Program">
                     <img
-                      src="https://cdn.shopify.com/s/files/1/1002/1837/2399/files/hol_pre_school.png?v=1790947693"
-                      alt="School Preparatory Program students learning in Lyari"
+                      src="/assets/images/programs/HOL-School-Preparatory-Program.webp"
+                      alt="School Preparatory Program children and educators outside their school"
                       loading="lazy"
                       decoding="async"
                     />
