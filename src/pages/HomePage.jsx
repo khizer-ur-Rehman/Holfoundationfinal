@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HeroSlider } from '../components/HeroSlider';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -39,6 +39,52 @@ const striveData = {
 export function HomePage() {
   useScrollReveal();
   const [activeStrive, setActiveStrive] = useState(null);
+
+  useEffect(() => {
+    const counters = document.querySelectorAll('.impact-overview-section [data-counter]');
+    if (!counters.length) return;
+
+    const setFinalValue = (counter) => {
+      const value = counter.querySelector('[data-counter-value]');
+      const target = Number(counter.dataset.counter);
+      if (value && Number.isFinite(target)) value.textContent = target.toLocaleString('en-US');
+    };
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+      counters.forEach(setFinalValue);
+      return;
+    }
+
+    const animateCounter = (counter) => {
+      if (counter.dataset.counterAnimated === 'true') return;
+      counter.dataset.counterAnimated = 'true';
+      const value = counter.querySelector('[data-counter-value]');
+      const target = Number(counter.dataset.counter);
+      if (!value || !Number.isFinite(target)) return;
+
+      const start = performance.now();
+      const duration = 1700;
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        value.textContent = Math.round(target * eased).toLocaleString('en-US');
+        if (progress < 1) requestAnimationFrame(tick);
+        else value.textContent = target.toLocaleString('en-US');
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.2 });
+
+    counters.forEach((counter) => observer.observe(counter));
+    return () => observer.disconnect();
+  }, []);
 
   const striveDetail = (activeStrive && striveData[activeStrive]) ? striveData[activeStrive] : striveData.strength;
 
@@ -213,7 +259,7 @@ export function HomePage() {
                 </svg>
               </span>
               <strong className="metric-count" data-counter="700" aria-label="700 plus students studying at our adopted government school">
-                <span data-counter-value>700</span>
+                <span data-counter-value>0</span>
                 <span className="metric-plus" aria-hidden="true">+</span>
               </strong>
               <p className="metric-caption">students studying at our adopted government school</p>
@@ -230,7 +276,7 @@ export function HomePage() {
                 </svg>
               </span>
               <strong className="metric-count" data-counter="50" aria-label="50 plus Lyari Entrepreneur Academy alumni in jobs">
-                <span data-counter-value>50</span>
+                <span data-counter-value>0</span>
                 <span className="metric-plus" aria-hidden="true">+</span>
               </strong>
               <p className="metric-caption">Lyari Entrepreneur Academy alumni in jobs</p>
@@ -247,7 +293,7 @@ export function HomePage() {
                 </svg>
               </span>
               <strong className="metric-count" data-counter="5000" aria-label="5,000 plus youth, single mothers, and students benefiting from LEE">
-                <span data-counter-value>5,000</span>
+                <span data-counter-value>0</span>
                 <span className="metric-plus" aria-hidden="true">+</span>
               </strong>
               <p className="metric-caption">youth, single mothers and students benefiting from LEE</p>
@@ -264,7 +310,7 @@ export function HomePage() {
                 </svg>
               </span>
               <strong className="metric-count" data-counter="500" aria-label="500 plus out-of-school children admitted to school">
-                <span data-counter-value>500</span>
+                <span data-counter-value>0</span>
                 <span className="metric-plus" aria-hidden="true">+</span>
               </strong>
               <p className="metric-caption">out-of-school children admitted to school</p>

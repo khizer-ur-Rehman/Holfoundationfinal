@@ -191,7 +191,7 @@ export function TeamCarousel() {
           </div>
         </div>
 
-        <div className="team-carousel-controls flex items-center justify-center gap-4 mt-8">
+        <div className="team-controls-row">
           <button
             type="button"
             className="team-nav-arrow team-nav-prev w-11 h-11 rounded-full bg-white border border-[#E0E0E0] shadow-sm flex items-center justify-center text-gray-700 hover:bg-[#5EB93B] hover:text-white transition-colors"
@@ -206,9 +206,7 @@ export function TeamCarousel() {
               <button
                 key={idx}
                 type="button"
-                className={`w-2.5 h-2.5 rounded-full transition-all ${
-                  idx === currentIndex ? 'bg-[#5EB93B] w-6' : 'bg-gray-300 hover:bg-gray-400'
-                }`}
+                className={`team-dot${idx === currentIndex ? ' is-active' : ''}`}
                 aria-label={`Go to slide group ${idx + 1}`}
                 onClick={() => setCurrentIndex(idx)}
               />
