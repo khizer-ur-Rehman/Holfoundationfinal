@@ -5,52 +5,53 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 export function OurWorkPage() {
   useScrollReveal();
 
-  // Initialize animated counter metrics in the showcase
+  // Animate each showcase metric when it enters the viewport.
   useEffect(() => {
     const counterElements = document.querySelectorAll('[data-showcase-counter]');
     if (!counterElements.length) return;
 
-    const animateCounters = () => {
-      counterElements.forEach((el) => {
-        const valSpan = el.querySelector('[data-showcase-value]');
-        const target = Number(el.dataset.showcaseCounter);
-        if (!valSpan || !Number.isFinite(target)) return;
-
-        const start = performance.now();
-        const duration = 1600;
-
-        const tick = (now) => {
-          const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 4);
-          valSpan.textContent = Math.round(target * eased).toLocaleString('en-US');
-          if (progress < 1) requestAnimationFrame(tick);
-          else valSpan.textContent = target.toLocaleString('en-US');
-        };
-        requestAnimationFrame(tick);
-      });
+    const setCounterValue = (el) => {
+      const valSpan = el.querySelector('[data-showcase-value]');
+      const target = Number(el.dataset.showcaseCounter);
+      if (valSpan && Number.isFinite(target)) valSpan.textContent = target.toLocaleString('en-US');
     };
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
-      counterElements.forEach((el) => {
-        const valSpan = el.querySelector('[data-showcase-value]');
-        const target = Number(el.dataset.showcaseCounter);
-        if (valSpan && Number.isFinite(target)) valSpan.textContent = target.toLocaleString('en-US');
-      });
+      counterElements.forEach(setCounterValue);
       return;
     }
 
+    const animateCounter = (el) => {
+      if (el.dataset.showcaseAnimated === 'true') return;
+      el.dataset.showcaseAnimated = 'true';
+      const valSpan = el.querySelector('[data-showcase-value]');
+      const target = Number(el.dataset.showcaseCounter);
+      if (!valSpan || !Number.isFinite(target)) return;
+
+      const start = performance.now();
+      const duration = 1600;
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        valSpan.textContent = Math.round(target * eased).toLocaleString('en-US');
+        if (progress < 1) requestAnimationFrame(tick);
+        else valSpan.textContent = target.toLocaleString('en-US');
+      };
+      requestAnimationFrame(tick);
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          animateCounters();
-          observer.disconnect();
-        }
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        });
       },
-      { threshold: 0.25 }
+      { threshold: 0.2 }
     );
 
-    const showcase = document.querySelector('.detailed-programs-showcase');
-    if (showcase) observer.observe(showcase);
+    counterElements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
   }, []);
@@ -197,7 +198,7 @@ export function OurWorkPage() {
                         <span className="showcase-metric-num" data-showcase-counter="50">
                           <span data-showcase-value>0</span>+
                         </span>
-                        <span className="showcase-metric-label">Corporate Tech Placements</span>
+                        <span className="showcase-metric-label">Corporate Placements</span>
                       </div>
                     </div>
 
