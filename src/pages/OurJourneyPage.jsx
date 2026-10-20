@@ -188,8 +188,8 @@ const milestonesData = [
     title: 'Changing Lives Through Education',
     description: 'Started in 2016 from one small room, HOL Foundation began with Hunain’s dream at an adult literacy center — and grew into a movement changing lives through education.',
     photos: [
-      { src: '/assets/images/about/classroom-learning.jpg', alt: "Hunain's dream at adult literacy center in 2016" },
-      { src: '/assets/images/journey/our-journey-8.webp', alt: 'Movement changing lives through education' }
+      { src: '/assets/images/journey/journey-2016-classroom-activity.webp', alt: 'A teacher leads a classroom activity with Lyari students' },
+      { src: '/assets/images/journey/journey-2016-celebration-group.webp', alt: 'Students and educators celebrate together at HOL Foundation' }
     ]
   }
 ];
