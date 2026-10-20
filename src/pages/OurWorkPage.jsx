@@ -126,17 +126,19 @@ export function OurWorkPage() {
                         <span className="showcase-metric-num" data-showcase-counter="700">
                           <span data-showcase-value>0</span>
                         </span>
-                        <span className="showcase-metric-label">Public School Students</span>
+                        <span className="showcase-metric-label">Children Receiving Free Education</span>
                       </div>
                       <div className="showcase-metric-item">
-                        <span className="showcase-metric-num" data-showcase-counter="16">
-                          <span data-showcase-value>0</span>&nbsp;KVA
+                        <span className="showcase-metric-num" data-showcase-counter="100">
+                          <span data-showcase-value>0</span>%
                         </span>
-                        <span className="showcase-metric-label">Solar Power Array</span>
+                        <span className="showcase-metric-label">Free Education</span>
                       </div>
                       <div className="showcase-metric-item">
-                        <span className="showcase-metric-num">1st</span>
-                        <span className="showcase-metric-label">inDrive Football Turf in Lyari School</span>
+                        <span className="showcase-metric-num" data-showcase-counter="500">
+                          <span data-showcase-value>0</span>
+                        </span>
+                        <span className="showcase-metric-label">Students Enrolled in Evening Clubs</span>
                       </div>
                     </div>
 
@@ -183,11 +185,11 @@ export function OurWorkPage() {
                         <span className="showcase-metric-num" data-showcase-counter="5000">
                           <span data-showcase-value>0</span>+
                         </span>
-                        <span className="showcase-metric-label">Youth &amp; Mothers Benefited</span>
+                        <span className="showcase-metric-label">Youth Benefited</span>
                       </div>
                       <div className="showcase-metric-item">
-                        <span className="showcase-metric-num" data-showcase-counter="40">
-                          <span data-showcase-value>0</span>
+                        <span className="showcase-metric-num" data-showcase-counter="150">
+                          <span data-showcase-value>0</span>+
                         </span>
                         <span className="showcase-metric-label">Funded Seed Startups</span>
                       </div>
@@ -261,22 +263,22 @@ export function OurWorkPage() {
 
                     <div className="showcase-metrics-bar">
                       <div className="showcase-metric-item">
+                        <span className="showcase-metric-num" data-showcase-counter="300">
+                          <span data-showcase-value>0</span>+
+                        </span>
+                        <span className="showcase-metric-label">Enrolled Now</span>
+                      </div>
+                      <div className="showcase-metric-item">
                         <span className="showcase-metric-num" data-showcase-counter="500">
                           <span data-showcase-value>0</span>+
                         </span>
-                        <span className="showcase-metric-label">Children Mainstreamed</span>
+                        <span className="showcase-metric-label">Joined Formal School</span>
                       </div>
                       <div className="showcase-metric-item">
-                        <span className="showcase-metric-num" data-showcase-counter="94">
-                          <span data-showcase-value>0</span>%
+                        <span className="showcase-metric-num" data-showcase-counter="40">
+                          <span data-showcase-value>0</span>+
                         </span>
-                        <span className="showcase-metric-label">Retention Rate</span>
-                      </div>
-                      <div className="showcase-metric-item">
-                        <span className="showcase-metric-num" data-showcase-counter="18">
-                          <span data-showcase-value>0</span>&nbsp;mo
-                        </span>
-                        <span className="showcase-metric-label">Average Bridge Duration</span>
+                        <span className="showcase-metric-label">Ladies Enrolled</span>
                       </div>
                     </div>
 
@@ -323,19 +325,17 @@ export function OurWorkPage() {
                         <span className="showcase-metric-num" data-showcase-counter="150">
                           <span data-showcase-value>0</span>
                         </span>
-                        <span className="showcase-metric-label">Preschoolers Supported</span>
+                        <span className="showcase-metric-label">Children</span>
                       </div>
                       <div className="showcase-metric-item">
-                        <span className="showcase-metric-num" data-showcase-counter="8">
-                          <span data-showcase-value>0</span>&nbsp;yrs
+                        <span className="showcase-metric-num" data-showcase-counter="128">
+                          <span data-showcase-value>0</span>
                         </span>
-                        <span className="showcase-metric-label">Mentorship with Maa Sabina Khatri</span>
+                        <span className="showcase-metric-label">Mothers</span>
                       </div>
                       <div className="showcase-metric-item">
-                        <span className="showcase-metric-num" data-showcase-counter="100">
-                          <span data-showcase-value>0</span>%
-                        </span>
-                        <span className="showcase-metric-label">Mother Workshop Attendance</span>
+                        <span className="showcase-metric-num">Fully</span>
+                        <span className="showcase-metric-label">Supported by Kiran Foundation</span>
                       </div>
                     </div>
 
