@@ -76,10 +76,10 @@ export function OurWorkPage() {
             </div>
             <figure className="unified-hero-visual">
               <img
-                src="/assets/images/programs/work-lyari-students.webp"
-                alt="Lyari students learning and collaborating in an HOL Foundation program"
-                width="1280"
-                height="960"
+                src="/assets/images/programs/work-classroom-seminar.webp"
+                alt="Students attending a classroom seminar at HOL Foundation"
+                width="1450"
+                height="1085"
                 fetchPriority="high"
               />
             </figure>
