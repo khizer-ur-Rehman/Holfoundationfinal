@@ -11,7 +11,7 @@ const slidesData = [
   },
   {
     className: '',
-    mobileSrc: '/assets/images/hero/mobile_banner_2_child_closeup.png',
+    mobileSrc: '/assets/images/hero/mobile-reading-hero.jpg',
     desktopSrc: '/assets/images/hero/hero-banner-2.jpg',
     alt: 'A student reading a book during a HOL classroom learning activity',
     title: 'A brighter future starts with learning.',
@@ -19,7 +19,7 @@ const slidesData = [
   },
   {
     className: 'hero-slide-campus',
-    mobileSrc: '/assets/images/hero/mobile_banner_3_school_exterior.png',
+    mobileSrc: '/assets/images/hero/mobile-classroom-hero.jpg',
     desktopSrc: '/assets/images/hero/hero-banner-1.jpg',
     alt: 'Children working together on classroom exercises at HOL Foundation',
     title: 'A stronger school. A brighter future.',
