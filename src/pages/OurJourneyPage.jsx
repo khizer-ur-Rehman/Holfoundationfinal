@@ -161,8 +161,8 @@ const milestonesData = [
     title: 'Strong Foundations For Early Childhood',
     description: 'In 2020, a formal preschool was launched under the leadership of Areeba Hunain, laying strong foundations for early childhood education for 200 children.',
     photos: [
-      { src: '/assets/images/programs/hol-preschool-learning.jpg', alt: 'Formal preschool launch under leadership of Areeba Hunain' },
-      { src: '/assets/images/journey/journey-2024-preschool-awards.jpg', alt: 'Early childhood education for 200 children' }
+      { src: '/assets/images/journey/journey-2020-preschool-classroom.webp', alt: 'Young students working on class activities at HOL Preschool' },
+      { src: '/assets/images/journey/journey-2020-hol-preschool-opening.webp', alt: 'HOL Foundation preschool opening with a teacher and community member' }
     ]
   },
   {
