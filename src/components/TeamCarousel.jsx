@@ -74,6 +74,10 @@ export function TeamCarousel() {
 
   const maxIndex = Math.max(0, teamMembers.length - visibleCount);
 
+  useEffect(() => {
+    setCurrentIndex((index) => Math.min(index, maxIndex));
+  }, [maxIndex]);
+
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
@@ -104,9 +108,9 @@ export function TeamCarousel() {
     }));
   };
 
-  // Calculate percentage shift for CSS flex slider
+  // Translate by one card width; translateX percentages are relative to the full track width.
   const itemPercent = 100 / visibleCount;
-  const trackTransform = `translateX(-${currentIndex * itemPercent}%)`;
+  const trackTransform = `translateX(-${currentIndex * (100 / teamMembers.length)}%)`;
 
   return (
     <section
