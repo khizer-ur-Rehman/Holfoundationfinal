@@ -2461,8 +2461,10 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em,
 
   .values-section.strive-redesign .value-marker,
   .values-section.strive-redesign .value-stop.is-selected .value-marker {
-    width: auto !important;
-    margin: 0 0 2px !important;
+    display: block !important;
+    width: 100% !important;
+    margin: 0 auto 2px !important;
+    text-align: center !important;
     font-size: 25px !important;
   }
 
