@@ -2424,6 +2424,74 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em,
   }
 }
 
+@media (max-width: 768px) {
+  .values-section.strive-redesign .strive-path {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    transition: none !important;
+  }
+
+  .values-section.strive-redesign .value-stop,
+  .values-section.strive-redesign .value-stop.is-selected {
+    grid-column: auto !important;
+    min-width: 0 !important;
+  }
+
+  .values-section.strive-redesign .value-select,
+  .values-section.strive-redesign .value-stop.is-selected .value-select {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-height: 166px !important;
+    padding: 13px 9px !important;
+    transform: none !important;
+  }
+
+  .values-section.strive-redesign .value-stop:hover .value-select,
+  .values-section.strive-redesign .value-stop.is-selected .value-select {
+    transform: none !important;
+  }
+
+  .values-section.strive-redesign .value-icon,
+  .values-section.strive-redesign .value-stop.is-selected .value-icon {
+    width: 40px !important;
+    height: 40px !important;
+    flex-basis: 40px !important;
+    margin: 0 auto 6px !important;
+  }
+
+  .values-section.strive-redesign .value-marker,
+  .values-section.strive-redesign .value-stop.is-selected .value-marker {
+    width: auto !important;
+    margin: 0 0 2px !important;
+    font-size: 25px !important;
+  }
+
+  .values-section.strive-redesign .value-copy,
+  .values-section.strive-redesign .value-stop.is-selected .value-copy {
+    min-width: 0 !important;
+    align-items: center !important;
+  }
+
+  .values-section.strive-redesign .value-copy strong,
+  .values-section.strive-redesign .value-stop.is-selected .value-copy strong,
+  .values-section.strive-redesign .value-stop:hover .value-copy strong {
+    width: auto !important;
+    max-width: 100% !important;
+    font-size: 13px !important;
+    line-height: 1.25 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
+  .values-section.strive-redesign .value-stop.is-selected .value-card-description,
+  .values-section.strive-redesign .value-stop:hover .value-card-description {
+    max-height: 42px !important;
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+    text-align: center !important;
+  }
+}
+
 /* ==========================================================================
    Master Hero Section (Mobile): Single-Row Action Buttons
    - Applies to: Our Work page, Our Work inner program pages, Contact Us page,
