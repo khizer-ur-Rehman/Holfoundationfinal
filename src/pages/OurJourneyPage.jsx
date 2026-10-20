@@ -152,8 +152,8 @@ const milestonesData = [
     title: 'Akhuwat Foundation',
     description: 'In 2020, alongside the preschool initiative, Hunain Abbas launched the first HOL Women Entrepreneurship Program at NJV School, a school adopted by Akhuwat Foundation, empowering women toward financial independence.',
     photos: [
-      { src: '/assets/images/about/hol-community-women.jpg', alt: 'HOL Women Entrepreneurship Program at NJV School' },
-      { src: '/assets/images/stories/school-preparatory-support.jpg', alt: 'Women empowerment and financial independence workshop' }
+      { src: '/assets/images/journey/journey-2020-akhuwat-seminar.webp', alt: 'Students attend a classroom seminar at HOL Foundation' },
+      { src: '/assets/images/journey/journey-2020-akhuwat-classroom-team.webp', alt: 'HOL Foundation students and teacher celebrate a classroom activity' }
     ]
   },
   {
