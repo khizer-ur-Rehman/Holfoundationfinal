@@ -179,8 +179,8 @@ const milestonesData = [
     title: 'Local Youth Came Together',
     description: 'In 2018, the first HOL Community Center in Lyari, where local youth came together to teach and uplift street children through the power of education.',
     photos: [
-      { src: '/assets/images/journey/our-journey-2.webp', alt: 'First HOL Community Center in Lyari' },
-      { src: '/assets/images/journey/HOL-SPP.jpeg', alt: 'Local youth teaching street children' }
+      { src: '/assets/images/journey/journey-2018-local-youth-learning.webp', alt: 'Local youth and children studying together at the first HOL Community Center' },
+      { src: '/assets/images/journey/journey-2018-community-study.webp', alt: 'A group of local students learning together in a community classroom' }
     ]
   },
   {
