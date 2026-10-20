@@ -170,8 +170,8 @@ const milestonesData = [
     title: 'Structured Non-Formal School',
     description: 'In 2019, founders Hunain Abbas and Areeba Yaqoob established a structured non-formal school, opening doors of learning to 50 students.',
     photos: [
-      { src: '/assets/images/programs/school-preparatory-children.jpeg', alt: 'Founders establishing structured non-formal school in Lyari' },
-      { src: '/assets/images/journey/HOL-SPP%204.jpg', alt: 'Opening doors of learning for 50 students' }
+      { src: '/assets/images/journey/journey-2019-structured-classroom.webp', alt: 'Students working together during a classroom activity' },
+      { src: '/assets/images/journey/journey-2019-reading-student.webp', alt: 'A student reading a book during a learning activity' }
     ]
   },
   {
