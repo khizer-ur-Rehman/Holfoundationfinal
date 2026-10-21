@@ -103,6 +103,12 @@ export function Footer({ onOpenFlipbook }) {
             <p className="copyright">
               &#169; <span>{currentYear}</span> HOL Foundation. All rights reserved.
             </p>
+            <span className="footer-credit">
+              Designed &amp; developed by{' '}
+              <a href="https://iterativelab.lk/" target="_blank" rel="noopener noreferrer">
+                Iterative Lab
+              </a>
+            </span>
             <span className="footer-bottom-note">
               Lyari <i /> Since 2014
             </span>

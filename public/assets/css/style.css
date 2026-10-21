@@ -464,6 +464,26 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em,
   font-size: 12px !important;
 }
 
+.site-footer .footer-credit {
+  color: #6B7280 !important;
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+  white-space: nowrap !important;
+}
+
+.site-footer .footer-credit a {
+  color: #173667 !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: color .2s ease !important;
+}
+
+.site-footer .footer-credit a:hover,
+.site-footer .footer-credit a:focus-visible {
+  color: #5EB93C !important;
+  text-decoration: underline !important;
+}
+
 .site-footer .footer-bottom-note {
   display: inline-flex !important;
   align-items: center !important;
