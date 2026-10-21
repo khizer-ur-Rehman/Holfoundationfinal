@@ -782,8 +782,7 @@ button.menu-toggle:focus-visible {
   outline-offset: 4px !important;
 }
 
-body.footer-in-view .site-header .menu-toggle,
-body.footer-in-view .scroll-to-top {
+body.footer-in-view .site-header .menu-toggle {
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
