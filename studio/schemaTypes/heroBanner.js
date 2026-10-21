@@ -69,6 +69,13 @@ export const heroBanner = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'showBeforeExisting',
+      title: 'Show Before Existing Banners',
+      type: 'boolean',
+      description: 'New banners are placed ahead of the existing banner sequence.',
+      initialValue: true,
+    }),
+    defineField({
       name: 'displayOrder',
       title: 'Display Order',
       type: 'number',

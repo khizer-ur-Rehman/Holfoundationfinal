@@ -50,11 +50,7 @@ export const SANITY_REELS_QUERY = `*[
   }
 }`;
 
-export const SANITY_HERO_BANNERS_QUERY = `*[
-  !(_id in path("drafts.**")) &&
-  _type == "heroBanner" &&
-  publishStatus == "published"
-] | order(displayOrder asc, _createdAt asc) {
+const HERO_BANNER_PROJECTION = `{
   _id,
   title,
   description,
@@ -64,9 +60,27 @@ export const SANITY_HERO_BANNERS_QUERY = `*[
   mobileImage { ..., asset-> }
 }`;
 
+export const SANITY_HERO_BANNERS_QUERY = `{
+  "newBanners": *[
+    !(_id in path("drafts.**")) &&
+    _type == "heroBanner" &&
+    publishStatus == "published" &&
+    showBeforeExisting == true
+  ] | order(_createdAt desc) ${HERO_BANNER_PROJECTION},
+  "existingBanners": *[
+    !(_id in path("drafts.**")) &&
+    _type == "heroBanner" &&
+    publishStatus == "published" &&
+    coalesce(showBeforeExisting, false) == false
+  ] | order(displayOrder asc, _createdAt asc) ${HERO_BANNER_PROJECTION}
+}`;
+
 export async function fetchSanityHeroBanners() {
-  const docs = await sanityClient.fetch(SANITY_HERO_BANNERS_QUERY);
-  if (!Array.isArray(docs)) throw new Error('Sanity returned an invalid home banner list.');
+  const result = await sanityClient.fetch(SANITY_HERO_BANNERS_QUERY);
+  if (!result || !Array.isArray(result.newBanners) || !Array.isArray(result.existingBanners)) {
+    throw new Error('Sanity returned an invalid home banner list.');
+  }
+  const docs = [...result.newBanners, ...result.existingBanners];
 
   const bannerImageUrl = (image, width) => {
     if (!image) return '';
