@@ -16,10 +16,10 @@ When adding a new Reel in the Studio dashboard, you will find these fields:
 2. **Reel URL** (`reelUrl`): Direct link to the Instagram reel (e.g., `https://www.instagram.com/reel/DSUWtSODFv8/`).
 3. **Thumbnail** (`thumbnail`): Poster image with hotspot cropping support.
 4. **Publish Status** (`publishStatus`):
-   - **Published**: Instantly visible on the website below the original 11 reels.
+   - **Published**: Visible on the website's News page.
    - **Draft**: Saved in Studio, hidden from the live website.
    - **Archived**: Hidden from the live website.
-5. **Display Order** (`displayOrder`): Integer number (e.g. `1`, `2`, `3`...) controlling the order of newly published reels.
+5. **Display Order** (`displayOrder`): Integer number (e.g. `1`, `2`, `3`...) controlling the order of reels in the News page grid.
 
 ---
 
@@ -72,5 +72,5 @@ If accessing the API or Studio from your production domains:
 ## How it Connects to the Website
 
 - The website's News page queries dataset `production` with real-time updates enabled.
-- The 11 original static Instagram Reels are preserved exactly as designed.
-- Any new Reel published in Sanity appears directly underneath the 11 original Reels with identical styling, animations, and responsive layout.
+- The News page displays only published reels from Sanity, using the existing card design and responsive layout.
+- Publishing a reel makes it appear in the grid; changing it to Draft or Archived, or deleting it, removes it from the grid automatically.

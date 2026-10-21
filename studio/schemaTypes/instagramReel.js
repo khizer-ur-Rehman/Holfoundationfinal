@@ -53,7 +53,7 @@ export const instagramReel = defineType({
       name: 'displayOrder',
       title: 'Display Order',
       type: 'number',
-      description: 'Controls sequence order when displaying below the 11 original reels (1, 2, 3...)',
+      description: 'Controls this Reel’s position in the News page (1, 2, 3...)',
       initialValue: 1,
       validation: (Rule) => Rule.required().integer().min(1),
     }),

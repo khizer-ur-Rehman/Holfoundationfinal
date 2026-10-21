@@ -1,78 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-import { sanityClient, fetchSanityReels, SANITY_REELS_QUERY } from '../lib/sanity';
-
-// The 11 original Instagram Reels preserved in exact order and styling
-const EXISTING_REELS = [
-  {
-    url: 'https://www.instagram.com/reel/DSUWtSODFv8/',
-    img: '/assets/images/news/instagram/instagram-01.jpg',
-    title: 'Learning in Lyari'
-  },
-  {
-    url: 'https://www.instagram.com/reel/DU5KENojGdm/',
-    img: '/assets/images/news/instagram/instagram-02.jpg',
-    title: 'Bright moments'
-  },
-  {
-    url: 'https://www.instagram.com/reel/DWMC-ZIDUsm/',
-    img: '/assets/images/news/instagram/instagram-03.jpg',
-    title: 'Curiosity in action'
-  },
-  {
-    url: 'https://www.instagram.com/reel/DVtckIkjtNm/',
-    img: '/assets/images/news/instagram/instagram-04.jpg',
-    title: 'Everyday at HOL'
-  },
-  {
-    url: 'https://www.instagram.com/reel/DQgrPzWiDOg/',
-    img: '/assets/images/news/instagram/instagram-05.jpg',
-    title: 'Growing together'
-  },
-  {
-    url: 'https://www.instagram.com/reel/DQrgj2oCAfP/',
-    img: '/assets/images/news/instagram/instagram-07.jpg',
-    title: 'Small moments, big futures'
-  },
-  {
-    url: 'https://www.instagram.com/reel/DQhH-IgjEPn/',
-    img: '/assets/images/news/instagram/instagram-08.jpg',
-    title: 'Strength in community'
-  },
-  {
-    url: 'https://www.instagram.com/reel/DI_P8TSSNml/',
-    img: '/assets/images/news/instagram/instagram-09.jpg',
-    title: 'Learning side by side'
-  },
-  {
-    url: 'https://www.instagram.com/reel/DQl2Omtk4KC/',
-    img: '/assets/images/news/instagram/instagram-10.jpg',
-    title: 'Discovering new things'
-  },
-  {
-    url: 'https://www.instagram.com/reel/DQmL9zECLOH/',
-    img: '/assets/images/news/instagram/instagram-11.jpg',
-    title: 'Learning with purpose'
-  },
-  {
-    url: 'https://www.instagram.com/reel/DTAqWNEiaSx/',
-    img: '/assets/images/news/instagram/instagram-12.jpg',
-    title: 'Making space to grow'
-  }
-];
+import { sanityClient, fetchSanityReels } from '../lib/sanity';
 
 export function NewsPage() {
   useScrollReveal();
-  const [sanityReels, setSanityReels] = useState([]);
+  const [reels, setReels] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
+    let latestRequest = 0;
 
     async function loadSanityContent() {
+      const requestId = ++latestRequest;
       try {
         const rawItems = await fetchSanityReels();
-        if (!isMounted) return;
+        if (!isMounted || requestId !== latestRequest) return;
 
         // Deduplicate Sanity items by their unique document ID
         const seenIds = new Set();
@@ -86,8 +31,8 @@ export function NewsPage() {
           freshReels.push(item);
         }
 
-        console.log(`[NewsPage] Updating state with ${freshReels.length} reel(s) from Sanity:`, freshReels);
-        setSanityReels(freshReels);
+        setReels(freshReels);
+        setLoadError(false);
 
         // Recalculate Lenis scroll dimensions and GSAP ScrollTrigger
         requestAnimationFrame(() => {
@@ -100,19 +45,21 @@ export function NewsPage() {
         });
       } catch (err) {
         console.error('[NewsPage] Error in loadSanityContent:', err);
+        if (isMounted && requestId === latestRequest) setLoadError(true);
+      } finally {
+        if (isMounted && requestId === latestRequest) setIsLoading(false);
       }
     }
 
     loadSanityContent();
 
-    // Real-time subscription so new reels appear automatically when published in Sanity
+    // Listen to all reel mutations; refetch applies publish, draft, archive, and delete state.
     let subscription;
     try {
       subscription = sanityClient
-        .listen(SANITY_REELS_QUERY)
+        .listen('*[_type == "instagramReel"]', {}, { visibility: 'query' })
         .subscribe({
-          next: (update) => {
-            console.log('[Sanity Listener] Live mutation received:', update);
+          next: () => {
             loadSanityContent();
           },
           error: (err) => {
@@ -128,10 +75,6 @@ export function NewsPage() {
       subscription?.unsubscribe?.();
     };
   }, []);
-
-  // The 11 original static reels are preserved at the top; newly published Sanity reels render below them
-  const combinedReels = [...EXISTING_REELS, ...sanityReels];
-  console.log(`[NewsPage] Rendering ${combinedReels.length} total Reel cards: 11 static + ${sanityReels.length} from Sanity.`);
 
   return (
     <main className="news-page">
@@ -176,7 +119,7 @@ export function NewsPage() {
             </div>
             <a
               className="news-instagram-link"
-              href="https://www.instagram.com/reel/DSUWtSODFv8/"
+              href="https://www.instagram.com/holfoundations/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -185,8 +128,8 @@ export function NewsPage() {
           </header>
 
           <div className="news-reel-grid" aria-label="HOL Foundation Instagram stories">
-            {combinedReels.map((item, idx) => (
-              <article className="news-reel-card" key={item.id || item.url || idx}>
+            {reels.map((item) => (
+              <article className="news-reel-card" key={item.id}>
                 <a
                   className="news-reel-cover"
                   href={item.url || '#'}
@@ -216,6 +159,13 @@ export function NewsPage() {
               </article>
             ))}
           </div>
+          {isLoading && <p className="news-reel-status" role="status">Loading Instagram reels…</p>}
+          {!isLoading && loadError && reels.length === 0 && (
+            <p className="news-reel-status" role="status">Instagram stories are temporarily unavailable. Please try again soon.</p>
+          )}
+          {!isLoading && !loadError && reels.length === 0 && (
+            <p className="news-reel-status" role="status">New stories are on their way. Please check back soon.</p>
+          )}
         </div>
       </section>
     </main>

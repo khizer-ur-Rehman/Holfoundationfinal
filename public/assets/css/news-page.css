@@ -76,6 +76,8 @@
 
 .news-reel-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch}
 
+.news-reel-status{margin:20px 0 0;padding:20px 24px;border:1px solid rgba(23,54,103,.1);border-radius:14px;background:rgba(255,255,255,.78);color:var(--news-muted);font-size:14px;line-height:1.6;text-align:center}
+
 .news-reel-card{min-width:0;perspective:900px}
 
 .news-reel-cover{position:relative;display:block;overflow:hidden;aspect-ratio:9/16;border:1px solid rgba(23,54,103,.12);border-radius:19px;background:#e7e8df;color:#fff;isolation:isolate;box-shadow:0 12px 28px rgba(23,54,103,.09);text-decoration:none;transform:translateZ(0);transition:transform .38s cubic-bezier(.2,.7,.2,1),border-color .3s ease,box-shadow .38s ease}

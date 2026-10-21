@@ -82,40 +82,33 @@ function transformSanityDocs(docs) {
 }
 
 export async function fetchSanityReels() {
-  console.log(`[Sanity] Fetching Instagram Reels from project: "${SANITY_PROJECT_ID}", dataset: "${SANITY_DATASET}"...`);
-  console.log(`[Sanity] Query: ${SANITY_REELS_QUERY}`);
-
   let docs = null;
+  let fetchError = null;
 
-  // 1. Try direct Sanity client query
+  // Public dataset query is preferred so the static-hosted site needs no server endpoint.
   try {
     docs = await sanityClient.fetch(SANITY_REELS_QUERY);
-    console.log(`[Sanity] Direct fetch succeeded! Received ${docs?.length || 0} document(s) from Sanity.`);
   } catch (directErr) {
-    console.warn('[Sanity] Direct browser fetch error (e.g. CORS origin not registered in Sanity dashboard):', directErr.message || directErr);
-    
-    // 2. Fallback to local server proxy (/api/sanity-reels)
+    fetchError = directErr;
+    console.warn('[Sanity] Direct reel fetch failed:', directErr.message || directErr);
+
+    // Fall back to the site's API proxy when the host provides one.
     try {
-      console.log('[Sanity] Attempting proxy fallback via /api/sanity-reels...');
       const proxyRes = await fetch('/api/sanity-reels');
-      if (proxyRes.ok) {
-        const proxyData = await proxyRes.json();
-        docs = proxyData.result || proxyData;
-        console.log(`[Sanity] Proxy fallback succeeded! Received ${docs?.length || 0} document(s).`);
-      } else {
-        console.error(`[Sanity] Proxy responded with status ${proxyRes.status}`);
+      if (!proxyRes.ok) {
+        throw new Error(`Sanity reel proxy responded with ${proxyRes.status}`);
       }
+      const proxyData = await proxyRes.json();
+      docs = proxyData.result || proxyData;
     } catch (proxyErr) {
-      console.error('[Sanity] Proxy fallback failed:', proxyErr.message || proxyErr);
+      fetchError = proxyErr;
+      console.error('[Sanity] Reel proxy fallback failed:', proxyErr.message || proxyErr);
     }
   }
 
   if (!Array.isArray(docs)) {
-    console.warn('[Sanity] No valid documents array returned; returning empty list.');
-    return [];
+    throw fetchError || new Error('Sanity returned an invalid reel list.');
   }
 
-  const transformed = transformSanityDocs(docs);
-  console.log(`[Sanity] Parsed and ready ${transformed.length} reel card(s):`, transformed);
-  return transformed;
+  return transformSanityDocs(docs);
 }
