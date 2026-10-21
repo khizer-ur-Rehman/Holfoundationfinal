@@ -48,6 +48,23 @@ export function Footer({ onOpenFlipbook }) {
               <span className="footer-place">
                 <i aria-hidden="true" /> Lyari, Karachi
               </span>
+              <nav className="footer-socials" aria-label="Follow HOL Foundation">
+                <a href="https://www.facebook.com/holwelfare.org/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a5 5 0 0 0-5 5v3H6v4h3v6h4v-6h3l1-4h-4V9a1 1 0 0 1 1-1Z" /></svg>
+                </a>
+                <a href="https://www.instagram.com/holfoundations/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle className="footer-social-dot" cx="17.5" cy="6.5" r="1" /></svg>
+                </a>
+                <a href="https://www.tiktok.com/@holfoundation" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v11.2a4.2 4.2 0 1 1-3.5-4.1v3.5a.9.9 0 1 0 0 1.8c.6 0 1-.4 1-1V3h3.2c.3 2.4 1.7 4 4.3 4.3v3.3a8 8 0 0 1-5-2V3Z" /></svg>
+                </a>
+                <a href="https://www.youtube.com/channel/UC87D_eYmXERKTqKZEcSeIaw" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.5 12a31 31 0 0 0 .5 3.8 3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22.5 12a31 31 0 0 0-.5-3.8ZM10 15.2V8.8l5.5 3.2-5.5 3.2Z" /></svg>
+                </a>
+                <a href="https://www.linkedin.com/company/holwelfareorg/home/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9H2v13h3V9ZM3.5 2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6ZM22 14.2c0-3.9-2.1-5.7-4.8-5.7a4.2 4.2 0 0 0-3.8 2.1V9h-3v13h3v-7.2c0-1.9.4-3.8 2.8-3.8s2.5 2.2 2.5 3.9V22h3v-7.8Z" /></svg>
+                </a>
+              </nav>
             </div>
 
             <div className="footer-column footer-contact">
