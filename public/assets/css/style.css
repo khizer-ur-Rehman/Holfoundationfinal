@@ -2745,3 +2745,15 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em,
 }
 
 
+.form-trap {
+  position: absolute !important;
+  left: -10000px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+.contact-form-note.is-error {
+  color: #a12622;
+}

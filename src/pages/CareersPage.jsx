@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { sendFormSubmission } from '../lib/formSubmission';
 
 export function CareersPage() {
   useScrollReveal();
 
   const [activeTab, setActiveTab] = useState('jobs');
+  const [submission, setSubmission] = useState({ jobs: 'idle', internships: 'idle', volunteers: 'idle' });
   const [jobForm, setJobForm] = useState({
     name: '',
     email: '',
@@ -32,32 +34,29 @@ export function CareersPage() {
     intro: ''
   });
 
-  const handleJobSubmit = (e) => {
+  const submitCareerForm = async (e, type, tab, values) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Job Application: ${jobForm.role} - ${jobForm.name}`);
-    const body = encodeURIComponent(
-      `Full Name: ${jobForm.name}\nEmail: ${jobForm.email}\nPhone: ${jobForm.phone}\nRole of Interest: ${jobForm.role}\nCV/Profile Link: ${jobForm.profile}\n\nIntroduction:\n${jobForm.intro}`
-    );
-    window.location.href = `mailto:info@holwelfare.org?subject=${subject}&body=${body}`;
+    const form = e.currentTarget;
+    setSubmission((prev) => ({ ...prev, [tab]: 'sending' }));
+    try {
+      await sendFormSubmission(type, values, form);
+      setSubmission((prev) => ({ ...prev, [tab]: 'success' }));
+    } catch (error) {
+      setSubmission((prev) => ({ ...prev, [tab]: error.message || 'Could not send. Please try again.' }));
+    }
   };
 
-  const handleInternSubmit = (e) => {
-    e.preventDefault();
-    const subject = encodeURIComponent(`Internship Application: ${internForm.field} - ${internForm.name}`);
-    const body = encodeURIComponent(
-      `Full Name: ${internForm.name}\nEmail: ${internForm.email}\nPhone: ${internForm.phone}\nInstitution: ${internForm.institution}\nArea of Interest: ${internForm.field}\nAvailability: ${internForm.availability}\n\nIntroduction:\n${internForm.intro}`
-    );
-    window.location.href = `mailto:info@holwelfare.org?subject=${subject}&body=${body}`;
-  };
+  const handleJobSubmit = (e) => submitCareerForm(e, 'job', 'jobs', jobForm);
+  const handleInternSubmit = (e) => submitCareerForm(e, 'internship', 'internships', internForm);
+  const handleVolSubmit = (e) => submitCareerForm(e, 'volunteer', 'volunteers', volForm);
 
-  const handleVolSubmit = (e) => {
-    e.preventDefault();
-    const subject = encodeURIComponent(`Volunteer Application: ${volForm.area} - ${volForm.name}`);
-    const body = encodeURIComponent(
-      `Full Name: ${volForm.name}\nEmail: ${volForm.email}\nPhone: ${volForm.phone}\nArea of Interest: ${volForm.area}\nAvailability: ${volForm.availability}\n\nIntroduction:\n${volForm.intro}`
-    );
-    window.location.href = `mailto:info@holwelfare.org?subject=${subject}&body=${body}`;
-  };
+  const submissionMessage = (tab) => submission[tab] === 'idle'
+    ? 'Your application will be sent directly to HOL Foundation.'
+    : submission[tab] === 'sending'
+      ? 'Sending your application…'
+      : submission[tab] === 'success'
+        ? 'Your application has been sent to HOL Foundation.'
+        : submission[tab];
 
   const openPathway = (tab) => {
     setActiveTab(tab);
@@ -222,6 +221,7 @@ export function CareersPage() {
             {activeTab === 'jobs' && (
               <section className="career-form-panel" id="career-panel-jobs" role="tabpanel" aria-labelledby="career-tab-jobs">
                 <form className="career-form" onSubmit={handleJobSubmit}>
+                  <div className="form-trap" aria-hidden="true"><label htmlFor="job-website">Leave this field blank</label><input id="job-website" name="website" type="text" tabIndex={-1} autoComplete="off" /></div>
                   <div className="career-form-grid">
                     <div className="career-field">
                       <label htmlFor="job-name">
@@ -299,11 +299,11 @@ export function CareersPage() {
                       />
                     </div>
                     <div className="career-submit-row career-field-wide">
-                      <button className="career-submit" type="submit">
-                        Send your interest <span aria-hidden="true">&#8599;</span>
+                      <button className="career-submit" type="submit" disabled={submission.jobs === 'sending'}>
+                        {submission.jobs === 'sending' ? 'Sending…' : 'Send your interest'} <span aria-hidden="true">&#8599;</span>
                       </button>
                       <p className="career-form-note" aria-live="polite">
-                        Your email app will open so you can send your application.
+                        {submissionMessage('jobs')}
                       </p>
                     </div>
                   </div>
@@ -314,6 +314,7 @@ export function CareersPage() {
             {activeTab === 'internships' && (
               <section className="career-form-panel" id="career-panel-internships" role="tabpanel" aria-labelledby="career-tab-internships">
                 <form className="career-form" onSubmit={handleInternSubmit}>
+                  <div className="form-trap" aria-hidden="true"><label htmlFor="intern-website">Leave this field blank</label><input id="intern-website" name="website" type="text" tabIndex={-1} autoComplete="off" /></div>
                   <div className="career-form-grid">
                     <div className="career-field">
                       <label htmlFor="intern-name">
@@ -408,11 +409,11 @@ export function CareersPage() {
                       />
                     </div>
                     <div className="career-submit-row career-field-wide">
-                      <button className="career-submit" type="submit">
-                        Send your interest <span aria-hidden="true">&#8599;</span>
+                      <button className="career-submit" type="submit" disabled={submission.internships === 'sending'}>
+                        {submission.internships === 'sending' ? 'Sending…' : 'Send your interest'} <span aria-hidden="true">&#8599;</span>
                       </button>
                       <p className="career-form-note" aria-live="polite">
-                        Your email app will open so you can send your application.
+                        {submissionMessage('internships')}
                       </p>
                     </div>
                   </div>
@@ -423,6 +424,7 @@ export function CareersPage() {
             {activeTab === 'volunteers' && (
               <section className="career-form-panel" id="career-panel-volunteers" role="tabpanel" aria-labelledby="career-tab-volunteers">
                 <form className="career-form" onSubmit={handleVolSubmit}>
+                  <div className="form-trap" aria-hidden="true"><label htmlFor="vol-website">Leave this field blank</label><input id="vol-website" name="website" type="text" tabIndex={-1} autoComplete="off" /></div>
                   <div className="career-form-grid">
                     <div className="career-field">
                       <label htmlFor="vol-name">
@@ -508,11 +510,11 @@ export function CareersPage() {
                       />
                     </div>
                     <div className="career-submit-row career-field-wide">
-                      <button className="career-submit" type="submit">
-                        Send your interest <span aria-hidden="true">&#8599;</span>
+                      <button className="career-submit" type="submit" disabled={submission.volunteers === 'sending'}>
+                        {submission.volunteers === 'sending' ? 'Sending…' : 'Send your interest'} <span aria-hidden="true">&#8599;</span>
                       </button>
                       <p className="career-form-note" aria-live="polite">
-                        Your email app will open so you can send your application.
+                        {submissionMessage('volunteers')}
                       </p>
                     </div>
                   </div>

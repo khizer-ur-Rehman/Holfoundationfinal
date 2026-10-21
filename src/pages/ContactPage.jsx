@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { sendFormSubmission } from '../lib/formSubmission';
 
 export function ContactPage() {
   useScrollReveal();
@@ -11,7 +12,7 @@ export function ContactPage() {
     topic: 'General inquiry',
     message: ''
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [submission, setSubmission] = useState({ status: 'idle', message: '' });
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -20,14 +21,18 @@ export function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`[${formData.topic}] Inquiry from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'N/A'}\nTopic: ${formData.topic}\n\nMessage:\n${formData.message}`
-    );
-    window.location.href = `mailto:info@holwelfare.org?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    const form = e.currentTarget;
+    setSubmission({ status: 'sending', message: 'Sending your message…' });
+    try {
+      await sendFormSubmission('contact', formData, form);
+      setSubmission({ status: 'success', message: 'Your message has been sent to HOL Foundation.' });
+      setFormData({ name: '', email: '', phone: '', topic: 'General inquiry', message: '' });
+      form.reset();
+    } catch (error) {
+      setSubmission({ status: 'error', message: error.message });
+    }
   };
 
   return (
@@ -136,6 +141,10 @@ export function ContactPage() {
           </div>
 
           <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="form-trap" aria-hidden="true">
+              <label htmlFor="contact-website">Leave this field blank</label>
+              <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+            </div>
             <div className="contact-form-heading">
               <h3>Tell us how we can help.</h3>
             </div>
@@ -212,13 +221,11 @@ export function ContactPage() {
                 />
               </div>
               <div className="contact-submit-row contact-field-wide">
-                <button className="contact-submit" type="submit">
+                <button className="contact-submit" type="submit" disabled={submission.status === 'sending'}>
                   Send message <span aria-hidden="true">↗</span>
                 </button>
                 <p className="contact-form-note" aria-live="polite">
-                  {submitted
-                    ? 'Thank you! Your email client has been prepared with your message.'
-                    : 'Your email app will open with your message ready to send.'}
+                  {submission.message || 'Your message will be sent securely to HOL Foundation.'}
                 </p>
               </div>
             </div>
