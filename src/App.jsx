@@ -57,6 +57,21 @@ export function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const footer = document.querySelector('.site-footer');
+    if (!footer || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      document.body.classList.toggle('footer-in-view', entry.isIntersecting);
+    });
+    observer.observe(footer);
+
+    return () => {
+      observer.disconnect();
+      document.body.classList.remove('footer-in-view');
+    };
+  }, []);
+
   const handleOpenFlipbook = () => setIsFlipbookOpen(true);
   const handleCloseFlipbook = () => setIsFlipbookOpen(false);
 
