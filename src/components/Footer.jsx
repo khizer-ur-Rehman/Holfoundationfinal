@@ -110,7 +110,7 @@ export function Footer({ onOpenFlipbook }) {
               </a>
             </span>
             <span className="footer-bottom-note">
-              Lyari <i /> Since 2014
+              Rooted in Lyari since 2014
             </span>
             <Link to="/contact" className="footer-home-link">
               Contact us <span aria-hidden="true">&#8599;</span>
