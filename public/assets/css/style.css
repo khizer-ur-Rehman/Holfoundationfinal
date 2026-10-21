@@ -448,11 +448,11 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em,
 
 .site-footer .footer-bottom {
   display: grid !important;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   align-items: center !important;
-  gap: 12px 16px !important;
+  gap: 16px !important;
   min-height: 42px !important;
-  padding: 18px 0 96px !important;
+  padding: 18px 0 24px !important;
   border-top: 1px solid #E5E7EB !important;
 }
 
@@ -465,7 +465,6 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em,
 }
 
 .site-footer .footer-credit {
-  grid-column: 1 / -1 !important;
   justify-self: center !important;
   text-align: center !important;
   color: #6B7280 !important;
@@ -549,8 +548,8 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em,
   .site-footer .footer-bottom {
     grid-template-columns: 1fr !important;
     justify-items: center !important;
-    gap: 12px !important;
-    padding-bottom: 108px !important;
+    gap: 10px !important;
+    padding-bottom: 20px !important;
   }
   .site-footer .footer-bottom > * {
     justify-self: center !important;
