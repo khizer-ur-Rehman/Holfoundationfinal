@@ -2035,17 +2035,18 @@ h1 em, h2 em, h3 em, h4 em, h5 em, h6 em,
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
+    object-position: var(--hero-mobile-position, center) center !important;
   }
   .hero-slide:first-child .hero-photo,
   .hero-slide-community .hero-photo {
-    object-position: 70% center !important;
+    object-position: var(--hero-mobile-position, 70%) center !important;
   }
   .hero-slide:nth-child(2) .hero-photo {
-    object-position: center center !important;
+    object-position: var(--hero-mobile-position, center) center !important;
   }
   .hero-slide:nth-child(3) .hero-photo,
   .hero-slide-campus .hero-photo {
-    object-position: center center !important;
+    object-position: var(--hero-mobile-position, center) center !important;
   }
   .hero-overlay {
     background: linear-gradient(90deg, rgba(23, 54, 103, 0.90) 0%, rgba(23, 54, 103, 0.65) 58%, rgba(23, 54, 103, 0.22) 100%) !important;

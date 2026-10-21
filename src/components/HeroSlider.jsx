@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { sanityClient, fetchSanityHeroBanners } from '../lib/sanity';
 
-const slidesData = [
+const fallbackSlides = [
   {
     className: 'hero-slide-community',
     mobileSrc: '/assets/images/hero/mobile_banner_1_children_group.png',
@@ -28,11 +29,47 @@ const slidesData = [
 ];
 
 export function HeroSlider() {
+  const [slidesData, setSlidesData] = useState(fallbackSlides);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef(null);
 
   const totalSlides = slidesData.length;
+
+  useEffect(() => {
+    let isMounted = true;
+    let latestRequest = 0;
+
+    const loadBanners = async () => {
+      const requestId = ++latestRequest;
+      try {
+        const banners = await fetchSanityHeroBanners();
+        if (!isMounted || requestId !== latestRequest || !banners.length) return;
+        setSlidesData(banners);
+        setActiveSlide(0);
+      } catch (error) {
+        console.warn('[Home hero] Could not load Sanity banners; using the built-in banners.', error);
+      }
+    };
+
+    loadBanners();
+    let subscription;
+    try {
+      subscription = sanityClient
+        .listen('*[_type == "heroBanner"]', {}, { visibility: 'query' })
+        .subscribe({
+          next: loadBanners,
+          error: (error) => console.warn('[Home hero] Sanity listener notice:', error.message || error),
+        });
+    } catch (error) {
+      console.warn('[Home hero] Could not initialize the Sanity listener:', error);
+    }
+
+    return () => {
+      isMounted = false;
+      subscription?.unsubscribe?.();
+    };
+  }, []);
 
   const showSlide = (index) => {
     setActiveSlide((index + totalSlides) % totalSlides);
@@ -59,8 +96,8 @@ export function HeroSlider() {
         const isActive = i === activeSlide;
         return (
           <div
-            key={i}
-            className={`hero-slide ${slide.className} ${isActive ? 'is-active' : ''}`}
+            key={slide.id || i}
+            className={`hero-slide ${slide.className || ''} ${isActive ? 'is-active' : ''}`}
             role="group"
             aria-roledescription="slide"
             aria-label={`Slide ${i + 1} of ${totalSlides}`}
@@ -73,6 +110,7 @@ export function HeroSlider() {
                 className="hero-photo"
                 src={slide.desktopSrc}
                 alt={slide.alt}
+                style={{ '--hero-mobile-position': slide.mobileImagePosition || (slide.className === 'hero-slide-community' ? '70%' : 'center') }}
                 onError={(e) => {
                   if (slide.fallbackDesktopSrc && !e.currentTarget.dataset.fallbackTried) {
                     e.currentTarget.dataset.fallbackTried = 'true';

@@ -50,6 +50,44 @@ export const SANITY_REELS_QUERY = `*[
   }
 }`;
 
+export const SANITY_HERO_BANNERS_QUERY = `*[
+  !(_id in path("drafts.**")) &&
+  _type == "heroBanner" &&
+  publishStatus == "published"
+] | order(displayOrder asc, _createdAt asc) {
+  _id,
+  title,
+  description,
+  imageAlt,
+  mobileImagePosition,
+  desktopImage { ..., asset-> },
+  mobileImage { ..., asset-> }
+}`;
+
+export async function fetchSanityHeroBanners() {
+  const docs = await sanityClient.fetch(SANITY_HERO_BANNERS_QUERY);
+  if (!Array.isArray(docs)) throw new Error('Sanity returned an invalid home banner list.');
+
+  const bannerImageUrl = (image, width) => {
+    if (!image) return '';
+    try {
+      return builder.image(image).width(width).auto('format').fit('max').url();
+    } catch {
+      return image?.asset?.url || '';
+    }
+  };
+
+  return docs.map((doc) => ({
+    id: doc._id,
+    title: doc.title?.trim() || '',
+    subtitle: doc.description?.trim() || '',
+    desktopSrc: bannerImageUrl(doc.desktopImage, 2200),
+    mobileSrc: bannerImageUrl(doc.mobileImage, 1100) || bannerImageUrl(doc.desktopImage, 1100),
+    alt: doc.imageAlt?.trim() || doc.title?.trim() || 'HOL Foundation community and learning',
+    mobileImagePosition: ['left', 'center', 'right'].includes(doc.mobileImagePosition) ? doc.mobileImagePosition : 'center',
+  })).filter((banner) => banner.title && banner.subtitle && banner.desktopSrc);
+}
+
 function transformSanityDocs(docs) {
   if (!Array.isArray(docs)) return [];
 

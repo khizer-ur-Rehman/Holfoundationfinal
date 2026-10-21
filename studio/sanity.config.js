@@ -4,12 +4,12 @@ import { schemaTypes } from './schemaTypes';
 
 export default defineConfig({
   name: 'default',
-  title: 'HOL Foundation - Instagram Reels Studio',
+  title: 'HOL Foundation Content Studio',
   projectId: 'tctv8pav',
   dataset: 'production',
   plugins: [
     structureTool({
-      title: 'Reels Management',
+      title: 'HOL Content Management',
     }),
   ],
   schema: {
