@@ -12,15 +12,17 @@ const FORM_SUBJECTS = {
 export function buildWeb3FormsPayload(type, fields, website, accessKey) {
   if (!FORM_SUBJECTS[type]) throw new Error('This form type is not supported.');
   const name = typeof fields.name === 'string' ? fields.name.trim() : '';
-  return {
-    ...fields,
-    access_key: accessKey,
-    subject: `${FORM_SUBJECTS[type]}${name ? ` from ${name.slice(0, 100)}` : ''}`,
-    from_name: 'HOL Foundation Website',
-    email: fields.email || '',
-    ccemail: WEB3FORMS_CC,
-    botcheck: website || '',
-  };
+  const formData = new FormData();
+  Object.entries(fields).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) formData.append(key, String(value));
+  });
+  formData.append('access_key', accessKey);
+  formData.append('subject', `${FORM_SUBJECTS[type]}${name ? ` from ${name.slice(0, 100)}` : ''}`);
+  formData.append('from_name', 'HOL Foundation Website');
+  formData.append('email', fields.email || '');
+  formData.append('ccemail', WEB3FORMS_CC);
+  formData.append('botcheck', website || '');
+  return formData;
 }
 
 export function getWeb3FormsError(response, result, accessKey) {
@@ -48,15 +50,12 @@ export async function sendFormSubmission(type, fields, formElement, configuredAc
     }
     const response = await fetch(WEB3FORMS_ENDPOINT, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(buildWeb3FormsPayload(
+      body: buildWeb3FormsPayload(
         type,
         fields,
         formElement?.elements?._honey?.value || '',
         accessKey,
-      )),
+      ),
       signal: controller.signal,
     });
     const result = await response.json().catch(() => ({}));

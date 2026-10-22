@@ -44,11 +44,11 @@ test('sends all four form types to Web3Forms with recipient and form data', asyn
       const form = { elements: { _honey: { value: '' } } };
 
       const result = await sendFormSubmission(type, fields, form, ACCESS_KEY);
-      const payload = JSON.parse(requestOptions.body);
+      const payload = Object.fromEntries(requestOptions.body.entries());
 
       assert.equal(requestUrl, 'https://api.web3forms.com/submit');
       assert.equal(requestOptions.method, 'POST');
-      assert.equal(requestOptions.headers['Content-Type'], 'application/json');
+      assert.equal(requestOptions.headers, undefined);
       assert.equal(payload.access_key, ACCESS_KEY);
       assert.equal(payload.email, fields.email);
       assert.equal(payload.ccemail, RECIPIENT_CC);
@@ -114,7 +114,7 @@ test('forms use the official endpoint and the build key is documented without a 
   ]);
   assert.equal((contact.match(/action="https:\/\/api\.web3forms\.com\/submit"/g) || []).length, 1);
   assert.equal((careers.match(/action="https:\/\/api\.web3forms\.com\/submit"/g) || []).length, 3);
-  assert.match(envExample, /VITE_WEB3FORMS_ACCESS_KEY=/);
+  assert.match(envExample, /VITE_WEB3FORMS_ACCESS_KEY=\s*(?:\r?\n|$)/);
   assert.match(deploymentGuide, /Free plan allows 250 submissions\/month and one recipient/);
   assert.match(deploymentGuide, /no Node\.js or PHP email backend/i);
 });
