@@ -145,7 +145,7 @@ export function ContactPage() {
             <span className="contact-copy-location">HOL Foundation <b>·</b> Lyari, Karachi</span>
           </div>
 
-          <form className="contact-form" action="/api/send-email.php" method="POST" onSubmit={handleSubmit}>
+          <form className="contact-form" action="https://api.web3forms.com/submit" method="POST" onSubmit={handleSubmit}>
             <div className="form-trap" aria-hidden="true">
               <label htmlFor="contact-website">Leave this field blank</label>
               <input id="contact-website" name="_honey" type="text" tabIndex={-1} autoComplete="off" />

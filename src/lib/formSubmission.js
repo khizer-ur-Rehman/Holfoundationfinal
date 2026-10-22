@@ -1,6 +1,38 @@
 const pendingForms = new WeakSet();
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+const WEB3FORMS_CC = 'sameer@iterativelab.pk';
 
-export async function sendFormSubmission(type, fields, formElement) {
+const FORM_SUBJECTS = {
+  contact: 'HOL Foundation website contact message',
+  job: 'HOL Foundation job application',
+  internship: 'HOL Foundation internship application',
+  volunteer: 'HOL Foundation volunteer application',
+};
+
+export function buildWeb3FormsPayload(type, fields, website, accessKey) {
+  if (!FORM_SUBJECTS[type]) throw new Error('This form type is not supported.');
+  const name = typeof fields.name === 'string' ? fields.name.trim() : '';
+  return {
+    ...fields,
+    access_key: accessKey,
+    subject: `${FORM_SUBJECTS[type]}${name ? ` from ${name.slice(0, 100)}` : ''}`,
+    from_name: 'HOL Foundation Website',
+    email: fields.email || '',
+    ccemail: WEB3FORMS_CC,
+    botcheck: website || '',
+  };
+}
+
+export function getWeb3FormsError(response, result, accessKey) {
+  const detail = result?.message || result?.body?.message || result?.error || result?.body?.error;
+  const fallback = response.status === 429
+    ? 'Too many form submissions. Please wait and try again.'
+    : 'We could not send your message right now. Please try again.';
+  const message = typeof detail === 'string' && detail.trim() ? detail.trim() : fallback;
+  return accessKey ? message.split(accessKey).join('[hidden]') : message;
+}
+
+export async function sendFormSubmission(type, fields, formElement, configuredAccessKey) {
   if (formElement && pendingForms.has(formElement)) {
     throw new Error('This form is already being submitted.');
   }
@@ -10,25 +42,27 @@ export async function sendFormSubmission(type, fields, formElement) {
   const timeoutId = window.setTimeout(() => controller.abort(), 20000);
 
   try {
-    const idempotencyKey = globalThis.crypto?.randomUUID?.()
-      || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    const response = await fetch('/api/send-email.php', {
+    const accessKey = configuredAccessKey ?? import.meta.env?.VITE_WEB3FORMS_ACCESS_KEY ?? '';
+    if (!accessKey) {
+      throw new Error('Form email is not configured. Please try again later.');
+    }
+    const response = await fetch(WEB3FORMS_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Idempotency-Key': idempotencyKey,
       },
-      body: JSON.stringify({
+      body: JSON.stringify(buildWeb3FormsPayload(
         type,
         fields,
-        website: formElement?.elements?._honey?.value || '',
-      }),
+        formElement?.elements?._honey?.value || '',
+        accessKey,
+      )),
       signal: controller.signal,
     });
     const result = await response.json().catch(() => ({}));
 
-    if (!response.ok || result.ok !== true) {
-      throw new Error(result.message || 'We could not send your message right now. Please try again.');
+    if (!response.ok || result.success !== true) {
+      throw new Error(getWeb3FormsError(response, result, accessKey));
     }
 
     return result;

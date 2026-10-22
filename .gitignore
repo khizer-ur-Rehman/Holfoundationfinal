@@ -1,5 +1,4 @@
 node_modules/
 dist/
 .env
-/private/hol-form-config.php
 

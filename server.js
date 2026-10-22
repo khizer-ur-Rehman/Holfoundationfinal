@@ -2,7 +2,6 @@ import express from 'express';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import { deliverFormEmail, isAllowedFormOrigin } from './server/formEmail.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,7 +16,6 @@ try {
 } catch (_) {}
 
 const app = express();
-app.use(express.json({ limit: '20kb' }));
 
 // Enable CORS for universal public access
 app.use((req, res, next) => {
@@ -28,31 +26,6 @@ app.use((req, res, next) => {
 });
 const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
-
-app.options('/api/send-email', (req, res) => {
-  const origin = req.headers.origin;
-  if (origin && !isAllowedFormOrigin(origin)) return res.sendStatus(403);
-  if (origin) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-    res.setHeader('Vary', 'Origin');
-  }
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Idempotency-Key');
-  res.sendStatus(204);
-});
-
-app.post('/api/send-email', async (req, res) => {
-  const origin = req.headers.origin;
-  if (origin && !isAllowedFormOrigin(origin)) {
-    return res.status(403).json({ ok: false, message: 'This website is not allowed to submit this form.' });
-  }
-  if (origin) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-    res.setHeader('Vary', 'Origin');
-  }
-  const result = await deliverFormEmail(req.body, { idempotencyKey: req.headers['idempotency-key'] });
-  return res.status(result.status).json(result.body);
-});
 
 // Redirect legacy aliases to clean React routes
 app.get(['/about', '/about.html'], (req, res) => res.redirect(302, '/'));

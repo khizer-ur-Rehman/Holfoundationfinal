@@ -1,72 +1,47 @@
-# StackCP deployment: website forms
+# StackCP deployment: Web3Forms
 
-The production build is a static React site plus one PHP endpoint. It sends Contact, Jobs, Internships and Volunteering submissions through Resend to `info@holwelfare.org`.
+The four React forms send submissions directly from the visitor's browser to `https://api.web3forms.com/submit`. StackCP serves the static React build; no Node.js or PHP email backend is used.
 
-## 1. Select PHP and check the hosting requirements
+## Recipient and plan setup (required)
 
-1. Sign in to StackCP, open **Manage Hosting**, select the website's package, then choose **Options → Manage**.
-2. Under **Web Tools**, open **Change PHP Version** and choose PHP 8.x (PHP 7.4+ is compatible with this endpoint).
-3. Confirm the hosting account has `allow_url_fopen` enabled, OpenSSL enabled, and outbound HTTPS access to `api.resend.com` on port 443. This backend uses PHP's built-in HTTPS stream; it does not need Node.js, Composer, or PHP cURL.
+1. In Web3Forms, use an Access Key whose primary notification email is `info@holwelfare.org`.
+2. To also deliver each form submission to `sameer@iterativelab.pk`, the account must have an active paid plan with CC/multiple recipients enabled. This project sends `sameer@iterativelab.pk` as `ccemail`.
+3. Add/verify that address in the Web3Forms account if the dashboard asks for recipient confirmation. Check the form's recipient limit before testing. The Free plan allows 250 submissions/month and one recipient per form, so it cannot satisfy the two-inbox requirement. Web3Forms currently lists Starter with up to 3 recipients and Pro with up to 5; CC is a paid feature. Confirm current account entitlements in the dashboard before production.
 
-StackCP publishes PHP version selection and outbound API connection guidance, but settings can vary by provider/package. For a direct check on this specific hosting package, temporarily create `resend-host-check.php` in `public_html` with the following code, then open `https://holwelfare.org/resend-host-check.php`:
+Without the paid recipient feature, only the Access Key's primary inbox is guaranteed to receive mail. A successful API response must not be treated as proof that the second inbox was configured; test both mailboxes after enabling CC.
 
-```php
-<?php
-header('Content-Type: application/json');
-$status = 0;
-$ctx = stream_context_create(array(
-  'http' => array('method' => 'GET', 'timeout' => 6, 'ignore_errors' => true),
-  'ssl' => array('verify_peer' => true, 'verify_peer_name' => true)
-));
-$response = @file_get_contents('https://api.resend.com/emails', false, $ctx);
-if (isset($http_response_header)) {
-  foreach ($http_response_header as $line) {
-    if (preg_match('/^HTTP\/\\S+\\s+(\\d{3})/', $line, $m)) $status = (int) $m[1];
-  }
-}
-echo json_encode(array(
-  'php' => PHP_VERSION,
-  'allow_url_fopen' => filter_var(ini_get('allow_url_fopen'), FILTER_VALIDATE_BOOLEAN),
-  'openssl' => extension_loaded('openssl'),
-  'https_wrapper' => in_array('https', stream_get_wrappers(), true),
-  'resend_https_reachable' => $response !== false && $status > 0,
-  'resend_http_status' => $status
-));
-```
+## 1. Add the Access Key before building
 
-An HTTP status from Resend (even 401/404 for this unauthenticated GET) confirms the HTTPS connection reached the API. Confirm `php` is 7.4 or newer and all four boolean checks are `true`, then **delete `resend-host-check.php`**. This check sends no email and contains no secret.
+### Local build
 
-## 2. Configure the Resend key privately
+1. In the project root, create or edit the ignored `.env` file (same folder as `package.json`).
+2. Add this line and replace the placeholder locally:
 
-1. In StackCP File Manager, open the domain's `public_html` directory and go **up one directory**. Create a sibling folder named `private` there. For example, if the document root is `/home/ACCOUNT/domains/holwelfare.org/public_html`, create `/home/ACCOUNT/domains/holwelfare.org/private/`.
-2. Copy `deployment/stackcp/hol-form-config.example.php` into that folder and rename it `hol-form-config.php`.
-3. Replace the example key with the real Resend API key. Do not put the key in React, `public_html`, Git, or a screenshot.
-4. Restrict the file permissions to the hosting account (600 or 640 if the File Manager offers permissions). The endpoint checks this sibling `private/` path as well as common account-private paths, and refuses to load a config file located inside the web root.
-5. Keep the sender as `HOL Foundation Website <forms@holwelfare.org>`; the sending domain/address must be verified in Resend.
+   ```env
+   VITE_WEB3FORMS_ACCESS_KEY=your-access-key
+   ```
 
-## 3. Build and upload
+3. Run `npm ci`, then `npm run build`.
 
-1. Run `npm ci`, then `npm run build` in the project.
-2. In StackCP, go to **Manage Hosting → [package] → Options → Manage → File Manager**. Upload the **contents** of `dist/` to the domain's `public_html` directory, including hidden files such as `.htaccess`.
-3. Confirm these paths exist on the host:
-   - `public_html/index.html`
-   - `public_html/api/send-email.php`
-   - `public_html/.htaccess`
+The checked-in `.env.example` contains a blank variable name only. Never put the real key in `.env.example`, source code, chat, or a Git commit. Vite embeds `VITE_*` values into the browser build at build time; Web3Forms describes this Access Key as a public form key, not a secret server API key.
 
-## 4. Verify delivery
+### CI or hosted build
 
-Submit one test from each of Contact, Jobs, Internships and Volunteering. A green tick appears only after Resend returns a successful email ID; a red cross appears for a failed request. Check both inboxes and spam. Resend's verified sending domain must allow `forms@holwelfare.org` as the sender. The first real submission may also require Resend's recipient/domain setup to be approved for production sending.
+If a CI service performs the build, add `VITE_WEB3FORMS_ACCESS_KEY` to that project's build environment variables before running `npm run build`. Changing a variable in StackCP after the build does not update an already-generated `dist/` directory. Rebuild and re-upload after changing the key.
 
-If a request fails, inspect the hosting PHP error log for the `[HOL form email]` entry. A missing stream requirement returns an error and never a success tick. The API key and provider response are not returned to the browser. Never paste the key into a support ticket or public log.
+If Vercel is used only for previews, add the same variable in **Vercel > Project > Settings > Environment Variables**, select **Preview** (and **Development** if needed), then redeploy the preview. The StackCP production site still uses the key baked into the locally built `dist/` files; StackCP runtime environment variables cannot change an existing Vite build.
 
-## Check the specific StackCP account
+## 2. Upload the production build to StackCP
 
-StackCP documents PHP support and outbound connections to external APIs, but PHP configuration can vary by hosting account. Before launch, confirm `allow_url_fopen` is On, OpenSSL is enabled, and HTTPS egress to `api.resend.com:443` is allowed for this package. The form endpoint checks the PHP settings on every request and returns an error if the required stream support is unavailable. After uploading, test one submission from each form and verify delivery in both inboxes.
+1. Sign in to StackCP and open **Manage Hosting > [website package] > Options > Manage > File Manager** (or connect by FTP/SFTP).
+2. Open the domain's document root, normally `public_html`.
+3. Upload the **contents** of the freshly built `dist/` folder into `public_html`, including hidden `.htaccess` if present. Do not upload the source `.env` file.
+4. Confirm `public_html/index.html`, `public_html/assets/`, and `public_html/.htaccess` (if produced) are present. There is no PHP endpoint to upload.
 
-## Verification limits
+## 3. Test all four forms
 
-The PHP CLI/runtime and the live StackCP account were not available in the development environment, so PHP lint/runtime execution and real Resend delivery have not been tested here. The project tests validate the frontend endpoint wiring and backend contract; the StackCP preflight and one real submission from each form are still required before launch. A success response is returned only after Resend responds with a successful HTTP status and email ID.
+After deployment, submit a real test through Contact, Jobs, Internships, and Volunteering. The page shows the existing green success tick only when the API response is HTTP-successful and contains `success: true`; otherwise it shows the service's useful error (with the Access Key redacted). Check both `info@holwelfare.org` and `sameer@iterativelab.pk`, including spam/junk. If using Vercel only for previews, remember to rebuild there with the same Vite variable; production mail delivery remains a direct browser-to-Web3Forms request from the StackCP site.
 
-## What gets deployed
+## Current verification limits
 
-Vite copies `public/` into `dist/`, so the PHP endpoint and Apache rewrite rules are part of the normal production build. The private config example is outside `public/` and is not copied into the site build.
+Project tests/build validate the request construction and response handling, but they do not use the real Access Key or send email. The Web3Forms paid CC entitlement, primary inbox, secondary recipient verification, and actual delivery must be confirmed in the account and tested after upload.
