@@ -36,7 +36,11 @@ export async function sendFormSubmission(type, fields, formElement) {
     const result = await response.json().catch(() => ({}));
 
     if (!response.ok || ![true, 'true'].includes(result.success)) {
-      throw new Error(result.message || 'We could not send your message right now. Please try again.');
+      const providerMessage = String(result.message || '');
+      if (/activat/i.test(providerMessage)) {
+        throw new Error('FormSubmit email activation is pending. Check info@holwelfare.org inbox and spam for its activation email, activate the form, then submit again.');
+      }
+      throw new Error(providerMessage || 'We could not send your message right now. Please try again.');
     }
 
     return result;
