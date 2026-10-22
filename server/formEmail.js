@@ -57,6 +57,8 @@ const FORM_CONFIG = {
   },
 };
 
+const FORM_RECIPIENTS = ['info@holwelfare.org', 'sameer@iterativelab.pk'];
+
 export function getAllowedFormOrigins() {
   const configured = process.env.FORM_ALLOWED_ORIGINS
     ?.split(',')
@@ -66,12 +68,14 @@ export function getAllowedFormOrigins() {
 }
 
 export function isAllowedFormOrigin(origin) {
-  return !origin || getAllowedFormOrigins().has(origin);
+  return !origin
+    || getAllowedFormOrigins().has(origin)
+    || /^https:\/\/holfoundationfinal(?:-[a-z0-9-]+)?\.vercel\.app$/i.test(origin);
 }
 
-export async function deliverFormEmail(body = {}) {
+export async function deliverFormEmail(body = {}, options = {}) {
   if (typeof body.website === 'string' && body.website.trim()) {
-    return { status: 200, body: { ok: true } };
+    return { status: 400, body: { ok: false, message: 'Please check the form and try again.' } };
   }
 
   const config = FORM_CONFIG[body.type];
@@ -105,6 +109,11 @@ export async function deliverFormEmail(body = {}) {
   const text = Object.entries(config.fields)
     .map(([key, label]) => `${label}: ${fields[key] || 'Not provided'}`)
     .join('\n\n');
+  const idempotencyKey = typeof options.idempotencyKey === 'string'
+    && options.idempotencyKey.length > 0
+    && options.idempotencyKey.length <= 256
+    ? options.idempotencyKey
+    : null;
 
   try {
     const response = await fetch('https://api.resend.com/emails', {
@@ -112,10 +121,11 @@ export async function deliverFormEmail(body = {}) {
       headers: {
         Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
+        ...(idempotencyKey ? { 'Idempotency-Key': idempotencyKey } : {}),
       },
       body: JSON.stringify({
         from: process.env.FORM_FROM_EMAIL || 'HOL Foundation Website <forms@holwelfare.org>',
-        to: [process.env.FORM_TO_EMAIL || 'info@holwelfare.org'],
+        to: FORM_RECIPIENTS,
         reply_to: fields.email,
         subject,
         text,
@@ -123,8 +133,9 @@ export async function deliverFormEmail(body = {}) {
       signal: AbortSignal.timeout(10000),
     });
 
-    if (!response.ok) {
-      const details = await response.text();
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || typeof result.id !== 'string' || !result.id) {
+      const details = JSON.stringify(result);
       console.error('[Form email] Resend rejected submission:', response.status, details);
       return { status: 502, body: { ok: false, message: 'We could not send your message right now. Please try again shortly.' } };
     }

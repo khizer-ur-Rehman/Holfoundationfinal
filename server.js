@@ -37,7 +37,7 @@ app.options('/api/send-email', (req, res) => {
     res.setHeader('Vary', 'Origin');
   }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Idempotency-Key');
   res.sendStatus(204);
 });
 
@@ -50,7 +50,7 @@ app.post('/api/send-email', async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Vary', 'Origin');
   }
-  const result = await deliverFormEmail(req.body);
+  const result = await deliverFormEmail(req.body, { idempotencyKey: req.headers['idempotency-key'] });
   return res.status(result.status).json(result.body);
 });
 

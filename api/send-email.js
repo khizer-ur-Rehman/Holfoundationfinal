@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     res.setHeader('Vary', 'Origin');
   }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Idempotency-Key');
 
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') {
@@ -28,6 +28,6 @@ export default async function handler(req, res) {
     }
   }
 
-  const result = await deliverFormEmail(body);
+  const result = await deliverFormEmail(body, { idempotencyKey: req.headers['idempotency-key'] });
   return res.status(result.status).json(result.body);
 }

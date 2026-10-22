@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "api/send-email.js": {
+      "maxDuration": 15
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",

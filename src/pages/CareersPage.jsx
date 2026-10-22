@@ -236,7 +236,7 @@ export function CareersPage() {
 
             {activeTab === 'jobs' && (
               <section className="career-form-panel" id="career-panel-jobs" role="tabpanel" aria-labelledby="career-tab-jobs">
-                <form className="career-form" action="https://formsubmit.co/info@holwelfare.org" method="POST" onSubmit={handleJobSubmit}>
+                <form className="career-form" action="/api/send-email" method="POST" onSubmit={handleJobSubmit}>
                   <div className="form-trap" aria-hidden="true"><label htmlFor="job-website">Leave this field blank</label><input id="job-website" name="_honey" type="text" tabIndex={-1} autoComplete="off" /></div>
                   <div className="career-form-grid">
                     <div className="career-field">
@@ -333,7 +333,7 @@ export function CareersPage() {
 
             {activeTab === 'internships' && (
               <section className="career-form-panel" id="career-panel-internships" role="tabpanel" aria-labelledby="career-tab-internships">
-                <form className="career-form" action="https://formsubmit.co/info@holwelfare.org" method="POST" onSubmit={handleInternSubmit}>
+                <form className="career-form" action="/api/send-email" method="POST" onSubmit={handleInternSubmit}>
                   <div className="form-trap" aria-hidden="true"><label htmlFor="intern-website">Leave this field blank</label><input id="intern-website" name="_honey" type="text" tabIndex={-1} autoComplete="off" /></div>
                   <div className="career-form-grid">
                     <div className="career-field">
@@ -448,7 +448,7 @@ export function CareersPage() {
 
             {activeTab === 'volunteers' && (
               <section className="career-form-panel" id="career-panel-volunteers" role="tabpanel" aria-labelledby="career-tab-volunteers">
-                <form className="career-form" action="https://formsubmit.co/info@holwelfare.org" method="POST" onSubmit={handleVolSubmit}>
+                <form className="career-form" action="/api/send-email" method="POST" onSubmit={handleVolSubmit}>
                   <div className="form-trap" aria-hidden="true"><label htmlFor="vol-website">Leave this field blank</label><input id="vol-website" name="_honey" type="text" tabIndex={-1} autoComplete="off" /></div>
                   <div className="career-form-grid">
                     <div className="career-field">
