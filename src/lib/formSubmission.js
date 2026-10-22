@@ -12,7 +12,7 @@ export async function sendFormSubmission(type, fields, formElement) {
   try {
     const idempotencyKey = globalThis.crypto?.randomUUID?.()
       || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    const response = await fetch('/api/send-email', {
+    const response = await fetch('/api/send-email.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

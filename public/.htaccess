@@ -1,0 +1,11 @@
+Options -Indexes
+RewriteEngine On
+
+# Let PHP handle the forms endpoint and serve all existing files directly.
+RewriteRule ^api/ - [L]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# React Router routes need to load the app entry point on direct visits.
+RewriteRule ^ index.html [L]
