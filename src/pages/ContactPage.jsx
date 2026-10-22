@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { sendFormSubmission } from '../lib/formSubmission';
 
@@ -13,6 +13,7 @@ export function ContactPage() {
     message: ''
   });
   const [submission, setSubmission] = useState({ status: 'idle', message: '' });
+  const submissionLock = useRef(false);
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -23,15 +24,19 @@ export function ContactPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (submissionLock.current) return;
+    submissionLock.current = true;
     const form = e.currentTarget;
     setSubmission({ status: 'sending', message: 'Sending your message…' });
     try {
       await sendFormSubmission('contact', formData, form);
-      setSubmission({ status: 'success', message: 'Your message has been sent to HOL Foundation.' });
+      setSubmission({ status: 'success', message: 'Your message has been submitted to HOL Foundation.' });
       setFormData({ name: '', email: '', phone: '', topic: 'General inquiry', message: '' });
       form.reset();
     } catch (error) {
       setSubmission({ status: 'error', message: error.message });
+    } finally {
+      submissionLock.current = false;
     }
   };
 
@@ -140,10 +145,10 @@ export function ContactPage() {
             <span className="contact-copy-location">HOL Foundation <b>·</b> Lyari, Karachi</span>
           </div>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className="contact-form" action="https://formsubmit.co/info@holwelfare.org" method="POST" onSubmit={handleSubmit}>
             <div className="form-trap" aria-hidden="true">
               <label htmlFor="contact-website">Leave this field blank</label>
-              <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+              <input id="contact-website" name="_honey" type="text" tabIndex={-1} autoComplete="off" />
             </div>
             <div className="contact-form-heading">
               <h3>Tell us how we can help.</h3>
@@ -222,7 +227,7 @@ export function ContactPage() {
               </div>
               <div className="contact-submit-row contact-field-wide">
                 <button className="contact-submit" type="submit" disabled={submission.status === 'sending'}>
-                  Send message <span aria-hidden="true">↗</span>
+                  {submission.status === 'sending' ? 'Sending…' : 'Send message'} <span aria-hidden="true">↗</span>
                 </button>
                 <p className="contact-form-note" aria-live="polite">
                   {submission.message || 'Your message will be sent securely to HOL Foundation.'}

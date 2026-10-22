@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { sendFormSubmission } from '../lib/formSubmission';
@@ -8,6 +8,7 @@ export function CareersPage() {
 
   const [activeTab, setActiveTab] = useState('jobs');
   const [submission, setSubmission] = useState({ jobs: 'idle', internships: 'idle', volunteers: 'idle' });
+  const submissionLocks = useRef(new Set());
   const [jobForm, setJobForm] = useState({
     name: '',
     email: '',
@@ -36,6 +37,8 @@ export function CareersPage() {
 
   const submitCareerForm = async (e, type, tab, values) => {
     e.preventDefault();
+    if (submissionLocks.current.has(tab)) return;
+    submissionLocks.current.add(tab);
     const form = e.currentTarget;
     setSubmission((prev) => ({ ...prev, [tab]: 'sending' }));
     try {
@@ -43,6 +46,8 @@ export function CareersPage() {
       setSubmission((prev) => ({ ...prev, [tab]: 'success' }));
     } catch (error) {
       setSubmission((prev) => ({ ...prev, [tab]: error.message || 'Could not send. Please try again.' }));
+    } finally {
+      submissionLocks.current.delete(tab);
     }
   };
 
@@ -55,7 +60,7 @@ export function CareersPage() {
     : submission[tab] === 'sending'
       ? 'Sending your application…'
       : submission[tab] === 'success'
-        ? 'Your application has been sent to HOL Foundation.'
+        ? 'Your application has been submitted to HOL Foundation.'
         : submission[tab];
 
   const openPathway = (tab) => {
@@ -220,8 +225,8 @@ export function CareersPage() {
 
             {activeTab === 'jobs' && (
               <section className="career-form-panel" id="career-panel-jobs" role="tabpanel" aria-labelledby="career-tab-jobs">
-                <form className="career-form" onSubmit={handleJobSubmit}>
-                  <div className="form-trap" aria-hidden="true"><label htmlFor="job-website">Leave this field blank</label><input id="job-website" name="website" type="text" tabIndex={-1} autoComplete="off" /></div>
+                <form className="career-form" action="https://formsubmit.co/info@holwelfare.org" method="POST" onSubmit={handleJobSubmit}>
+                  <div className="form-trap" aria-hidden="true"><label htmlFor="job-website">Leave this field blank</label><input id="job-website" name="_honey" type="text" tabIndex={-1} autoComplete="off" /></div>
                   <div className="career-form-grid">
                     <div className="career-field">
                       <label htmlFor="job-name">
@@ -229,6 +234,7 @@ export function CareersPage() {
                       </label>
                       <input
                         id="job-name"
+                        name="name"
                         type="text"
                         autoComplete="name"
                         placeholder="Your name"
@@ -243,6 +249,7 @@ export function CareersPage() {
                       </label>
                       <input
                         id="job-email"
+                        name="email"
                         type="email"
                         autoComplete="email"
                         placeholder="you@example.com"
@@ -255,6 +262,7 @@ export function CareersPage() {
                       <label htmlFor="job-phone">Phone / WhatsApp</label>
                       <input
                         id="job-phone"
+                        name="phone"
                         type="tel"
                         autoComplete="tel"
                         placeholder="+92"
@@ -268,6 +276,7 @@ export function CareersPage() {
                       </label>
                       <input
                         id="job-role"
+                        name="role"
                         type="text"
                         placeholder="Role or area"
                         value={jobForm.role}
@@ -279,6 +288,7 @@ export function CareersPage() {
                       <label htmlFor="job-profile">CV or professional profile link</label>
                       <input
                         id="job-profile"
+                        name="profile"
                         type="url"
                         placeholder="https://"
                         value={jobForm.profile}
@@ -291,6 +301,7 @@ export function CareersPage() {
                       </label>
                       <textarea
                         id="job-introduction"
+                        name="introduction"
                         rows="3"
                         placeholder="Tell us about your experience and interest."
                         value={jobForm.intro}
@@ -313,8 +324,8 @@ export function CareersPage() {
 
             {activeTab === 'internships' && (
               <section className="career-form-panel" id="career-panel-internships" role="tabpanel" aria-labelledby="career-tab-internships">
-                <form className="career-form" onSubmit={handleInternSubmit}>
-                  <div className="form-trap" aria-hidden="true"><label htmlFor="intern-website">Leave this field blank</label><input id="intern-website" name="website" type="text" tabIndex={-1} autoComplete="off" /></div>
+                <form className="career-form" action="https://formsubmit.co/info@holwelfare.org" method="POST" onSubmit={handleInternSubmit}>
+                  <div className="form-trap" aria-hidden="true"><label htmlFor="intern-website">Leave this field blank</label><input id="intern-website" name="_honey" type="text" tabIndex={-1} autoComplete="off" /></div>
                   <div className="career-form-grid">
                     <div className="career-field">
                       <label htmlFor="intern-name">
@@ -322,6 +333,7 @@ export function CareersPage() {
                       </label>
                       <input
                         id="intern-name"
+                        name="name"
                         type="text"
                         autoComplete="name"
                         placeholder="Your name"
@@ -336,6 +348,7 @@ export function CareersPage() {
                       </label>
                       <input
                         id="intern-email"
+                        name="email"
                         type="email"
                         autoComplete="email"
                         placeholder="you@example.com"
@@ -348,6 +361,7 @@ export function CareersPage() {
                       <label htmlFor="intern-phone">Phone / WhatsApp</label>
                       <input
                         id="intern-phone"
+                        name="phone"
                         type="tel"
                         autoComplete="tel"
                         placeholder="+92"
@@ -359,6 +373,7 @@ export function CareersPage() {
                       <label htmlFor="intern-study">School, college or university</label>
                       <input
                         id="intern-study"
+                        name="institution"
                         type="text"
                         placeholder="Institution"
                         value={internForm.institution}
@@ -371,6 +386,7 @@ export function CareersPage() {
                       </label>
                       <select
                         id="intern-field"
+                        name="field"
                         value={internForm.field}
                         onChange={(e) => setInternForm({ ...internForm, field: e.target.value })}
                         required
@@ -387,6 +403,7 @@ export function CareersPage() {
                       <label htmlFor="intern-availability">Availability</label>
                       <select
                         id="intern-availability"
+                        name="availability"
                         value={internForm.availability}
                         onChange={(e) => setInternForm({ ...internForm, availability: e.target.value })}
                       >
@@ -401,6 +418,7 @@ export function CareersPage() {
                       </label>
                       <textarea
                         id="intern-introduction"
+                        name="introduction"
                         rows="3"
                         placeholder="A few sentences is enough."
                         value={internForm.intro}
@@ -423,8 +441,8 @@ export function CareersPage() {
 
             {activeTab === 'volunteers' && (
               <section className="career-form-panel" id="career-panel-volunteers" role="tabpanel" aria-labelledby="career-tab-volunteers">
-                <form className="career-form" onSubmit={handleVolSubmit}>
-                  <div className="form-trap" aria-hidden="true"><label htmlFor="vol-website">Leave this field blank</label><input id="vol-website" name="website" type="text" tabIndex={-1} autoComplete="off" /></div>
+                <form className="career-form" action="https://formsubmit.co/info@holwelfare.org" method="POST" onSubmit={handleVolSubmit}>
+                  <div className="form-trap" aria-hidden="true"><label htmlFor="vol-website">Leave this field blank</label><input id="vol-website" name="_honey" type="text" tabIndex={-1} autoComplete="off" /></div>
                   <div className="career-form-grid">
                     <div className="career-field">
                       <label htmlFor="vol-name">
@@ -432,6 +450,7 @@ export function CareersPage() {
                       </label>
                       <input
                         id="vol-name"
+                        name="name"
                         type="text"
                         autoComplete="name"
                         placeholder="Your name"
@@ -446,6 +465,7 @@ export function CareersPage() {
                       </label>
                       <input
                         id="vol-email"
+                        name="email"
                         type="email"
                         autoComplete="email"
                         placeholder="you@example.com"
@@ -458,6 +478,7 @@ export function CareersPage() {
                       <label htmlFor="vol-phone">Phone / WhatsApp</label>
                       <input
                         id="vol-phone"
+                        name="phone"
                         type="tel"
                         autoComplete="tel"
                         placeholder="+92"
@@ -471,6 +492,7 @@ export function CareersPage() {
                       </label>
                       <select
                         id="vol-area"
+                        name="area"
                         value={volForm.area}
                         onChange={(e) => setVolForm({ ...volForm, area: e.target.value })}
                         required
@@ -487,6 +509,7 @@ export function CareersPage() {
                       <label htmlFor="vol-availability">Availability</label>
                       <select
                         id="vol-availability"
+                        name="availability"
                         value={volForm.availability}
                         onChange={(e) => setVolForm({ ...volForm, availability: e.target.value })}
                       >
@@ -502,6 +525,7 @@ export function CareersPage() {
                       </label>
                       <textarea
                         id="vol-introduction"
+                        name="introduction"
                         rows="3"
                         placeholder="Tell us a little about your skills or interests."
                         value={volForm.intro}
