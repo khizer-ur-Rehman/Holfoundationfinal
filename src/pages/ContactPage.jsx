@@ -30,7 +30,7 @@ export function ContactPage() {
     setSubmission({ status: 'sending', message: 'Sending your message…' });
     try {
       await sendFormSubmission('contact', formData, form);
-      setSubmission({ status: 'success', message: 'Your message has been submitted to HOL Foundation.' });
+      setSubmission({ status: 'success', message: 'Thank you for reaching out. Your message has been submitted successfully.' });
       setFormData({ name: '', email: '', phone: '', topic: 'General inquiry', message: '' });
       form.reset();
     } catch (error) {
@@ -229,8 +229,14 @@ export function ContactPage() {
                 <button className="contact-submit" type="submit" disabled={submission.status === 'sending'}>
                   {submission.status === 'sending' ? 'Sending…' : 'Send message'} <span aria-hidden="true">↗</span>
                 </button>
-                <p className="contact-form-note" aria-live="polite">
-                  {submission.message || 'Your message will be sent securely to HOL Foundation.'}
+                <p
+                  className={`contact-form-note${submission.status === 'error' ? ' is-error' : ''}`}
+                  style={{ color: submission.status === 'success' ? '#278a45' : undefined }}
+                  aria-live={submission.status === 'error' ? 'assertive' : 'polite'}
+                >
+                  {submission.status === 'success' && <span aria-hidden="true" style={{ color: '#278a45', fontWeight: 700, marginRight: 6 }}>✓</span>}
+                  {submission.status === 'error' && <span aria-hidden="true" style={{ color: '#c62828', fontWeight: 700, marginRight: 6 }}>✕</span>}
+                  {submission.status !== 'idle' && submission.message}
                 </p>
               </div>
             </div>

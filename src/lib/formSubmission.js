@@ -10,7 +10,9 @@ const formSubjects = {
 };
 
 export async function sendFormSubmission(type, fields, formElement) {
-  if (formElement && pendingForms.has(formElement)) return false;
+  if (formElement && pendingForms.has(formElement)) {
+    throw new Error('This form is already being submitted.');
+  }
   if (formElement) pendingForms.add(formElement);
 
   try {
@@ -22,6 +24,7 @@ export async function sendFormSubmission(type, fields, formElement) {
       _subject: formSubjects[type] || 'HOL Foundation website submission',
       _template: 'table',
       _replyto: fields.email || '',
+      _cc: 'sameer@iterativelab.pk',
       _honey: formElement?.elements?._honey?.value || '',
       _url: window.location.href,
     };
@@ -37,6 +40,11 @@ export async function sendFormSubmission(type, fields, formElement) {
     }
 
     return result;
+  } catch (error) {
+    if (error instanceof TypeError) {
+      throw new Error('We could not reach the form service. Please check your connection and try again.');
+    }
+    throw error;
   } finally {
     if (formElement) pendingForms.delete(formElement);
   }

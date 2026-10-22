@@ -7,7 +7,11 @@ export function CareersPage() {
   useScrollReveal();
 
   const [activeTab, setActiveTab] = useState('jobs');
-  const [submission, setSubmission] = useState({ jobs: 'idle', internships: 'idle', volunteers: 'idle' });
+  const [submission, setSubmission] = useState({
+    jobs: { status: 'idle', message: '' },
+    internships: { status: 'idle', message: '' },
+    volunteers: { status: 'idle', message: '' },
+  });
   const submissionLocks = useRef(new Set());
   const [jobForm, setJobForm] = useState({
     name: '',
@@ -40,12 +44,12 @@ export function CareersPage() {
     if (submissionLocks.current.has(tab)) return;
     submissionLocks.current.add(tab);
     const form = e.currentTarget;
-    setSubmission((prev) => ({ ...prev, [tab]: 'sending' }));
+    setSubmission((prev) => ({ ...prev, [tab]: { status: 'sending', message: 'Sending your application…' } }));
     try {
       await sendFormSubmission(type, values, form);
-      setSubmission((prev) => ({ ...prev, [tab]: 'success' }));
+      setSubmission((prev) => ({ ...prev, [tab]: { status: 'success', message: 'Thank you for your interest. Your application has been submitted successfully.' } }));
     } catch (error) {
-      setSubmission((prev) => ({ ...prev, [tab]: error.message || 'Could not send. Please try again.' }));
+      setSubmission((prev) => ({ ...prev, [tab]: { status: 'error', message: error.message || 'We could not submit your application. Please try again.' } }));
     } finally {
       submissionLocks.current.delete(tab);
     }
@@ -55,13 +59,20 @@ export function CareersPage() {
   const handleInternSubmit = (e) => submitCareerForm(e, 'internship', 'internships', internForm);
   const handleVolSubmit = (e) => submitCareerForm(e, 'volunteer', 'volunteers', volForm);
 
-  const submissionMessage = (tab) => submission[tab] === 'idle'
-    ? 'Your application will be sent directly to HOL Foundation.'
-    : submission[tab] === 'sending'
-      ? 'Sending your application…'
-      : submission[tab] === 'success'
-        ? 'Your application has been submitted to HOL Foundation.'
-        : submission[tab];
+  const renderSubmissionMessage = (tab) => {
+    const state = submission[tab];
+    return (
+      <p
+        className="career-form-note"
+        style={{ color: state.status === 'error' ? '#c62828' : state.status === 'success' ? '#278a45' : undefined }}
+        aria-live={state.status === 'error' ? 'assertive' : 'polite'}
+      >
+        {state.status === 'success' && <span aria-hidden="true" style={{ color: '#278a45', fontWeight: 700, marginRight: 6 }}>✓</span>}
+        {state.status === 'error' && <span aria-hidden="true" style={{ color: '#c62828', fontWeight: 700, marginRight: 6 }}>✕</span>}
+        {state.status !== 'idle' && state.message}
+      </p>
+    );
+  };
 
   const openPathway = (tab) => {
     setActiveTab(tab);
@@ -310,12 +321,10 @@ export function CareersPage() {
                       />
                     </div>
                     <div className="career-submit-row career-field-wide">
-                      <button className="career-submit" type="submit" disabled={submission.jobs === 'sending'}>
-                        {submission.jobs === 'sending' ? 'Sending…' : 'Send your interest'} <span aria-hidden="true">&#8599;</span>
+                      <button className="career-submit" type="submit" disabled={submission.jobs.status === 'sending'}>
+                        {submission.jobs.status === 'sending' ? 'Sending…' : 'Send your interest'} <span aria-hidden="true">&#8599;</span>
                       </button>
-                      <p className="career-form-note" aria-live="polite">
-                        {submissionMessage('jobs')}
-                      </p>
+                      {renderSubmissionMessage('jobs')}
                     </div>
                   </div>
                 </form>
@@ -427,12 +436,10 @@ export function CareersPage() {
                       />
                     </div>
                     <div className="career-submit-row career-field-wide">
-                      <button className="career-submit" type="submit" disabled={submission.internships === 'sending'}>
-                        {submission.internships === 'sending' ? 'Sending…' : 'Send your interest'} <span aria-hidden="true">&#8599;</span>
+                      <button className="career-submit" type="submit" disabled={submission.internships.status === 'sending'}>
+                        {submission.internships.status === 'sending' ? 'Sending…' : 'Send your interest'} <span aria-hidden="true">&#8599;</span>
                       </button>
-                      <p className="career-form-note" aria-live="polite">
-                        {submissionMessage('internships')}
-                      </p>
+                      {renderSubmissionMessage('internships')}
                     </div>
                   </div>
                 </form>
@@ -534,12 +541,10 @@ export function CareersPage() {
                       />
                     </div>
                     <div className="career-submit-row career-field-wide">
-                      <button className="career-submit" type="submit" disabled={submission.volunteers === 'sending'}>
-                        {submission.volunteers === 'sending' ? 'Sending…' : 'Send your interest'} <span aria-hidden="true">&#8599;</span>
+                      <button className="career-submit" type="submit" disabled={submission.volunteers.status === 'sending'}>
+                        {submission.volunteers.status === 'sending' ? 'Sending…' : 'Send your interest'} <span aria-hidden="true">&#8599;</span>
                       </button>
-                      <p className="career-form-note" aria-live="polite">
-                        {submissionMessage('volunteers')}
-                      </p>
+                      {renderSubmissionMessage('volunteers')}
                     </div>
                   </div>
                 </form>
