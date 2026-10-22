@@ -147,27 +147,51 @@ if ($idempotencyKey !== '' && strlen($idempotencyKey) <= 256 && preg_match('/^[A
     $headers[] = 'Idempotency-Key: ' . $idempotencyKey;
 }
 
-if (!function_exists('curl_init')) {
-    error_log('[HOL form email] PHP cURL extension is unavailable.');
+if (filter_var(ini_get('allow_url_fopen'), FILTER_VALIDATE_BOOLEAN) !== true
+    || !extension_loaded('openssl')
+    || !in_array('https', stream_get_wrappers(), true)) {
+    error_log('[HOL form email] PHP HTTPS stream requirements are unavailable (allow_url_fopen/OpenSSL/HTTPS wrapper).');
     hol_fail(503, 'The email service is temporarily unavailable. Please try again shortly.');
 }
-$ch = curl_init('https://api.resend.com/emails');
-curl_setopt_array($ch, array(
-    CURLOPT_POST => true,
-    CURLOPT_POSTFIELDS => json_encode($payload),
-    CURLOPT_HTTPHEADER => $headers,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_CONNECTTIMEOUT => 4,
-    CURLOPT_TIMEOUT => 12,
-    CURLOPT_SSL_VERIFYPEER => true,
-    CURLOPT_SSL_VERIFYHOST => 2
+
+$encodedPayload = json_encode($payload);
+if ($encodedPayload === false) {
+    error_log('[HOL form email] Could not encode the Resend request payload.');
+    hol_fail(500, 'We could not send your message right now. Please try again shortly.');
+}
+$requestContext = stream_context_create(array(
+    'http' => array(
+        'method' => 'POST',
+        'header' => implode("\r\n", $headers),
+        'content' => $encodedPayload,
+        'timeout' => 12,
+        'ignore_errors' => true,
+        'protocol_version' => 1.1
+    ),
+    'ssl' => array(
+        'verify_peer' => true,
+        'verify_peer_name' => true,
+        'SNI_enabled' => true
+    )
 ));
-$providerBody = curl_exec($ch);
-$curlError = curl_error($ch);
-$providerStatus = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
+$streamError = '';
+set_error_handler(function ($severity, $message) use (&$streamError) {
+    $streamError = $message;
+    return true;
+});
+$providerBody = file_get_contents('https://api.resend.com/emails', false, $requestContext);
+restore_error_handler();
+
+$providerStatus = 0;
+if (isset($http_response_header) && is_array($http_response_header)) {
+    foreach ($http_response_header as $responseHeader) {
+        if (preg_match('/^HTTP\/\S+\s+(\d{3})/', $responseHeader, $statusMatch)) {
+            $providerStatus = (int) $statusMatch[1];
+        }
+    }
+}
 if ($providerBody === false || $providerStatus < 200 || $providerStatus >= 300) {
-    error_log('[HOL form email] Resend request failed (HTTP ' . $providerStatus . '): ' . substr((string) $curlError . ' ' . (string) $providerBody, 0, 1000));
+    error_log('[HOL form email] Resend stream request failed (HTTP ' . $providerStatus . '): ' . substr((string) $streamError . ' ' . (string) $providerBody, 0, 1000));
     hol_fail(502, 'We could not send your message right now. Please try again shortly.');
 }
 $providerResult = json_decode($providerBody, true);

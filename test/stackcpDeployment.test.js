@@ -19,7 +19,9 @@ test('StackCP endpoint only reports success after Resend accepts delivery to bot
   assert.match(phpEndpoint, /'to' => array\('info@holwelfare\.org', 'sameer@iterativelab\.pk'\)/);
   assert.match(phpEndpoint, /getenv\('RESEND_API_KEY'\)/);
   assert.match(phpEndpoint, /HOL_FORM_CONFIG/);
-  assert.match(phpEndpoint, /CURLOPT_TIMEOUT => 12/);
+  assert.match(phpEndpoint, /'timeout' => 12/);
+  assert.match(phpEndpoint, /file_get_contents\('https:\/\/api\.resend\.com\/emails'/);
+  assert.doesNotMatch(phpEndpoint, /curl_(?:init|exec)|CURLOPT_/);
   assert.match(phpEndpoint, /\$providerStatus < 200 \|\| \$providerStatus >= 300/);
   assert.match(phpEndpoint, /hol_json_response\(200, array\('ok' => true\)\)/);
   assert.match(phpEndpoint, /'contact' =>/);
