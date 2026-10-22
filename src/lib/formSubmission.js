@@ -1,6 +1,5 @@
 const pendingForms = new WeakSet();
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
-const WEB3FORMS_CC = 'sameer@iterativelab.pk';
 
 const FORM_SUBJECTS = {
   contact: 'HOL Foundation website contact message',
@@ -20,7 +19,6 @@ export function buildWeb3FormsPayload(type, fields, website, accessKey) {
   formData.append('subject', `${FORM_SUBJECTS[type]}${name ? ` from ${name.slice(0, 100)}` : ''}`);
   formData.append('from_name', 'HOL Foundation Website');
   formData.append('email', fields.email || '');
-  formData.append('ccemail', WEB3FORMS_CC);
   formData.append('botcheck', website || '');
   return formData;
 }

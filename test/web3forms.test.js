@@ -4,7 +4,6 @@ import { readFile } from 'node:fs/promises';
 import { sendFormSubmission } from '../src/lib/formSubmission.js';
 
 const ACCESS_KEY = 'test-public-access-key';
-const RECIPIENT_CC = 'sameer@iterativelab.pk';
 const originalFetch = globalThis.fetch;
 const originalWindow = globalThis.window;
 
@@ -51,7 +50,7 @@ test('sends all four form types to Web3Forms with recipient and form data', asyn
       assert.equal(requestOptions.headers, undefined);
       assert.equal(payload.access_key, ACCESS_KEY);
       assert.equal(payload.email, fields.email);
-      assert.equal(payload.ccemail, RECIPIENT_CC);
+      assert.equal(Object.hasOwn(payload, 'ccemail'), false);
       assert.equal(payload.from_name, 'HOL Foundation Website');
       assert.equal(payload.botcheck, '');
       for (const [key, value] of Object.entries(fields)) assert.equal(payload[key], value);

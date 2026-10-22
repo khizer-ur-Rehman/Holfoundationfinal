@@ -5,10 +5,10 @@ The four React forms send submissions directly from the visitor's browser to `ht
 ## Recipient and plan setup (required)
 
 1. In Web3Forms, use an Access Key whose primary notification email is `info@holwelfare.org`.
-2. To also deliver each form submission to `sameer@iterativelab.pk`, the account must have an active paid plan with CC/multiple recipients enabled. This project sends `sameer@iterativelab.pk` as `ccemail`.
-3. Add/verify that address in the Web3Forms account if the dashboard asks for recipient confirmation. Check the form's recipient limit before testing. The Free plan allows 250 submissions/month and one recipient per form, so it cannot satisfy the two-inbox requirement. Web3Forms currently lists Starter with up to 3 recipients and Pro with up to 5; CC is a paid feature. Confirm current account entitlements in the dashboard before production.
+2. This project omits `ccemail` so submissions work on the Free plan and go to the Access Key's primary notification email (`info@holwelfare.org`).
+3. To also deliver each submission to `sameer@iterativelab.pk`, upgrade to a plan with CC/multiple recipients enabled, then configure and verify that recipient in Web3Forms. The Free plan allows 250 submissions/month and one recipient per form; Web3Forms lists Starter with up to 3 recipients and Pro with up to 5. Confirm current account entitlements in the dashboard before enabling a second recipient.
 
-Without the paid recipient feature, only the Access Key's primary inbox is guaranteed to receive mail. A successful API response must not be treated as proof that the second inbox was configured; test both mailboxes after enabling CC.
+On the Free plan, only the primary inbox receives form submissions. A successful API response does not deliver a copy to `sameer@iterativelab.pk`; upgrade and configure CC/multiple recipients to enable that.
 
 ## 1. Add the Access Key before building
 
@@ -40,7 +40,7 @@ If Vercel is used only for previews, add the same variable in **Vercel > Project
 
 ## 3. Test all four forms
 
-After deployment, submit a real test through Contact, Jobs, Internships, and Volunteering. The page shows the existing green success tick only when the API response is HTTP-successful and contains `success: true`; otherwise it shows the service's useful error (with the Access Key redacted). Check both `info@holwelfare.org` and `sameer@iterativelab.pk`, including spam/junk. If using Vercel only for previews, remember to rebuild there with the same Vite variable; production mail delivery remains a direct browser-to-Web3Forms request from the StackCP site.
+After deployment, submit a real test through Contact, Jobs, Internships, and Volunteering. The page shows the existing green success tick only when the API response is HTTP-successful and contains `success: true`; otherwise it shows the service's useful error (with the Access Key redacted). Check `info@holwelfare.org`, including spam/junk. Check `sameer@iterativelab.pk` only after upgrading and configuring the second recipient. If using Vercel only for previews, remember to rebuild there with the same Vite variable; production mail delivery remains a direct browser-to-Web3Forms request from the StackCP site.
 
 ## Current verification limits
 
