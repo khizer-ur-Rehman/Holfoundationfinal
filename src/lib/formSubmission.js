@@ -18,7 +18,6 @@ export function buildWeb3FormsPayload(type, fields, website, accessKey) {
   formData.append('access_key', accessKey);
   formData.append('subject', `${FORM_SUBJECTS[type]}${name ? ` from ${name.slice(0, 100)}` : ''}`);
   formData.append('from_name', 'HOL Foundation Website');
-  formData.append('email', fields.email || '');
   formData.append('botcheck', website || '');
   return formData;
 }

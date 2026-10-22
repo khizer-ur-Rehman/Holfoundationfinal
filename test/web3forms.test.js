@@ -43,13 +43,15 @@ test('sends all four form types to Web3Forms with recipient and form data', asyn
       const form = { elements: { _honey: { value: '' } } };
 
       const result = await sendFormSubmission(type, fields, form, ACCESS_KEY);
-      const payload = Object.fromEntries(requestOptions.body.entries());
+      const payloadEntries = [...requestOptions.body.entries()];
+      const payload = Object.fromEntries(payloadEntries);
 
       assert.equal(requestUrl, 'https://api.web3forms.com/submit');
       assert.equal(requestOptions.method, 'POST');
       assert.equal(requestOptions.headers, undefined);
       assert.equal(payload.access_key, ACCESS_KEY);
       assert.equal(payload.email, fields.email);
+      assert.deepEqual(payloadEntries.filter(([key]) => key === 'email').map(([, value]) => value), [fields.email]);
       assert.equal(Object.hasOwn(payload, 'ccemail'), false);
       assert.equal(payload.from_name, 'HOL Foundation Website');
       assert.equal(payload.botcheck, '');
