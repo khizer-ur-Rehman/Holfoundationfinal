@@ -31,7 +31,7 @@ const submissions = [
   ['volunteer', { name: 'Sara', email: 'sara@example.com', area: 'Education', intro: 'I can help.' }],
 ];
 
-test('sends each supported form to both recipients and forwards idempotency key', async (t) => {
+test('sends each supported form to the configured recipient and forwards idempotency key', async (t) => {
   for (const [type, fields] of submissions) {
     await t.test(type, async () => {
       let requestUrl;
@@ -51,7 +51,7 @@ test('sends each supported form to both recipients and forwards idempotency key'
       assert.equal(requestUrl, 'https://api.resend.com/emails');
       assert.equal(requestOptions.method, 'POST');
       assert.equal(requestOptions.headers['Idempotency-Key'], 'test-submission-123');
-      assert.deepEqual(sentEmail.to, ['info@holwelfare.org', 'sameer@iterativelab.pk']);
+      assert.deepEqual(sentEmail.to, ['info@holwelfare.org']);
       assert.equal(sentEmail.reply_to, fields.email);
       assert.equal(result.status, 200);
       assert.deepEqual(result.body, { ok: true });

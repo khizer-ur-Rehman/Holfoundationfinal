@@ -15,8 +15,8 @@ test('React forms target the StackCP PHP endpoint and keep duplicate/timeout han
   assert.equal((careersPage.match(/action="\/api\/send-email\.php"/g) || []).length, 3);
 });
 
-test('StackCP endpoint only reports success after Resend accepts delivery to both recipients', () => {
-  assert.match(phpEndpoint, /'to' => array\('info@holwelfare\.org', 'sameer@iterativelab\.pk'\)/);
+test('StackCP endpoint only reports success after Resend accepts delivery to the configured recipient', () => {
+  assert.match(phpEndpoint, /'to' => array\('info@holwelfare\.org'\)/);
   assert.match(phpEndpoint, /getenv\('RESEND_API_KEY'\)/);
   assert.match(phpEndpoint, /HOL_FORM_CONFIG/);
   assert.match(phpEndpoint, /'timeout' => 12/);

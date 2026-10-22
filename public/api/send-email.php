@@ -133,7 +133,7 @@ $payload = array(
     'from' => isset($privateConfig['from_email']) && is_string($privateConfig['from_email'])
         ? $privateConfig['from_email']
         : 'HOL Foundation Website <forms@holwelfare.org>',
-    'to' => array('info@holwelfare.org', 'sameer@iterativelab.pk'),
+    'to' => array('info@holwelfare.org'),
     'reply_to' => $fields['email'],
     'subject' => $subject,
     'text' => implode("\n\n", $messageLines)

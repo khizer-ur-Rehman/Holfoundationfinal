@@ -57,7 +57,7 @@ const FORM_CONFIG = {
   },
 };
 
-const FORM_RECIPIENTS = ['info@holwelfare.org', 'sameer@iterativelab.pk'];
+const FORM_RECIPIENTS = ['info@holwelfare.org'];
 
 export function getAllowedFormOrigins() {
   const configured = process.env.FORM_ALLOWED_ORIGINS

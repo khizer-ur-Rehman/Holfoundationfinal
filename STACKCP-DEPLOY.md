@@ -1,6 +1,6 @@
 # StackCP deployment: website forms
 
-The production build is a static React site plus one PHP endpoint. It sends Contact, Jobs, Internships and Volunteering submissions through Resend to `info@holwelfare.org` and `sameer@iterativelab.pk`.
+The production build is a static React site plus one PHP endpoint. It sends Contact, Jobs, Internships and Volunteering submissions through Resend to `info@holwelfare.org`.
 
 ## 1. Select PHP and check the hosting requirements
 
