@@ -119,7 +119,7 @@
 .team-carousel-track {
   display: flex;
   transition-property: transform;
-  transition-duration: 700ms;
+  transition-duration: 400ms;
   transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
   will-change: transform;
 }
@@ -466,3 +466,4 @@
     width: 2rem;
   }
 }
+

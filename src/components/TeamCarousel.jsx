@@ -94,7 +94,7 @@ export function TeamCarousel() {
 
     timerRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    }, 3000);
+    }, 2200);
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -169,7 +169,7 @@ export function TeamCarousel() {
                         className="team-portrait-img object-cover object-top w-full h-full"
                         src={member.image}
                         alt={`${member.name}, ${member.role}`}
-                        loading="lazy"
+                        loading={i === currentIndex || i === (currentIndex + visibleCount) % teamMembers.length ? 'eager' : 'lazy'}
                         width="300"
                         height="400"
                       />
@@ -230,3 +230,4 @@ export function TeamCarousel() {
     </section>
   );
 }
+
