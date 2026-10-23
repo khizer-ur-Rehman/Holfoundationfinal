@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { sendFormSubmission } from '../lib/formSubmission';
+import { validatePakistaniContactForm } from '../lib/formValidation';
 
 export function ContactPage() {
   useScrollReveal();
@@ -24,9 +25,16 @@ export function ContactPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const validation = validatePakistaniContactForm(form, formData);
+    if (!validation.valid) {
+      setSubmission(validation.error
+        ? { status: 'error', message: validation.error }
+        : { status: 'idle', message: '' });
+      return;
+    }
     if (submissionLock.current) return;
     submissionLock.current = true;
-    const form = e.currentTarget;
     setSubmission({ status: 'sending', message: 'Sending your message…' });
     try {
       await sendFormSubmission('contact', formData, form);
@@ -145,7 +153,7 @@ export function ContactPage() {
             <span className="contact-copy-location">HOL Foundation <b>·</b> Lyari, Karachi</span>
           </div>
 
-          <form className="contact-form" action="https://api.web3forms.com/submit" method="POST" onSubmit={handleSubmit}>
+          <form className="contact-form" action="https://api.web3forms.com/submit" method="POST" onSubmit={handleSubmit} noValidate>
             <div className="form-trap" aria-hidden="true">
               <label htmlFor="contact-website">Leave this field blank</label>
               <input id="contact-website" name="_honey" type="text" tabIndex={-1} autoComplete="off" />

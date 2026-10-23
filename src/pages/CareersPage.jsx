@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { sendFormSubmission } from '../lib/formSubmission';
+import { validatePakistaniContactForm } from '../lib/formValidation';
 
 export function CareersPage() {
   useScrollReveal();
@@ -41,9 +42,19 @@ export function CareersPage() {
 
   const submitCareerForm = async (e, type, tab, values) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const validation = validatePakistaniContactForm(form, values);
+    if (!validation.valid) {
+      setSubmission((prev) => ({
+        ...prev,
+        [tab]: validation.error
+          ? { status: 'error', message: validation.error }
+          : { status: 'idle', message: '' },
+      }));
+      return;
+    }
     if (submissionLocks.current.has(tab)) return;
     submissionLocks.current.add(tab);
-    const form = e.currentTarget;
     setSubmission((prev) => ({ ...prev, [tab]: { status: 'sending', message: 'Sending your application…' } }));
     try {
       await sendFormSubmission(type, values, form);
@@ -236,7 +247,7 @@ export function CareersPage() {
 
             {activeTab === 'jobs' && (
               <section className="career-form-panel" id="career-panel-jobs" role="tabpanel" aria-labelledby="career-tab-jobs">
-                <form className="career-form" action="https://api.web3forms.com/submit" method="POST" onSubmit={handleJobSubmit}>
+                <form className="career-form" action="https://api.web3forms.com/submit" method="POST" onSubmit={handleJobSubmit} noValidate>
                   <div className="form-trap" aria-hidden="true"><label htmlFor="job-website">Leave this field blank</label><input id="job-website" name="_honey" type="text" tabIndex={-1} autoComplete="off" /></div>
                   <div className="career-form-grid">
                     <div className="career-field">
@@ -333,7 +344,7 @@ export function CareersPage() {
 
             {activeTab === 'internships' && (
               <section className="career-form-panel" id="career-panel-internships" role="tabpanel" aria-labelledby="career-tab-internships">
-                <form className="career-form" action="https://api.web3forms.com/submit" method="POST" onSubmit={handleInternSubmit}>
+                <form className="career-form" action="https://api.web3forms.com/submit" method="POST" onSubmit={handleInternSubmit} noValidate>
                   <div className="form-trap" aria-hidden="true"><label htmlFor="intern-website">Leave this field blank</label><input id="intern-website" name="_honey" type="text" tabIndex={-1} autoComplete="off" /></div>
                   <div className="career-form-grid">
                     <div className="career-field">
@@ -448,7 +459,7 @@ export function CareersPage() {
 
             {activeTab === 'volunteers' && (
               <section className="career-form-panel" id="career-panel-volunteers" role="tabpanel" aria-labelledby="career-tab-volunteers">
-                <form className="career-form" action="https://api.web3forms.com/submit" method="POST" onSubmit={handleVolSubmit}>
+                <form className="career-form" action="https://api.web3forms.com/submit" method="POST" onSubmit={handleVolSubmit} noValidate>
                   <div className="form-trap" aria-hidden="true"><label htmlFor="vol-website">Leave this field blank</label><input id="vol-website" name="_honey" type="text" tabIndex={-1} autoComplete="off" /></div>
                   <div className="career-form-grid">
                     <div className="career-field">
