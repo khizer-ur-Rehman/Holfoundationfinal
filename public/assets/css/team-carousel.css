@@ -114,6 +114,7 @@
   overflow: hidden;
   width: 100%;
   padding: 10px 0 20px;
+  touch-action: pan-y;
 }
 
 .team-carousel-track {

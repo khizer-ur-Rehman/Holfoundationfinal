@@ -56,6 +56,8 @@ export function TeamCarousel() {
   const [flippedCards, setFlippedCards] = useState({});
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef(null);
+  const touchStartXRef = useRef(null);
+  const autoDirectionRef = useRef(1);
 
   const getVisibleCount = () => {
     if (typeof window === 'undefined') return 3;
@@ -79,11 +81,13 @@ export function TeamCarousel() {
   }, [maxIndex]);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    autoDirectionRef.current = 1;
+    setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+    autoDirectionRef.current = -1;
+    setCurrentIndex((prev) => Math.max(0, prev - 1));
   };
 
   useEffect(() => {
@@ -93,7 +97,15 @@ export function TeamCarousel() {
     }
 
     timerRef.current = setInterval(() => {
-      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+      setCurrentIndex((prev) => {
+        if (maxIndex === 0) return prev;
+        const next = prev + autoDirectionRef.current;
+        if (next > maxIndex || next < 0) {
+          autoDirectionRef.current *= -1;
+          return prev + autoDirectionRef.current;
+        }
+        return next;
+      });
     }, 2200);
 
     return () => {
@@ -119,8 +131,6 @@ export function TeamCarousel() {
       aria-labelledby="team-carousel-heading"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={() => setIsPaused(true)}
-      onTouchEnd={() => setIsPaused(false)}
     >
       <div className="team-carousel-container max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="team-header-block text-center mb-10 sm:mb-14 lg:mb-16">
@@ -133,10 +143,28 @@ export function TeamCarousel() {
           <div className="team-heading-accent w-14 sm:w-16 h-1 bg-[#5EB93B] mx-auto mt-2.5 rounded-full" aria-hidden="true" />
         </div>
 
-        <div className="team-carousel-viewport relative overflow-hidden w-full">
+        <div
+          className="team-carousel-viewport relative overflow-hidden w-full"
+          onTouchStart={(event) => {
+            touchStartXRef.current = event.changedTouches[0].clientX;
+            setIsPaused(true);
+          }}
+          onTouchEnd={(event) => {
+            const startX = touchStartXRef.current;
+            if (startX !== null) {
+              const distance = event.changedTouches[0].clientX - startX;
+              if (Math.abs(distance) > 40) {
+                if (distance < 0) nextSlide();
+                else prevSlide();
+              }
+            }
+            touchStartXRef.current = null;
+            setIsPaused(false);
+          }}
+        >
           <div
             className="team-carousel-track flex transition-transform duration-500 ease-out"
-            style={{ transform: trackTransform }}
+            style={{ width: `${teamMembers.length * itemPercent}%`, transform: trackTransform }}
           >
             {teamMembers.map((member, i) => {
               const isFlipped = Boolean(flippedCards[i]);
@@ -144,7 +172,7 @@ export function TeamCarousel() {
                 <div
                   key={member.name}
                   className="team-carousel-slide flex-shrink-0 px-3"
-                  style={{ width: `${itemPercent}%` }}
+                  style={{ width: `${100 / teamMembers.length}%`, flex: `0 0 ${100 / teamMembers.length}%` }}
                 >
                   <article className="team-card-wrapper relative w-full max-w-[280px] sm:max-w-[300px] mx-auto flex flex-col items-center select-none">
                     <div
